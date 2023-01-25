@@ -13,8 +13,21 @@
 
 </div>
 
+# 概述
+
+> 这里是更详细的 [`QWeatherSDK`](https://github.com/RTAkland/QWeatherSDK) 文档
+
+> 在SDK中`所有`的api均被以官方文档分割方式分开, 如果想要使用 `GeoAPI`
+> 则需要在创建好的示例调用 `geo()` 方法, 此方法返回一个 `Geo` 类, 这个类中
+> 包括了所有的 `GeoAPI`, 其他api也是一样
+> 但是如果直接调用 `太阳辐射` API会抛出 `kotlin.NotImplementedError`异常
+> 因为没有条件测试这个API
+
+# 目录
+
 <!-- TOC -->
 * [概述](#概述)
+* [目录](#目录)
 * [注意事项](#注意事项)
 * [数据类](#数据类)
   * [Geo](#geo)
@@ -57,16 +70,6 @@
     * [月升月落和月相](#月升月落和月相)
     * [太阳高度角](#太阳高度角)
 <!-- TOC -->
-
-# 概述
-
-> 这里是更详细的 [`QWeatherSDK`](https://github.com/RTAkland/QWeatherSDK) 文档
-
-> 在SDK中`所有`的api均被以官方文档分割方式分开, 如果想要使用 `GeoAPI`
-> 则需要在创建好的示例调用 `geo()` 方法, 此方法返回一个 `Geo` 类, 这个类中
-> 包括了所有的 `GeoAPI`, 其他api也是一样
-> 但是如果直接调用 `太阳辐射` API会抛出 `kotlin.NotImplementedError`异常
-> 因为没有条件测试这个API
 
 # 注意事项
 
