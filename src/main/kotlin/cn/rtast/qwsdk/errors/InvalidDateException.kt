@@ -16,5 +16,4 @@
 
 package cn.rtast.qwsdk.errors
 
-class InvalidDateException(msg: String) : Exception(msg) {
-}
+class InvalidDateException(msg: String) : Exception(msg)

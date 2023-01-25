@@ -16,5 +16,4 @@
 
 package cn.rtast.qwsdk.errors
 
-class UnsupportedYearException(msg: String) : Exception(msg) {
-}
+class UnsupportedYearException(msg: String) : Exception(msg)

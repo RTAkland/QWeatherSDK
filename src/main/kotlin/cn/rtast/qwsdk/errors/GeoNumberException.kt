@@ -16,5 +16,4 @@
 
 package cn.rtast.qwsdk.errors
 
-class GeoNumberException(msg: String) : Exception(msg) {
-}
+class GeoNumberException(msg: String) : Exception(msg)

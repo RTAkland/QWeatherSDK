@@ -16,5 +16,4 @@
 
 package cn.rtast.qwsdk.errors
 
-class UnsupportedAreaException(msg: String) : Exception(msg) {
-}
+class UnsupportedAreaException(msg: String) : Exception(msg)

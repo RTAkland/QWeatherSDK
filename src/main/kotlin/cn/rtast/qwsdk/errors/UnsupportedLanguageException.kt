@@ -16,5 +16,4 @@
 
 package cn.rtast.qwsdk.errors
 
-class UnsupportedLanguageException(msg: String) : Exception(msg) {
-}
+class UnsupportedLanguageException(msg: String) : Exception(msg)

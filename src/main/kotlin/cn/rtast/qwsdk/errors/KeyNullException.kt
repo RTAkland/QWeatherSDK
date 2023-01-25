@@ -16,5 +16,4 @@
 
 package cn.rtast.qwsdk.errors
 
-class KeyNullException(msg: String) : Exception(msg) {
-}
+class KeyNullException(msg: String) : Exception(msg) {}
