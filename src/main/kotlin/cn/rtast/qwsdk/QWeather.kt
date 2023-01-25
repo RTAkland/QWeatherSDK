@@ -31,18 +31,19 @@ object QWeather {
     fun switchPlan(plan: Plans, key: String) {
         rootAPI = when (plan) {
             Plans.FREE -> {
-                "https://devapi.qweather.com/v7/weather"
+                "https://devapi.qweather.com/v7"
             }
 
             Plans.STANDARD -> {
-                "https://api.qweather.com/v7/weather"
+                "https://api.qweather.com/v7"
             }
 
             Plans.CUSTOM -> {
-                "https://api.qweather.com/v7/weather"
+                "https://api.qweather.com/v7"
             }
         }
         this.key = key
+        println("Current Plan: $plan, Current API Host: $rootAPI")
     }
 
     fun geo(): Geo {
@@ -69,23 +70,15 @@ object QWeather {
         return Tropical()
     }
 
-    fun sea(){
-        TODO()
+    fun ocean(): Ocean {
+        return Ocean()
     }
 
-    fun radiation() {
-        TODO()
+    fun solarRadiation() {
+        TODO("No data can be display")
     }
 
-    fun sunAndMoon() {
-        TODO()
+    fun astronomy(): Astronomy {
+        return Astronomy()
     }
-
-}
-
-
-fun main() {
-    val qweater = QWeather
-    qweater.switchPlan(Plans.FREE, "0e03e86c8f5441af869237052f365d41")
-    qweater.air().now("101010100")
 }
