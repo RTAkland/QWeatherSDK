@@ -55,7 +55,9 @@ class Geo {
     }
 
     fun topCity(
-        range: CountryCode? = null, number: Int = 10, lang: Lang = Lang.ZH
+        range: CountryCode? = null,
+        number: Int = 10,
+        lang: Lang = Lang.ZH
     ): GeoTopBean {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
