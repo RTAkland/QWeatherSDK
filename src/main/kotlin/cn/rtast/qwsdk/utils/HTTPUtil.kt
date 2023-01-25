@@ -17,62 +17,46 @@
 package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.QWeather
-import cn.rtast.qwsdk.entity.Code
-import cn.rtast.qwsdk.errors.*
-import com.google.gson.Gson
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import java.net.ConnectException
+import cn.rtast.qwsdk.errors.KeyNullException
+import java.io.BufferedReader
+import java.io.ByteArrayInputStream
+import java.io.InputStreamReader
+import java.net.URL
+import java.nio.charset.StandardCharsets
+import java.util.zip.GZIPInputStream
 
 object HTTPUtil {
 
-    private val gson = Gson()
-    private val cli = OkHttpClient()
+    private fun unGZip(byteArray: ByteArray): String {
+        val byteArrayInputStream = ByteArrayInputStream(byteArray)
+        val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
+        val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
+        val sb2 = StringBuilder()
+        while (true) {
+            val readLine = bufferedReader.readLine()
+            if (readLine != null) {
+                sb2.append(readLine)
+            } else {
+                bufferedReader.close()
+                gZIPInputStream.close()
+                byteArrayInputStream.close()
+                return sb2.toString()
+            }
+        }
+    }
 
 
     fun get(url: String, onlyOne: Boolean = false): String {
         if (QWeather.key == null) {
             throw KeyNullException("Invalid Key.")
         }
-        try {
-            var aUrl = url
-            aUrl += if (onlyOne) {
-                "?"
-            } else {
-                "&"
-            }
-            val request = Request.Builder().url("${aUrl}key=${QWeather.key}").get().build()
-            val result = cli.newCall(request).execute().body.string()
-            println("${aUrl}key=${QWeather.key}")
-            println(result)
-            when (gson.fromJson(result, Code::class.java).code) {
-                400 -> {
-                    throw RequestException("Request error, may contain wrong request parameters or missing required parameters.")
-                }
-
-                401 -> {
-                    throw AuthException("Authentication failed, the wrong KEY may be used, Signature Authentication wrong, wrong KEY type (such as using SDK KEY to access Web API).")
-                }
-
-                402 -> {
-                    throw ExceededException("The requests has been exceeded or the balance is insufficient to support continued access to the service. You can recharge, or wait for the calls to reset.")
-                }
-
-                403 -> {
-                    throw ForbiddenException("No access permission, it may be because the PackageName or BundleID are inconsistent, or data that requires additional payment.")
-                }
-
-                429 -> {
-                    throw RateLimitException("Exceeding the limited QPM, please refer to QPM (https://dev.qweather.com/en/docs/resource/glossary/#qpm).")
-                }
-
-                500 -> {
-                    throw ServerException("No response or timeout, service down, please contact QWeather (https://www.qweather.com/contact).")
-                }
-            }
-            return result
-        } catch (_: ConnectException) {
-            throw ConnectException("Failed to get $url")
+        var aUrl = url
+        aUrl += if (onlyOne) {
+            "?"
+        } else {
+            "&"
         }
+        val response = URL("${aUrl}key=${QWeather.key}").readBytes()
+        return unGZip(response)
     }
 }
