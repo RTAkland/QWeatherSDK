@@ -1,0 +1,22 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
+}
+
+group = "cn.rtast"
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation("com.google.code.gson:gson:2.10.1")
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "17"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "17"
+}
