@@ -35,7 +35,7 @@ class TimeMachine {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): WeatherHistoricalBean {
-        DateUtil().verify(date)
+        DateUtil(date).verifyYMD()
         val url = "${QWeather.rootAPI}/historical/weather" +
                 "?location=$location" +
                 "&lang=${lang.name.lowercase()}" +
@@ -51,7 +51,7 @@ class TimeMachine {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): AirHistoricalBean {
-        DateUtil().verify(date)
+        DateUtil(date).verifyYMD()
         val url = "${QWeather.rootAPI}/historical/air" +
                 "?location=$location" +
                 "&lang=${lang.name.lowercase()}" +
