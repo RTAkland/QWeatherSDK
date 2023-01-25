@@ -20,8 +20,6 @@ import cn.rtast.qwsdk.enums.Plans
 import cn.rtast.qwsdk.sub.*
 
 object QWeather {
-    private val plan: Plans? = null
-
     const val GEOAPI = "https://geoapi.qweather.com/v2"
 
     var rootAPI: String = "https://devapi.qweather.com/v7"
