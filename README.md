@@ -27,6 +27,9 @@
 * [目录](#目录)
 * [使用](#使用)
   * [添加依赖](#添加依赖)
+    * [本地文件](#本地文件)
+    * [Jitpack](#jitpack)
+  * [embed](#embed)
   * [简单的例子](#简单的例子)
 * [数据类](#数据类)
 * [原理](#原理)
@@ -42,17 +45,54 @@
 
 ## 添加依赖
 
+### 本地文件
+
 > 以 `Groovy DSL` 为例
 
 ```groovy
 // 添加gson 和 QWeatherSDK 依赖
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
-    files("./lib/QWeatherSDK.jar")
+    implementation(files("./lib/QWeatherSDK.jar"))
 }
 ```
 
-> 你也可以使用 [`jitpack`](https://jitpack.io) 来获取依赖, 这里不做演示
+> 你也可以使用 [`jitpack`](https://jitpack.io) 来获取依赖
+
+### Jitpack
+
+```groovy
+
+repositories {
+    // other repos...
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.github.RTAkland:QWeatherSDK:v0.0.2")
+}
+```
+
+> 如果想要得到aar包, 你可以使用`embed`, 这里以`Groovy DSL`为例
+
+## embed
+
+> 添加embed配置
+
+```groovy
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
+// other configurations...
+
+dependencies {
+    embed(api("com.github.RTAkland:QWeatherSDK:v0.0.2"))
+    // embed will compile all classes into jar file
+}
+```
 
 ## 简单的例子
 
