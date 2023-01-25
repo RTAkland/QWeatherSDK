@@ -9,7 +9,7 @@
 <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/RTAkland/QWeatherSDK/build.yml">
 <img alt="Kotlin Version" src="https://img.shields.io/badge/Kotlin-1.8.0-pink?logo=kotlin">
 <img alt="GitHub" src="https://img.shields.io/github/license/RTAkland/QWeatherSDK?logo=apache">
-<a href="https://jitpack.io/#RTAkland/QWeatherSDK"><img alt="jitpackV" src="https://jitpack.io/v/RTAkland/QWeatherSDK.svg"><a>
+<a href="https://jitpack.io/#RTAkland/QWeatherSDK"><img alt="jitpackV" src="https://jitpack.io/v/RTAkland/QWeatherSDK.svg"></a>
 
 </div>
 
@@ -60,6 +60,7 @@ fun main() {
 > 使用HTTP请求获取数据后将其反序列化返回, 减少了反序列化的工作量
 
 # 注意事项
+
 > 本SDK无法使用[`太阳辐射`](https://dev.qweather.com/docs/api/solar-radiation/solar-radiation-hourly-forecast/)
 > 因为没有条件测试返回结果, 并且官方文档也没有写明返回的数据, 故无法创建数据类实现接口
 
