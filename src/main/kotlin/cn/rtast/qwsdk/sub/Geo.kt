@@ -40,7 +40,7 @@ class Geo {
         lang: Lang = Lang.ZH  // Default is zh-hans
     ): GeoLookupBean {
         var url =
-            "${QWeather.GEOAPI}/city/lookup" + "?location=$location" + "&number=$number" + "&lang=${lang.name.lowercase()}"
+            "${QWeather.geoAPI}/city/lookup" + "?location=$location" + "&number=$number" + "&lang=${lang.name.lowercase()}"
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
@@ -62,7 +62,7 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        var url = "${QWeather.GEOAPI}/city/top?number=$number&lang=${lang.name.lowercase()}"
+        var url = "${QWeather.geoAPI}/city/top?number=$number&lang=${lang.name.lowercase()}"
         if (range != null) {
             url += "&range=${range.name.lowercase()}"
         }
@@ -74,7 +74,7 @@ class Geo {
         location: String, type: POIType, city: String? = null, number: Int = 10, lang: Lang = Lang.ZH
     ): POIBean {
         var url =
-            "${QWeather.GEOAPI}/poi/lookup?location=$location" + "&type=${type.name}" + "&number=$number" + "&lang=${lang.name.lowercase()}"
+            "${QWeather.geoAPI}/poi/lookup?location=$location" + "&type=${type.name}" + "&number=$number" + "&lang=${lang.name.lowercase()}"
         if (city != null) {
             url += "&city=$city"
         }
@@ -95,7 +95,7 @@ class Geo {
             throw GeoNumberException("Invalid Radius: $radius, please choose from 1-50!")
         }
         var url =
-            "${QWeather.GEOAPI}/poi/range?location=$location" + "&type=${type.name}" + "&number=$number" + "&lang=${lang.name.lowercase()}"
+            "${QWeather.geoAPI}/poi/range?location=$location" + "&type=${type.name}" + "&number=$number" + "&lang=${lang.name.lowercase()}"
         if (city != null) {
             url += "&city=$city"
         }
