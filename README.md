@@ -31,6 +31,8 @@
     * [Jitpack](#jitpack)
   * [embed](#embed)
   * [简单的例子](#简单的例子)
+    * [Kotlin](#kotlin)
+    * [Java](#java)
 * [数据类](#数据类)
 * [原理](#原理)
 * [注意事项](#注意事项)
@@ -96,6 +98,8 @@ dependencies {
 
 ## 简单的例子
 
+### Kotlin
+
 ```kotlin
 import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.Plans
@@ -106,6 +110,22 @@ fun main() {
     qw.switchPlan(Plans.FREE, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
     println(response)  // 返回的数据已经被反序列化, 可以直接访问对应的数据类来获取数据
+}
+```
+
+### Java
+
+```java
+import cn.rtast.qwsdk.QWeather;
+import cn.rtast.qwsdk.enums.Lang;
+import cn.rtast.qwsdk.enums.Unit;
+
+public class Main {
+    public static void main(String[] args) {
+        QWeather qw = QWeather.INSTANCE;  // 创建一个实例
+        System.out.println(qw.weather().now("101010100", Lang.ZH, Unit.M));
+        // 在Kotlin中有默认值可以不填, 在Java中必须填写
+    }
 }
 ```
 
