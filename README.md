@@ -124,7 +124,7 @@ fun main() {
 
 # 开发
 
-* 建议使用`Intellij IDEA` 可进行开发
+* 建议使用`Intellij IDEA` 进行开发
 
 ## 克隆项目
 
