@@ -18,15 +18,15 @@ package cn.rtast.qwsdk
 
 import cn.rtast.qwsdk.enums.Plans
 import cn.rtast.qwsdk.sub.*
+import java.util.logging.Logger
 
-object QWeather {
 
-    var rootAPI: String = "https://devapi.qweather.com/v7"
+class QWeather {
 
-    var key: String? = null
+    private val logger = Logger.getLogger("QWSDK-MAIN")
 
-    fun switchPlan(plan: Plans, key: String) {
-        rootAPI = when (plan) {
+    fun init(plan: Plans, key: String) {
+        Global.rootAPI = when (plan) {
             Plans.FREE -> {
                 "https://devapi.qweather.com/v7"
             }
@@ -39,8 +39,8 @@ object QWeather {
                 "https://api.qweather.com/v7"
             }
         }
-        this.key = key
-        println("Current Plan: $plan, Current API Host: $rootAPI")
+        Global.key = key
+        logger.info("Current Plan: $plan, Current API Host: ${Global.rootAPI}")
     }
 
     fun geo(): Geo {
