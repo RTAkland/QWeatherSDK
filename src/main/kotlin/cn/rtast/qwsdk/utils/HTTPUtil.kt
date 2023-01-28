@@ -16,8 +16,6 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.QWeather
-import cn.rtast.qwsdk.errors.KeyNullException
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
@@ -46,17 +44,8 @@ object HTTPUtil {
     }
 
 
-    fun get(url: String, onlyOne: Boolean = false): String {
-        if (QWeather.key == null) {
-            throw KeyNullException("Invalid Key.")
-        }
-        var aUrl = url
-        aUrl += if (onlyOne) {
-            "?"
-        } else {
-            "&"
-        }
-        val response = URL("${aUrl}key=${QWeather.key}").readBytes()
+    fun get(url: String): String {
+        val response = URL(url).readBytes()
         return unGZip(response)
     }
 }
