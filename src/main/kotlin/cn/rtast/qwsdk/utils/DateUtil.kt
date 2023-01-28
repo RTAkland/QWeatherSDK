@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.errors.InvalidDateException
+import cn.rtast.qwsdk.exceptions.InvalidDateException
 
 class DateUtil(private val date: String) {
     fun verifyYMD() {
