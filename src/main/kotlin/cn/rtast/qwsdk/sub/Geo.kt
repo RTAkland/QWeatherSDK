@@ -16,22 +16,22 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.geo.lookup.GeoLookupBean
 import cn.rtast.qwsdk.entity.geo.poi.POIBean
 import cn.rtast.qwsdk.entity.geo.poi.range.POIRangeBean
 import cn.rtast.qwsdk.entity.geo.top.GeoTopBean
+import cn.rtast.qwsdk.enums.ApiType
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.POIType
-import cn.rtast.qwsdk.errors.GeoNumberException
+import cn.rtast.qwsdk.exceptions.GeoNumberException
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Geo {
 
     private val gson = Gson()
-    private val geoAPI = "https://geoapi.qweather.com/v2"
 
     fun citySearch(
         location: String,
@@ -40,17 +40,20 @@ class Geo {
         number: Int = 10,
         lang: Lang = Lang.ZH  // Default is zh-hans
     ): GeoLookupBean {
-        var url =
-            "$geoAPI/city/lookup" + "?location=$location" + "&number=$number" + "&lang=${lang.name.lowercase()}"
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        if (adm != null) {
-            url += "&adm=$adm"
-        }
-        if (range != null) {
-            url += "&range=${range.name.lowercase()}"
-        }
+        val url = make(
+            "city/lookup",
+            mapOf(
+                "location" to location,
+                "adm" to adm,
+                "range" to range,
+                "number" to number,
+                "lang" to lang
+            ),
+            ApiType.Geo
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, GeoLookupBean::class.java)
     }
@@ -63,10 +66,15 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        var url = "$geoAPI/city/top?number=$number&lang=${lang.name.lowercase()}"
-        if (range != null) {
-            url += "&range=${range.name.lowercase()}"
-        }
+        val url = make(
+            "city/top",
+            mapOf(
+                "range" to range,
+                "number" to number,
+                "lang" to lang
+            ),
+            ApiType.Geo
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, GeoTopBean::class.java)
     }
@@ -74,14 +82,20 @@ class Geo {
     fun poiLookup(
         location: String, type: POIType, city: String? = null, number: Int = 10, lang: Lang = Lang.ZH
     ): POIBean {
-        var url =
-            "$geoAPI/poi/lookup?location=$location" + "&type=${type.name}" + "&number=$number" + "&lang=${lang.name.lowercase()}"
-        if (city != null) {
-            url += "&city=$city"
-        }
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
+        val url = make(
+            "poi/lookup",
+            mapOf(
+                "location" to location,
+                "type" to type,
+                "city" to city,
+                "number" to number,
+                "lang" to lang
+            ),
+            ApiType.Geo
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, POIBean::class.java)
     }
@@ -95,11 +109,18 @@ class Geo {
         if (radius !in 1..50) {  // range 1-50
             throw GeoNumberException("Invalid Radius: $radius, please choose from 1-50!")
         }
-        var url =
-            "$geoAPI/poi/range?location=$location" + "&type=${type.name}" + "&number=$number" + "&lang=${lang.name.lowercase()}"
-        if (city != null) {
-            url += "&city=$city"
-        }
+        val url = make(
+            "poi/range",
+            mapOf(
+                "location" to location,
+                "type" to type,
+                "radius" to radius,
+                "city" to city,
+                "number" to number,
+                "lang" to lang
+            ),
+            ApiType.Geo
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, POIRangeBean::class.java)
     }

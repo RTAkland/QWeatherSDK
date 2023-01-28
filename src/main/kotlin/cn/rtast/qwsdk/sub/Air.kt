@@ -16,11 +16,11 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
 import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Air {
@@ -31,9 +31,13 @@ class Air {
         location: String,
         lang: Lang = Lang.ZH
     ): AirBean {
-        val url = "${QWeather.rootAPI}/air/now" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}"
+        val url = make(
+            "air/now",
+            mapOf(
+                "location" to location,
+                "lang" to lang
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, AirBean::class.java)
     }
@@ -42,9 +46,13 @@ class Air {
         location: String,
         lang: Lang = Lang.ZH
     ): AirDailyBean {
-        val url = "${QWeather.rootAPI}/air/now" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}"
+        val url = make(
+            "air/5d",
+            mapOf(
+                "location" to location,
+                "lang" to lang
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, AirDailyBean::class.java)
     }

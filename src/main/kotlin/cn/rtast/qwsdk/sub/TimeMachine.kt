@@ -16,13 +16,13 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class TimeMachine {
@@ -36,11 +36,15 @@ class TimeMachine {
         unit: Unit = Unit.M
     ): WeatherHistoricalBean {
         DateUtil(date).verifyYMD()
-        val url = "${QWeather.rootAPI}/historical/weather" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}" +
-                "&date=$date"
+        val url = make(
+            "historical/weather",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit,
+                "date" to date
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherHistoricalBean::class.java)
     }
@@ -52,11 +56,15 @@ class TimeMachine {
         unit: Unit = Unit.M
     ): AirHistoricalBean {
         DateUtil(date).verifyYMD()
-        val url = "${QWeather.rootAPI}/historical/air" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}" +
-                "&date=$date"
+        val url = make(
+            "historical/air",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit,
+                "date" to date
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, AirHistoricalBean::class.java)
     }

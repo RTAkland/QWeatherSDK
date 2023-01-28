@@ -16,12 +16,12 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.warning.WarningBean
 import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Warning {
@@ -32,9 +32,13 @@ class Warning {
         location: String,
         lang: Lang = Lang.ZH
     ): WarningBean {
-        val url = "${QWeather.rootAPI}/warning/now" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}"
+        val url = make(
+            "warning/now",
+            mapOf(
+                "location" to location,
+                "lang" to lang
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WarningBean::class.java)
     }
@@ -42,8 +46,10 @@ class Warning {
     fun list(
         range: CountryCode = CountryCode.CN
     ): WarningCityListBean {
-        val url = "${QWeather.rootAPI}/warning/list" +
-                "?range=${range.name.lowercase()}"
+        val url = make(
+            "warning/list",
+            mapOf("range" to range)
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WarningCityListBean::class.java)
     }

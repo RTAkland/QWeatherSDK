@@ -16,14 +16,14 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastBean
 import cn.rtast.qwsdk.entity.tropical.list.TropicalListBean
 import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
 import cn.rtast.qwsdk.enums.BasinType
-import cn.rtast.qwsdk.errors.UnsupportedAreaException
-import cn.rtast.qwsdk.errors.UnsupportedYearException
+import cn.rtast.qwsdk.exceptions.UnsupportedAreaException
+import cn.rtast.qwsdk.exceptions.UnsupportedYearException
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 import java.time.Year
 
@@ -32,15 +32,23 @@ class Tropical {
     private val gson = Gson()
 
     fun forecast(stormID: String): TropicalForecastBean {
-        val url = "${QWeather.rootAPI}/tropical/storm-forecast" +
-                "?stormid=$stormID"
+        val url = make(
+            "tropical/tropical/storm-forecast",
+            mapOf(
+                "stormid" to stormID,
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, TropicalForecastBean::class.java)
     }
 
     fun track(stormID: String): TropicalTrackBean {
-        val url = "${QWeather.rootAPI}/tropical/storm-track" +
-                "?stormid=$stormID"
+        val url = make(
+            "tropical/tropical/storm-track",
+            mapOf(
+                "stormid" to stormID,
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, TropicalTrackBean::class.java)
     }
@@ -59,9 +67,13 @@ class Tropical {
         if (year != currentYear.toString() && year != lastYear.toString()) {
             throw UnsupportedYearException("You can't list the year before last year and future storms!")
         }
-        val url = "${QWeather.rootAPI}/tropical/storm-list" +
-                "?basin=${basin.name.lowercase()}" +
-                "&year=$year"
+        val url = make(
+            "tropical/storm-list",
+            mapOf(
+                "basin" to basin,
+                "year" to year
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, TropicalListBean::class.java)
     }

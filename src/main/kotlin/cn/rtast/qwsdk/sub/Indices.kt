@@ -16,13 +16,13 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.indices.IndicesBean
 import cn.rtast.qwsdk.enums.IndicesType
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.errors.UnsupportedLanguageException
+import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.HTTPUtil
 import cn.rtast.qwsdk.utils.IndicesUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Indices {
@@ -40,9 +40,13 @@ class Indices {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
         val typeName = IndicesUtil().p(type)
-        val url = "${QWeather.rootAPI}/indices/$days" +
-                "?location=$location" +
-                "&type=$typeName"
+        val url = make(
+            "indices/$days",
+            mapOf(
+                "location" to location,
+                "type" to typeName
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, IndicesBean::class.java)
     }

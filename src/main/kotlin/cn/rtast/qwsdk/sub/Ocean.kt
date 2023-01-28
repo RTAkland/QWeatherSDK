@@ -16,11 +16,11 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
 import cn.rtast.qwsdk.entity.ocean.tide.TideBean
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Ocean {
@@ -32,9 +32,13 @@ class Ocean {
         date: String
     ): TideBean {
         DateUtil(date).verifyYMD()
-        val url = "${QWeather.rootAPI}/ocean/tide" +
-                "?location=$location" +
-                "&date=$date"
+        val url = make(
+            "ocean/tide",
+            mapOf(
+                "location" to location,
+                "date" to date
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, TideBean::class.java)
     }
@@ -44,9 +48,13 @@ class Ocean {
         date: String
     ): CurrentsBean {
         DateUtil(date).verifyYMD()
-        val url = "${QWeather.rootAPI}/ocean/currents" +
-                "?location=$location" +
-                "&date=$date"
+        val url = make(
+            "ocean/currents",
+            mapOf(
+                "location" to location,
+                "date" to date
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, CurrentsBean::class.java)
     }

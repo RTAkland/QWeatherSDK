@@ -16,13 +16,13 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Astronomy {
@@ -35,10 +35,14 @@ class Astronomy {
         lang: Lang = Lang.ZH
     ): SunBean {
         DateUtil(date).verifyYMD()
-        val url = "${QWeather.rootAPI}/astronomy/sun" +
-                "?location=$location" +
-                "&date=$date" +
-                "&lang=${lang.name.lowercase()}"
+        val url = make(
+            "astronomy/sun",
+            mapOf(
+                "location" to location,
+                "date" to date,
+                "lang" to lang
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, SunBean::class.java)
     }
@@ -49,10 +53,12 @@ class Astronomy {
         lang: Lang = Lang.ZH
     ): MoonBean {
         DateUtil(date).verifyYMD()
-        val url = "${QWeather.rootAPI}/astronomy/moon" +
-                "?location=$location" +
-                "&date=$date" +
-                "&lang=${lang.name.lowercase()}"
+        val url = make(
+            "astronomy/moon", mapOf(
+                "location" to location,
+                "date" to date, "lang" to lang
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, MoonBean::class.java)
     }
@@ -66,12 +72,16 @@ class Astronomy {
     ): SolarElevationAngleBean {
         DateUtil(date).verifyYMD()
         DateUtil(time).verifyHM()
-        val url = "${QWeather.rootAPI}/astronomy/solar-elevation-angle" +
-                "?location=$location" +
-                "&date=$date" +
-                "&time=$time" +
-                "&tz=$tz" +
-                "&alt=$alt"
+        val url = make(
+            "astronomy/solar-elevation-angle",
+            mapOf(
+                "location" to location,
+                "date" to date,
+                "time" to time,
+                "tz" to tz,
+                "alt" to alt
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, SolarElevationAngleBean::class.java)
     }

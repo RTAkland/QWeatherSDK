@@ -16,7 +16,6 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.weather.daily.WeatherHourlyBean
 import cn.rtast.qwsdk.entity.weather.grid.daily.WeatherGridDailyBean
 import cn.rtast.qwsdk.entity.weather.grid.hourly.WeatherGridHourlyBean
@@ -27,6 +26,7 @@ import cn.rtast.qwsdk.entity.weather.now.WeatherNowBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
 import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
 class Weather {
@@ -39,10 +39,14 @@ class Weather {
         lang: Lang,
         unit: Unit
     ): WeatherHourlyBean {
-        val url = "${QWeather.rootAPI}/weather/$hours" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}"
+        val url = make(
+            "weather/$hours",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherHourlyBean::class.java)
     }
@@ -54,10 +58,14 @@ class Weather {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): WeatherDailyBean {
-        val url = "${QWeather.rootAPI}/weather/$days" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}"
+        val url = make(
+            "weather/$days",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherDailyBean::class.java)
     }
@@ -68,10 +76,14 @@ class Weather {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): WeatherGridHourlyBean {
-        val url = "${QWeather.rootAPI}/grid-weather/$hours" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}"
+        val url = make(
+            "grid-weather/$hours",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherGridHourlyBean::class.java)
     }
@@ -82,10 +94,14 @@ class Weather {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): WeatherGridDailyBean {
-        val url = "${QWeather.rootAPI}/grid-weather/$days" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}"
+        val url = make(
+            "grid-weather/$days",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherGridDailyBean::class.java)
     }
@@ -93,11 +109,14 @@ class Weather {
     fun now(
         location: String, lang: Lang = Lang.ZH, unit: Unit = Unit.M
     ): WeatherNowBean {
-        val url =
-            "${QWeather.rootAPI}/weather/now" +
-                    "?location=$location" +
-                    "&lang=${lang.name.lowercase()}" +
-                    "&unit=${unit.name.lowercase()}"
+        val url = make(
+            "weather/now",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherNowBean::class.java)
     }
@@ -106,9 +125,13 @@ class Weather {
         location: String,
         lang: Lang = Lang.ZH
     ): WeatherMinutelyBean {
-        val url = "${QWeather.rootAPI}/minutely/5m" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}"
+        val url = make(
+            "minutely/5m",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherMinutelyBean::class.java)
     }
@@ -166,10 +189,14 @@ class Weather {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): WeatherGridRealtimeBean {
-        val url = "${QWeather.rootAPI}/grid-weather/now" +
-                "?location=$location" +
-                "&lang=${lang.name.lowercase()}" +
-                "&unit=${unit.name.lowercase()}"
+        val url = make(
+            "grid-weather/now",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit
+            )
+        )
         val result = HTTPUtil.get(url)
         return gson.fromJson(result, WeatherGridRealtimeBean::class.java)
     }
