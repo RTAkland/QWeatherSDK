@@ -14,6 +14,6 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.errors
+package cn.rtast.qwsdk.exceptions
 
 class UnsupportedYearException(msg: String) : Exception(msg)
