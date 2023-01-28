@@ -3,7 +3,10 @@ plugins {
 }
 
 group = "cn.rtast"
-version = "0.0.3"
+version = "0.1.0"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
@@ -13,6 +16,7 @@ repositories {
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 }
+
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
