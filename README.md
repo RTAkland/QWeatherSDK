@@ -105,15 +105,17 @@ import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
-    val qw = QWeather  // 这里是静态类
+    val qw = QWeather()  // 创建一的对象
     // 可用的计划有 FREE, STANDARD, CUSTOM
-    qw.switchPlan(Plans.FREE, "<replace your key here>")
+    qw.init(Plans.FREE, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
     println(response)  // 返回的数据已经被反序列化, 可以直接访问对应的数据类来获取数据
 }
 ```
 
 ### Java
+
+> 不建议使用Java使用此SDK
 
 ```java
 import cn.rtast.qwsdk.QWeather;
@@ -122,7 +124,7 @@ import cn.rtast.qwsdk.enums.Unit;
 
 public class Main {
     public static void main(String[] args) {
-        QWeather qw = QWeather.INSTANCE;  // 创建一个实例
+        QWeather qw = new QWeather();  // 创建一个对象
         System.out.println(qw.weather().now("101010100", Lang.ZH, Unit.M));
         // 在Kotlin中有默认值可以不填, 在Java中必须填写
     }
