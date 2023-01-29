@@ -18,45 +18,43 @@ package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.exceptions.InvalidDateException
 
-class DateUtil(private val date: String) {
-    fun verifyYMD() {
-        if (date.length != 8) {
-            throw InvalidDateException("Invalid Date length: ${date.length}, expect: 8!")
-        }
-
-        val year = date.substring(0, 4).toInt()
-        val month = date.substring(4, 6).toInt()
-        val day = date.substring(6, 8).toInt()
-
-        if (month !in 1..12) {
-            throw InvalidDateException("Invalid month: ${month}.")
-        }
-
-        val isLeapYear = if (year % 4 == 0) {
-            if (year % 100 == 0) {
-                year % 400 == 0
-            } else
-                true
-        } else
-            false
-
-        if (!isLeapYear && day > 28) {
-            throw InvalidDateException("Invalid Day: ${day}.")
-        }
+fun verifyYMD(date: String) {
+    if (date.length != 8) {
+        throw InvalidDateException("Invalid Date length: ${date.length}, expect: 8!")
     }
 
-    fun verifyHM() {
-        if (date.length != 4) {
-            throw InvalidDateException("Invalid Date length: ${date.length}, expect: 4!")
-        }
-        val hour = date.substring(0, 2).toInt()
-        val minute = date.substring(2, 4).toInt()
-        if (hour !in 0..24) {
-            throw InvalidDateException("Invalid Hour: ${hour}.")
-        }
+    val year = date.substring(0, 4).toInt()
+    val month = date.substring(4, 6).toInt()
+    val day = date.substring(6, 8).toInt()
 
-        if (minute !in 0..60) {
-            throw InvalidDateException("Invalid Minute: ${minute}.")
-        }
+    if (month !in 1..12) {
+        throw InvalidDateException("Invalid month: ${month}.")
+    }
+
+    val isLeapYear = if (year % 4 == 0) {
+        if (year % 100 == 0) {
+            year % 400 == 0
+        } else
+            true
+    } else
+        false
+
+    if (!isLeapYear && day > 28) {
+        throw InvalidDateException("Invalid Day: ${day}.")
+    }
+}
+
+fun verifyHM(date: String) {
+    if (date.length != 4) {
+        throw InvalidDateException("Invalid Date length: ${date.length}, expect: 4!")
+    }
+    val hour = date.substring(0, 2).toInt()
+    val minute = date.substring(2, 4).toInt()
+    if (hour !in 0..24) {
+        throw InvalidDateException("Invalid Hour: ${hour}.")
+    }
+
+    if (minute !in 0..60) {
+        throw InvalidDateException("Invalid Minute: ${minute}.")
     }
 }

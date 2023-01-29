@@ -27,7 +27,6 @@ fun make(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Comm
         value = when (value) {
             is BasinType -> value.name.lowercase()
             is CountryCode -> value.name.lowercase()
-            is IndicesType -> value.name.lowercase()
             is Lang -> value.name.lowercase()
             is Unit -> value.name.lowercase()
             else -> v
