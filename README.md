@@ -183,6 +183,6 @@ $ .\gradlew.bat build
 # 鸣谢
 
 <div>
-<a href="https://www.jetbrains.com/opensource/"><code>JetBrains Open Source</code></a> 提供的强大IDE支持
 <img src="https://static.rtast.cn/static/other/jetbrains.png" alt="JetBrainsIcon" width="128">
+<a href="https://www.jetbrains.com/opensource/"><code>JetBrains Open Source</code></a> 提供的强大IDE支持
 </div>
