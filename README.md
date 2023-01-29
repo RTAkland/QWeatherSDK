@@ -15,8 +15,8 @@
 
 # 概述
 
-> 此项目是一个非官方 [`Kotlin`](https://kotl.in)/[`Java`](https://java.com) 的 [`和风天气`](https://dev.qweather.com)
-> SDK, 使用Kotlin开发
+> 此项目是一个非官方 [`Kotlin`](https://kotl.in)/[`Java`](https://java.com) 的
+> [`和风天气`](https://dev.qweather.com) SDK, 使用Kotlin开发
 > 和官方的[`SDK`](https://a.hecdn.net/download/api_sdk/QWeather_Public_Android_V4.11.jar)
 > 区别在于此SDK只需要申请一个 `WEB API`即可使用
 
@@ -34,7 +34,6 @@
     * [Kotlin](#kotlin)
     * [Java](#java)
 * [数据类](#数据类)
-* [原理](#原理)
 * [注意事项](#注意事项)
 * [开发](#开发)
   * [克隆项目](#克隆项目)
@@ -72,7 +71,7 @@ repositories {
 
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.github.RTAkland:QWeatherSDK:v0.0.2")
+    implementation("com.github.RTAkland:QWeatherSDK:Tag")
 }
 ```
 
@@ -92,9 +91,13 @@ configurations {
 
 dependencies {
     embed(api("com.github.RTAkland:QWeatherSDK:v0.0.2"))
-    // embed will compile all classes into jar file
+    // 使用embed将会把embed内包裹的依赖中的.class文件全部打包进, 你的jar文件中
+    // 和gradle中的include类似, 但是gradle是将依赖jar打包进jar
+    // embed 不会和implementation关键字冲突, embed仅在编译时生效
 }
 ```
+
+> 使用embed后就可以在独立的环境运行而不需要额外下载依赖
 
 ## 简单的例子
 
@@ -106,8 +109,8 @@ import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
     val qw = QWeather()  // 创建一的对象
-    // 可用的计划有 FREE, STANDARD, CUSTOM
-    qw.init(Plans.FREE, "<replace your key here>")
+    // 可用的计划有 Free, Standard, Custom
+    qw.init(Plans.Free, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
     println(response)  // 返回的数据已经被反序列化, 可以直接访问对应的数据类来获取数据
 }
@@ -115,16 +118,18 @@ fun main() {
 
 ### Java
 
-> 不建议使用Java使用此SDK
+> 不建议Java使用此SDK进行开发, 因为kotlin中的特性在Java中无法使用
 
 ```java
 import cn.rtast.qwsdk.QWeather;
 import cn.rtast.qwsdk.enums.Lang;
 import cn.rtast.qwsdk.enums.Unit;
+import cn.rtast.qwsdk.enums.Plans;
 
 public class Main {
     public static void main(String[] args) {
-        QWeather qw = new QWeather();  // 创建一个对象
+        QWeather qw = new QWeather();
+        qw.init(Plans.Free, "<replace your key here>");
         System.out.println(qw.weather().now("101010100", Lang.ZH, Unit.M));
         // 在Kotlin中有默认值可以不填, 在Java中必须填写
     }
@@ -135,14 +140,12 @@ public class Main {
 
 > 请点击[这里](/docs/README.md)查看
 
-# 原理
-
-> 使用HTTP请求获取数据后将其反序列化返回, 减少了反序列化的工作量
-
 # 注意事项
 
 > 本SDK无法使用[`太阳辐射`](https://dev.qweather.com/docs/api/solar-radiation/solar-radiation-hourly-forecast/)
 > 因为没有条件测试返回结果, 并且官方文档也没有写明返回的数据, 故无法创建数据类实现接口
+
+> 目前编译出的产物的JVM版本为 1.8, 所以你至少需要1.8以上版本来使用此JDK
 
 # 开发
 
@@ -179,4 +182,7 @@ $ .\gradlew.bat build
 
 # 鸣谢
 
-* [JetBrains Open Source](https://www.jetbrains.com/opensource/) 项目提供的IDE支持.
+<div>
+<a href="https://www.jetbrains.com/opensource/"><code>JetBrains Open Source</code></a> 提供的强大IDE支持
+<img src="https://static.rtast.cn/static/other/jetbrains.png" alt="JetBrainsIcon" width="128">
+</div>

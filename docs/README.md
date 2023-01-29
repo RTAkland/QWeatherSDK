@@ -69,6 +69,9 @@
     * [日出日落](#日出日落)
     * [月升月落和月相](#月升月落和月相)
     * [太阳高度角](#太阳高度角)
+* [子类](#子类)
+* [开源](#开源)
+* [鸣谢](#鸣谢)
 <!-- TOC -->
 
 # 注意事项
@@ -218,3 +221,20 @@
 
 * 接口: `astronomy().solarElevationAngle()`  参数: `location` `date` `time` `tz` `alt`
   数据类: `SolarElevationAngleBean`
+
+# 子类
+
+> 你可以在 `QWeather` 类中使用所有的API, 对应的方法返回了对应的子类对象
+
+# 开源
+
+- 本项目以[Apache-2.0](./LICENSE)许可开源, 即:
+    - 你可以直接使用该项目提供的功能, 无需任何授权
+    - 你可以在**注明来源版权信息**的情况下对源代码进行任意分发和修改以及衍生
+
+# 鸣谢
+
+<div>
+<a href="https://www.jetbrains.com/opensource/"><code>JetBrains Open Source</code></a> 提供的强大IDE支持
+<img src="https://static.rtast.cn/static/other/jetbrains.png" alt="JetBrainsIcon" width="128">
+</div>
