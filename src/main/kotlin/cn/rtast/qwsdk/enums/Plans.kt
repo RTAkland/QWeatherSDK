@@ -17,5 +17,5 @@
 package cn.rtast.qwsdk.enums
 
 enum class Plans {
-    FREE, STANDARD, CUSTOM
+    Free, Standard, Custom
 }
