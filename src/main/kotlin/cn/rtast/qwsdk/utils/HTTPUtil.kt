@@ -29,16 +29,16 @@ object HTTPUtil {
         val byteArrayInputStream = ByteArrayInputStream(byteArray)
         val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
         val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
-        val sb2 = StringBuilder()
+        val stringBuilder = StringBuilder()
         while (true) {
             val readLine = bufferedReader.readLine()
             if (readLine != null) {
-                sb2.append(readLine)
+                stringBuilder.append(readLine)
             } else {
                 bufferedReader.close()
                 gZIPInputStream.close()
                 byteArrayInputStream.close()
-                return sb2.toString()
+                return stringBuilder.toString()
             }
         }
     }
