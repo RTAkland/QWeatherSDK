@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "cn.rtast"
-version = "0.1.0"
+version = "0.1.1"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -17,6 +17,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 }
 
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from("LICENSE")
+}
 
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
