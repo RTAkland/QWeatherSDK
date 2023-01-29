@@ -20,9 +20,9 @@ import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
-import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.HTTPUtil
 import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.verifyYMD
 import com.google.gson.Gson
 
 class TimeMachine {
@@ -35,7 +35,7 @@ class TimeMachine {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): WeatherHistoricalBean {
-        DateUtil(date).verifyYMD()
+        verifyYMD(date)
         val url = make(
             "historical/weather",
             mapOf(
@@ -55,7 +55,7 @@ class TimeMachine {
         lang: Lang = Lang.ZH,
         unit: Unit = Unit.M
     ): AirHistoricalBean {
-        DateUtil(date).verifyYMD()
+        verifyYMD(date)
         val url = make(
             "historical/air",
             mapOf(

@@ -20,9 +20,10 @@ import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.HTTPUtil
 import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.verifyHM
+import cn.rtast.qwsdk.utils.verifyYMD
 import com.google.gson.Gson
 
 class Astronomy {
@@ -34,7 +35,7 @@ class Astronomy {
         date: String,
         lang: Lang = Lang.ZH
     ): SunBean {
-        DateUtil(date).verifyYMD()
+        verifyYMD(date)
         val url = make(
             "astronomy/sun",
             mapOf(
@@ -52,7 +53,7 @@ class Astronomy {
         date: String,
         lang: Lang = Lang.ZH
     ): MoonBean {
-        DateUtil(date).verifyYMD()
+        verifyYMD(date)
         val url = make(
             "astronomy/moon", mapOf(
                 "location" to location,
@@ -70,8 +71,8 @@ class Astronomy {
         tz: Int,
         alt: Int
     ): SolarElevationAngleBean {
-        DateUtil(date).verifyYMD()
-        DateUtil(time).verifyHM()
+        verifyYMD(date)
+        verifyHM(date)
         val url = make(
             "astronomy/solar-elevation-angle",
             mapOf(

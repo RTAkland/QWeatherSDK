@@ -27,15 +27,15 @@ class QWeather {
 
     fun init(plan: Plans, key: String) {
         Global.rootAPI = when (plan) {
-            Plans.FREE -> {
+            Plans.Free -> {
                 "https://devapi.qweather.com/v7"
             }
 
-            Plans.STANDARD -> {
+            Plans.Standard -> {
                 "https://api.qweather.com/v7"
             }
 
-            Plans.CUSTOM -> {
+            Plans.Custom -> {
                 "https://api.qweather.com/v7"
             }
         }

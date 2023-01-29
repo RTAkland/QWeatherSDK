@@ -18,9 +18,9 @@ package cn.rtast.qwsdk.sub
 
 import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
 import cn.rtast.qwsdk.entity.ocean.tide.TideBean
-import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.HTTPUtil
 import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.verifyYMD
 import com.google.gson.Gson
 
 class Ocean {
@@ -31,7 +31,7 @@ class Ocean {
         location: String,
         date: String
     ): TideBean {
-        DateUtil(date).verifyYMD()
+        verifyYMD(date)
         val url = make(
             "ocean/tide",
             mapOf(
@@ -47,7 +47,7 @@ class Ocean {
         location: String,
         date: String
     ): CurrentsBean {
-        DateUtil(date).verifyYMD()
+        verifyYMD(date)
         val url = make(
             "ocean/currents",
             mapOf(
