@@ -17,7 +17,7 @@
 package cn.rtast.qwsdk.enums
 
 enum class Lang {
-    ZH, ZHHANT, EN, DE, ES, FR, IT,
+    ZH, ZH_HANT, EN, DE, ES, FR, IT,
     JA, KO, RU, HI, TH, AR, PT, BN,
     MS, NL, EL, LA, SV, ID, PL, TR,
     CS, ET, VI, FIL, FI, HE, IS, NB
