@@ -55,8 +55,8 @@ class Weather {
     private fun weatherDaily(
         days: String,
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit,
+        lang: Lang
     ): WeatherDailyBean {
         val url = make(
             "weather/$days",
@@ -73,8 +73,8 @@ class Weather {
     private fun gridHourlyWeather(
         hours: String,
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit,
+        lang: Lang
     ): WeatherGridHourlyBean {
         val url = make(
             "grid-weather/$hours",
@@ -91,8 +91,8 @@ class Weather {
     private fun gridDailyWeather(
         days: String,
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit,
+        lang: Lang
     ): WeatherGridDailyBean {
         val url = make(
             "grid-weather/$days",
@@ -107,7 +107,9 @@ class Weather {
     }
 
     fun now(
-        location: String, lang: Lang = Lang.ZH, unit: Unit = Unit.M
+        location: String,
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherNowBean {
         val url = make(
             "weather/now",
@@ -138,56 +140,56 @@ class Weather {
 
     fun weather24h(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherHourlyBean {
-        return weatherHourly("24h", location, lang, unit)
+        return this.weatherHourly("24h", location, lang, unit)
     }
 
     fun weather72h(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherHourlyBean {
-        return weatherHourly("72h", location, lang, unit)
+        return this.weatherHourly("72h", location, lang, unit)
     }
 
     fun weather168h(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherHourlyBean {
-        return weatherHourly("168h", location, lang, unit)
+        return this.weatherHourly("168h", location, lang, unit)
     }
 
     fun weather3d(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherDailyBean {
-        return weatherDaily("3d", location, lang, unit)
+        return this.weatherDaily("3d", location, unit, lang)
     }
 
     fun weather7d(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherDailyBean {
-        return weatherDaily("7d", location, lang, unit)
+        return this.weatherDaily("7d", location, unit, lang)
     }
 
     fun weather15d(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit,
+        lang: Lang
     ): WeatherDailyBean {
-        return weatherDaily("15d", location, lang, unit)
+        return this.weatherDaily("15d", location, unit, lang)
     }
 
     fun weatherGridRealtime(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherGridRealtimeBean {
         val url = make(
             "grid-weather/now",
@@ -203,33 +205,33 @@ class Weather {
 
     fun weatherGrid24h(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherGridHourlyBean {
-        return this.gridHourlyWeather("24h", location, lang, unit)
+        return this.gridHourlyWeather("24h", location, unit, lang)
     }
 
     fun weatherGrid72h(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherGridHourlyBean {
-        return this.gridHourlyWeather("72h", location, lang, unit)
+        return this.gridHourlyWeather("72h", location, unit, lang)
     }
 
     fun weatherGrid3d(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherGridDailyBean {
-        return this.gridDailyWeather("3d", location, lang, unit)
+        return this.gridDailyWeather("3d", location, unit, lang)
     }
 
     fun weatherGrid7d(
         location: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherGridDailyBean {
-        return this.gridDailyWeather("7d", location, lang, unit)
+        return this.gridDailyWeather("7d", location, unit, lang)
     }
 }

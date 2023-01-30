@@ -32,8 +32,8 @@ class TimeMachine {
     fun weatherHistory(
         location: String,
         date: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherHistoricalBean {
         verifyYMD(date)
         val url = make(
@@ -52,8 +52,8 @@ class TimeMachine {
     fun airHistory(
         location: String,
         date: String,
-        lang: Lang = Lang.ZH,
-        unit: Unit = Unit.M
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): AirHistoricalBean {
         verifyYMD(date)
         val url = make(

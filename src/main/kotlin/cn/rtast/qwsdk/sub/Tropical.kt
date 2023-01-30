@@ -54,8 +54,8 @@ class Tropical {
     }
 
     fun list(
-        basin: BasinType = BasinType.NP,
-        year: String
+        year: String,
+        basin: BasinType = BasinType.NP
     ): TropicalListBean {
 
         if (basin != BasinType.NP) {

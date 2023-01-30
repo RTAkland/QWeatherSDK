@@ -80,7 +80,11 @@ class Geo {
     }
 
     fun poiLookup(
-        location: String, type: POIType, city: String? = null, number: Int = 10, lang: Lang = Lang.ZH
+        location: String,
+        type: POIType,
+        city: String? = null,
+        number: Int = 10,
+        lang: Lang = Lang.ZH
     ): POIBean {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
@@ -101,7 +105,12 @@ class Geo {
     }
 
     fun poiRange(
-        location: String, type: POIType, radius: Int = 5, city: String? = null, number: Int = 10, lang: Lang = Lang.ZH
+        location: String,
+        type: POIType,
+        radius: Int = 5,
+        city: String? = null,
+        number: Int = 10,
+        lang: Lang = Lang.ZH
     ): POIRangeBean {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")

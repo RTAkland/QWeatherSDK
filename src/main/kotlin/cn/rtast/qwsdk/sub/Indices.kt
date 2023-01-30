@@ -56,7 +56,7 @@ class Indices {
         type: IndicesType = IndicesType.ALL,
         lang: Lang = Lang.ZH
     ): IndicesBean {
-        return indices("1d", location, type, lang)
+        return this.indices("1d", location, type, lang)
     }
 
     fun indices3d(
@@ -64,6 +64,6 @@ class Indices {
         type: IndicesType = IndicesType.ALL,
         lang: Lang = Lang.ZH
     ): IndicesBean {
-        return indices("3d", location, type, lang)
+        return this.indices("3d", location, type, lang)
     }
 }
