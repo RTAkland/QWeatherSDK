@@ -39,7 +39,7 @@ fun verifyYMD(date: String) {
     } else
         false
 
-    if (!isLeapYear && day > 28) {
+    if (!isLeapYear && day == 29) {
         throw InvalidDateException("Invalid Day: ${day}.")
     }
 }
