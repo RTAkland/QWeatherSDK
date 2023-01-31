@@ -63,7 +63,7 @@ class QWeather {
         return TimeMachine()
     }
 
-    fun storm(): Tropical {
+    fun tropical(): Tropical {
         return Tropical()
     }
 
@@ -77,5 +77,9 @@ class QWeather {
 
     fun astronomy(): Astronomy {
         return Astronomy()
+    }
+
+    fun warning(): Warning {
+        return Warning()
     }
 }
