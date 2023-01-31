@@ -34,6 +34,7 @@
     * [Kotlin](#kotlin)
     * [Java](#java)
 * [数据类](#数据类)
+* [单元测试](#单元测试)
 * [注意事项](#注意事项)
 * [开发](#开发)
   * [克隆项目](#克隆项目)
@@ -71,11 +72,11 @@ repositories {
 
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.github.RTAkland:QWeatherSDK:Tag")
+    implementation("com.github.RTAkland:QWeatherSDK:v0.2.0")
 }
 ```
 
-> 如果想要得到aar包, 你可以使用`embed`, 这里以`Groovy DSL`为例
+> 如果想要得到`fat jar`包, 你可以使用`embed`, 这里以`Groovy DSL`为例
 
 ## embed
 
@@ -90,7 +91,7 @@ configurations {
 // other configurations...
 
 dependencies {
-    embed(api("com.github.RTAkland:QWeatherSDK:v0.0.2"))
+    embed(api("com.github.RTAkland:QWeatherSDK:v0.2.0"))
     // 使用embed将会把embed内包裹的依赖中的.class文件全部打包进, 你的jar文件中
     // 和gradle中的include类似, 但是gradle是将依赖jar打包进jar
     // embed 不会和implementation关键字冲突, embed仅在编译时生效
@@ -140,6 +141,16 @@ public class Main {
 
 > 请点击[这里](/docs/README.md)查看
 
+# 单元测试
+
+> 在`v0.2.0`版本添加了单元测试, 如果想要使用单元测试你需要添加两个环境变量 `QW_KEY` `QW_PLAN`,
+> 这两个变量分别代表 [QWeather Key](https://dev.qweather.com/docs/configuration/project-and-key/) 和 key的版本,
+> `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写***
+> 测试完成后你可以在`build/reports/tests/test/index.html` 找到测试报告
+
+*** 如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
+你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别**
+
 # 注意事项
 
 > 本SDK无法使用[`太阳辐射`](https://dev.qweather.com/docs/api/solar-radiation/solar-radiation-hourly-forecast/)
@@ -172,8 +183,6 @@ $ ./gradlew build
 $ .\gradlew.bat build
 ```
 
-> 输出的构建文件在 [build/libs/*.jar](build/libs), 请运行文件名内没有`source`字样的jar文件
-
 # 开源
 
 - 本项目以[Apache-2.0](./LICENSE)许可开源, 即:
@@ -183,6 +192,9 @@ $ .\gradlew.bat build
 # 鸣谢
 
 <div>
+
 <img src="https://static.rtast.cn/static/other/jetbrains.png" alt="JetBrainsIcon" width="128">
+
 <a href="https://www.jetbrains.com/opensource/"><code>JetBrains Open Source</code></a> 提供的强大IDE支持
+
 </div>
