@@ -18,27 +18,25 @@ package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.enums.IndicesType
 
-class IndicesUtil {
-    fun p(indices: IndicesType): Int {
-        val number = when (indices) {
-            IndicesType.ALL -> 0
-            IndicesType.SPORT -> 1
-            IndicesType.WASH_CAR -> 2
-            IndicesType.CLOTHING -> 3
-            IndicesType.FISHING -> 4
-            IndicesType.UV_RAY -> 5
-            IndicesType.TRAVEL -> 6
-            IndicesType.POLLEN_ALLERGY -> 7
-            IndicesType.COMFORT -> 8
-            IndicesType.COLD -> 9
-            IndicesType.AIR_POLLUTION_DIFFUSION_CONDITION -> 10
-            IndicesType.AIR_CONDITIONER -> 11
-            IndicesType.SUNGLASSES -> 12
-            IndicesType.MAKEUP -> 13
-            IndicesType.DRYING -> 14
-            IndicesType.TRAFFIC -> 15
-            IndicesType.SPF -> 16
-        }
-        return number
+fun parseIndices(indices: IndicesType): Int {
+    val number = when (indices) {
+        IndicesType.ALL -> 0
+        IndicesType.SPORT -> 1
+        IndicesType.WASH_CAR -> 2
+        IndicesType.CLOTHING -> 3
+        IndicesType.FISHING -> 4
+        IndicesType.UV_RAY -> 5
+        IndicesType.TRAVEL -> 6
+        IndicesType.POLLEN_ALLERGY -> 7
+        IndicesType.COMFORT -> 8
+        IndicesType.COLD -> 9
+        IndicesType.AIR_POLLUTION_DIFFUSION_CONDITION -> 10
+        IndicesType.AIR_CONDITIONER -> 11
+        IndicesType.SUNGLASSES -> 12
+        IndicesType.MAKEUP -> 13
+        IndicesType.DRYING -> 14
+        IndicesType.TRAFFIC -> 15
+        IndicesType.SPF -> 16
     }
+    return number
 }

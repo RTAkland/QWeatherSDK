@@ -23,29 +23,28 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 import java.util.zip.GZIPInputStream
 
-object HTTPUtil {
 
-    private fun unGZip(byteArray: ByteArray): String {
-        val byteArrayInputStream = ByteArrayInputStream(byteArray)
-        val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
-        val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
-        val stringBuilder = StringBuilder()
-        while (true) {
-            val readLine = bufferedReader.readLine()
-            if (readLine != null) {
-                stringBuilder.append(readLine)
-            } else {
-                bufferedReader.close()
-                gZIPInputStream.close()
-                byteArrayInputStream.close()
-                return stringBuilder.toString()
-            }
+private fun unGZip(byteArray: ByteArray): String {
+    val byteArrayInputStream = ByteArrayInputStream(byteArray)
+    val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
+    val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
+    val stringBuilder = StringBuilder()
+    while (true) {
+        val readLine = bufferedReader.readLine()
+        if (readLine != null) {
+            stringBuilder.append(readLine)
+        } else {
+            bufferedReader.close()
+            gZIPInputStream.close()
+            byteArrayInputStream.close()
+            return stringBuilder.toString()
         }
     }
+}
 
 
-    fun get(url: String): String {
-        val response = URL(url).readBytes()
-        return unGZip(response)
-    }
+fun get(url: String): String {
+    println(url)
+    val response = URL(url).readBytes()
+    return unGZip(response)
 }
