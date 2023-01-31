@@ -20,7 +20,7 @@ import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import cn.rtast.qwsdk.utils.verifyYMD
 import com.google.gson.Gson
@@ -45,7 +45,7 @@ class TimeMachine {
                 "date" to date
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherHistoricalBean::class.java)
     }
 
@@ -65,7 +65,7 @@ class TimeMachine {
                 "date" to date
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, AirHistoricalBean::class.java)
     }
 }

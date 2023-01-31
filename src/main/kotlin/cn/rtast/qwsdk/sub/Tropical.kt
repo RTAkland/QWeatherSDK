@@ -22,7 +22,7 @@ import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
 import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedAreaException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 import java.time.Year
@@ -38,7 +38,7 @@ class Tropical {
                 "stormid" to stormID,
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, TropicalForecastBean::class.java)
     }
 
@@ -49,7 +49,7 @@ class Tropical {
                 "stormid" to stormID,
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, TropicalTrackBean::class.java)
     }
 
@@ -74,7 +74,7 @@ class Tropical {
                 "year" to year
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, TropicalListBean::class.java)
     }
 }

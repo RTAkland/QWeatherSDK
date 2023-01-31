@@ -25,7 +25,7 @@ import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.exceptions.GeoNumberException
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
@@ -36,9 +36,9 @@ class Geo {
     fun citySearch(
         location: String,
         adm: String? = null,
-        range: CountryCode? = null,
+        range: CountryCode = CountryCode.CN,
         number: Int = 10,
-        lang: Lang = Lang.ZH  // Default is zh-hans
+        lang: Lang = Lang.ZH
     ): GeoLookupBean {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
@@ -54,12 +54,12 @@ class Geo {
             ),
             ApiType.Geo
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, GeoLookupBean::class.java)
     }
 
     fun topCity(
-        range: CountryCode? = null,
+        range: CountryCode = CountryCode.CN,
         number: Int = 10,
         lang: Lang = Lang.ZH
     ): GeoTopBean {
@@ -75,7 +75,7 @@ class Geo {
             ),
             ApiType.Geo
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, GeoTopBean::class.java)
     }
 
@@ -100,7 +100,7 @@ class Geo {
             ),
             ApiType.Geo
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, POIBean::class.java)
     }
 
@@ -130,7 +130,7 @@ class Geo {
             ),
             ApiType.Geo
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, POIRangeBean::class.java)
     }
 }

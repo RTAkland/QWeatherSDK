@@ -19,7 +19,7 @@ package cn.rtast.qwsdk.sub
 import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
 import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
@@ -38,7 +38,7 @@ class Air {
                 "lang" to lang
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, AirBean::class.java)
     }
 
@@ -53,7 +53,7 @@ class Air {
                 "lang" to lang
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, AirDailyBean::class.java)
     }
 }

@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.sub
 
 import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
 import cn.rtast.qwsdk.entity.ocean.tide.TideBean
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import cn.rtast.qwsdk.utils.verifyYMD
 import com.google.gson.Gson
@@ -39,7 +39,7 @@ class Ocean {
                 "date" to date
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, TideBean::class.java)
     }
 
@@ -55,7 +55,7 @@ class Ocean {
                 "date" to date
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, CurrentsBean::class.java)
     }
 }

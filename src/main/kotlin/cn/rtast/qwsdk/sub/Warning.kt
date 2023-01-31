@@ -20,7 +20,7 @@ import cn.rtast.qwsdk.entity.warning.WarningBean
 import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
@@ -39,7 +39,7 @@ class Warning {
                 "lang" to lang
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WarningBean::class.java)
     }
 
@@ -50,7 +50,7 @@ class Warning {
             "warning/list",
             mapOf("range" to range)
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WarningCityListBean::class.java)
     }
 }

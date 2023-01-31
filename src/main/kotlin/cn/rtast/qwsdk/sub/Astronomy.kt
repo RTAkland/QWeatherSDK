@@ -20,7 +20,7 @@ import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import cn.rtast.qwsdk.utils.verifyHM
 import cn.rtast.qwsdk.utils.verifyYMD
@@ -44,7 +44,7 @@ class Astronomy {
                 "lang" to lang
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, SunBean::class.java)
     }
 
@@ -60,7 +60,7 @@ class Astronomy {
                 "date" to date, "lang" to lang
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, MoonBean::class.java)
     }
 
@@ -68,7 +68,7 @@ class Astronomy {
         location: String,
         date: String,
         time: String,
-        tz: Int,
+        tz: String,
         alt: Int
     ): SolarElevationAngleBean {
         verifyYMD(date)
@@ -83,7 +83,7 @@ class Astronomy {
                 "alt" to alt
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, SolarElevationAngleBean::class.java)
     }
 }

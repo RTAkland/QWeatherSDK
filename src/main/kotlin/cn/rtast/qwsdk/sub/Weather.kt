@@ -25,7 +25,7 @@ import cn.rtast.qwsdk.entity.weather.minutely.WeatherMinutelyBean
 import cn.rtast.qwsdk.entity.weather.now.WeatherNowBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
-import cn.rtast.qwsdk.utils.HTTPUtil
+import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.make
 import com.google.gson.Gson
 
@@ -47,7 +47,7 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherHourlyBean::class.java)
     }
 
@@ -66,7 +66,7 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherDailyBean::class.java)
     }
 
@@ -84,7 +84,7 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherGridHourlyBean::class.java)
     }
 
@@ -102,7 +102,7 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherGridDailyBean::class.java)
     }
 
@@ -119,7 +119,7 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherNowBean::class.java)
     }
 
@@ -134,7 +134,7 @@ class Weather {
                 "lang" to lang,
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherMinutelyBean::class.java)
     }
 
@@ -180,13 +180,13 @@ class Weather {
 
     fun weather15d(
         location: String,
-        unit: Unit,
-        lang: Lang
+        unit: Unit = Unit.M,
+        lang: Lang = Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("15d", location, unit, lang)
     }
 
-    fun weatherGridRealtime(
+    fun weatherGridNow(
         location: String,
         unit: Unit = Unit.M,
         lang: Lang = Lang.ZH
@@ -199,7 +199,7 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = HTTPUtil.get(url)
+        val result = get(url)
         return gson.fromJson(result, WeatherGridRealtimeBean::class.java)
     }
 
