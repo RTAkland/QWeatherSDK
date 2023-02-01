@@ -145,7 +145,7 @@ public class Main {
 
 > 在`v0.2.0`版本添加了单元测试, 如果想要使用单元测试你需要添加两个环境变量 `QW_KEY` `QW_PLAN`,
 > 这两个变量分别代表 [QWeather Key](https://dev.qweather.com/docs/configuration/project-and-key/) 和 key的版本,
-> `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写***
+> `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写****
 > 测试完成后你可以在`build/reports/tests/test/index.html` 找到测试报告
 
 *** 如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
