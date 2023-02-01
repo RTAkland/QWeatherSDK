@@ -109,7 +109,7 @@ import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
-    val qw = QWeather()  // 创建一的对象
+    val qw = QWeather()
     // 可用的计划有 Free, Standard, Custom
     qw.init(Plans.Free, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
@@ -145,11 +145,11 @@ public class Main {
 
 > 在`v0.2.0`版本添加了单元测试, 如果想要使用单元测试你需要添加两个环境变量 `QW_KEY` `QW_PLAN`,
 > 这两个变量分别代表 [QWeather Key](https://dev.qweather.com/docs/configuration/project-and-key/) 和 key的版本,
-> `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写****
+> `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写***
 > 测试完成后你可以在`build/reports/tests/test/index.html` 找到测试报告
 
 *** 如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
-你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别**
+你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别***
 
 # 注意事项
 
