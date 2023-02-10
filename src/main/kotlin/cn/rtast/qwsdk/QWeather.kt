@@ -18,17 +18,16 @@ package cn.rtast.qwsdk
 
 import cn.rtast.qwsdk.enums.Plans
 import cn.rtast.qwsdk.sub.*
+import cn.rtast.qwsdk.utils.Coordinate
 import java.util.logging.Logger
 
 
 class QWeather {
-
-    private val logger = Logger.getLogger("QWSDK-MAIN")
-
     companion object {
         var key: String? = null
         var rootAPI = "https://devapi.qweather.com/v7"
         const val geoAPI = "https://geoapi.qweather.com/v2"
+        val logger: Logger = Logger.getLogger("QWSDK-MAIN")
     }
 
     fun init(plan: Plans, apiKey: String) {
