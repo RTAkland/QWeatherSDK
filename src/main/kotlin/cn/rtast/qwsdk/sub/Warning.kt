@@ -20,6 +20,7 @@ import cn.rtast.qwsdk.entity.warning.WarningBean
 import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
@@ -34,6 +35,10 @@ class Warning {
         location: String,
         lang: Lang = Lang.ZH
     ): WarningBean {
+        val supportedLang = listOf(Lang.ZH, Lang.EN)
+        if (lang !in supportedLang) {
+            throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
+        }
         val url = makeParams(
             "warning/now",
             mapOf(
