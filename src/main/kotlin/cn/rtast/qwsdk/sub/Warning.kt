@@ -20,6 +20,7 @@ import cn.rtast.qwsdk.entity.warning.WarningBean
 import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
@@ -42,6 +43,14 @@ class Warning {
         )
         val result = get(url)
         return gson.fromJson(result, WarningBean::class.java)
+    }
+
+    @JvmOverloads
+    fun now(
+        location: Coordinate,
+        lang: Lang = Lang.ZH
+    ): WarningBean {
+        return this.now(location(), lang)
     }
 
     @JvmOverloads

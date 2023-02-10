@@ -20,6 +20,7 @@ import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
@@ -49,6 +50,15 @@ class Astronomy {
     }
 
     @JvmOverloads
+    fun sun(
+        location: Coordinate,
+        date: String,
+        lang: Lang = Lang.ZH
+    ): SunBean {
+        return this.sun(location(), date, lang)
+    }
+
+    @JvmOverloads
     fun moon(
         location: String,
         date: String,
@@ -65,8 +75,17 @@ class Astronomy {
         return gson.fromJson(result, MoonBean::class.java)
     }
 
+    @JvmOverloads
+    fun moon(
+        location: Coordinate,
+        date: String,
+        lang: Lang = Lang.ZH
+    ): MoonBean {
+        return this.moon(location(), date, lang)
+    }
+
     fun solarElevationAngle(
-        location: String,
+        location: Coordinate,
         date: String,
         time: String,
         tz: String,
@@ -77,7 +96,7 @@ class Astronomy {
         val url = makeParams(
             "astronomy/solar-elevation-angle",
             mapOf(
-                "location" to location,
+                "location" to location(),
                 "date" to date,
                 "time" to time,
                 "tz" to tz,

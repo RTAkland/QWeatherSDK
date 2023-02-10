@@ -20,15 +20,18 @@ import cn.rtast.qwsdk.entity.indices.IndicesBean
 import cn.rtast.qwsdk.enums.IndicesType
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
 import cn.rtast.qwsdk.utils.parseIndices
 import com.google.gson.Gson
+import kotlin.jvm.Throws
 
 class Indices {
 
     private val gson = Gson()
 
+    @Throws(UnsupportedLanguageException::class)
     private fun indices(
         days: String,
         location: String,
@@ -61,11 +64,29 @@ class Indices {
     }
 
     @JvmOverloads
+    fun indices1d(
+        location: Coordinate,
+        type: IndicesType = IndicesType.ALL,
+        lang: Lang = Lang.ZH
+    ): IndicesBean {
+        return this.indices1d(location(), type, lang)
+    }
+
+    @JvmOverloads
     fun indices3d(
         location: String,
         type: IndicesType = IndicesType.ALL,
         lang: Lang = Lang.ZH
     ): IndicesBean {
         return this.indices("3d", location, type, lang)
+    }
+
+    @JvmOverloads
+    fun indices3d(
+        location: Coordinate,
+        type: IndicesType = IndicesType.ALL,
+        lang: Lang = Lang.ZH
+    ): IndicesBean {
+        return this.indices1d(location(), type, lang)
     }
 }

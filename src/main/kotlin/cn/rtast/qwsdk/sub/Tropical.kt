@@ -54,6 +54,7 @@ class Tropical {
     }
 
     @JvmOverloads
+    @Throws(UnsupportedYearException::class)
     fun list(
         year: String,
         basin: BasinType = BasinType.NP

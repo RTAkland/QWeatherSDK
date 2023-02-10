@@ -24,7 +24,8 @@ import cn.rtast.qwsdk.entity.weather.hourly.WeatherDailyBean
 import cn.rtast.qwsdk.entity.weather.minutely.WeatherMinutelyBean
 import cn.rtast.qwsdk.entity.weather.now.WeatherNowBean
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.enums.Unit
+import cn.rtast.qwsdk.enums.Units
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
@@ -37,7 +38,7 @@ class Weather {
         hours: String,
         location: String,
         lang: Lang,
-        unit: Unit
+        unit: Units
     ): WeatherHourlyBean {
         val url = makeParams(
             "weather/$hours",
@@ -55,7 +56,7 @@ class Weather {
     private fun weatherDaily(
         days: String,
         location: String,
-        unit: Unit,
+        unit: Units,
         lang: Lang
     ): WeatherDailyBean {
         val url = makeParams(
@@ -73,7 +74,7 @@ class Weather {
     private fun gridHourlyWeather(
         hours: String,
         location: String,
-        unit: Unit,
+        unit: Units,
         lang: Lang
     ): WeatherGridHourlyBean {
         val url = makeParams(
@@ -91,7 +92,7 @@ class Weather {
     private fun gridDailyWeather(
         days: String,
         location: String,
-        unit: Unit,
+        unit: Units,
         lang: Lang
     ): WeatherGridDailyBean {
         val url = makeParams(
@@ -109,7 +110,7 @@ class Weather {
     @JvmOverloads
     fun now(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherNowBean {
         val url = makeParams(
@@ -125,14 +126,23 @@ class Weather {
     }
 
     @JvmOverloads
+    fun now(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherNowBean {
+        return this.now(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weatherMinutely(
-        location: String,
+        location: Coordinate,
         lang: Lang = Lang.ZH
     ): WeatherMinutelyBean {
         val url = makeParams(
             "minutely/5m",
             mapOf(
-                "location" to location,
+                "location" to location(),
                 "lang" to lang,
             )
         )
@@ -143,67 +153,121 @@ class Weather {
     @JvmOverloads
     fun weather24h(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherHourlyBean {
         return this.weatherHourly("24h", location, lang, unit)
     }
 
     @JvmOverloads
+    fun weather24h(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherHourlyBean {
+        return this.weather24h(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weather72h(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherHourlyBean {
         return this.weatherHourly("72h", location, lang, unit)
     }
 
     @JvmOverloads
+    fun weather72h(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherHourlyBean {
+        return this.weather72h(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weather168h(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherHourlyBean {
         return this.weatherHourly("168h", location, lang, unit)
     }
 
     @JvmOverloads
+    fun weather168h(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherHourlyBean {
+        return this.weather168h(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weather3d(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("3d", location, unit, lang)
     }
 
     @JvmOverloads
+    fun weather3d(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherDailyBean {
+        return this.weather3d(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weather7d(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("7d", location, unit, lang)
     }
 
     @JvmOverloads
+    fun weather7d(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherDailyBean {
+        return this.weather7d(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weather15d(
         location: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("15d", location, unit, lang)
     }
 
     @JvmOverloads
+    fun weather15d(
+        location: Coordinate,
+        unit: Units = Units.M,
+        lang: Lang = Lang.ZH
+    ): WeatherDailyBean {
+        return this.weather15d(location(), unit, lang)
+    }
+
+    @JvmOverloads
     fun weatherGridNow(
-        location: String,
-        unit: Unit = Unit.M,
+        location: Coordinate,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherGridRealtimeBean {
         val url = makeParams(
             "grid-weather/now",
             mapOf(
-                "location" to location,
+                "location" to location(),
                 "lang" to lang,
                 "unit" to unit
             )
@@ -214,37 +278,37 @@ class Weather {
 
     @JvmOverloads
     fun weatherGrid24h(
-        location: String,
-        unit: Unit = Unit.M,
+        location: Coordinate,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherGridHourlyBean {
-        return this.gridHourlyWeather("24h", location, unit, lang)
+        return this.gridHourlyWeather("24h", location(), unit, lang)
     }
 
     @JvmOverloads
     fun weatherGrid72h(
-        location: String,
-        unit: Unit = Unit.M,
+        location: Coordinate,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherGridHourlyBean {
-        return this.gridHourlyWeather("72h", location, unit, lang)
+        return this.gridHourlyWeather("72h", location(), unit, lang)
     }
 
     @JvmOverloads
     fun weatherGrid3d(
-        location: String,
-        unit: Unit = Unit.M,
+        location: Coordinate,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherGridDailyBean {
-        return this.gridDailyWeather("3d", location, unit, lang)
+        return this.gridDailyWeather("3d", location(), unit, lang)
     }
 
     @JvmOverloads
     fun weatherGrid7d(
-        location: String,
-        unit: Unit = Unit.M,
+        location: Coordinate,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherGridDailyBean {
-        return this.gridDailyWeather("7d", location, unit, lang)
+        return this.gridDailyWeather("7d", location(), unit, lang)
     }
 }

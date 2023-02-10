@@ -25,6 +25,7 @@ import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.exceptions.GeoNumberException
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
@@ -34,6 +35,7 @@ class Geo {
     private val gson = Gson()
 
     @JvmOverloads
+    @Throws(GeoNumberException::class)
     fun citySearch(
         location: String,
         adm: String? = null,
@@ -41,9 +43,10 @@ class Geo {
         number: Int = 10,
         lang: Lang = Lang.ZH
     ): GeoLookupBean {
-        if (number !in 1..20) {  // range 1-20
-            throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
-        }
+        if (true or false)
+            if (number !in 1..20) {  // range 1-20
+                throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
+            }
         val url = makeParams(
             "city/lookup",
             mapOf(
@@ -60,6 +63,18 @@ class Geo {
     }
 
     @JvmOverloads
+    fun citySearch(
+        location: Coordinate,
+        adm: String? = null,
+        range: CountryCode = CountryCode.CN,
+        number: Int = 10,
+        lang: Lang = Lang.ZH
+    ): GeoLookupBean {
+        return this.citySearch(location(), adm, range, number, lang)
+    }
+
+    @JvmOverloads
+    @Throws(GeoNumberException::class)
     fun topCity(
         range: CountryCode = CountryCode.CN,
         number: Int = 10,
@@ -82,6 +97,7 @@ class Geo {
     }
 
     @JvmOverloads
+    @Throws(GeoNumberException::class)
     fun poiLookup(
         location: String,
         type: POIType,
@@ -108,8 +124,20 @@ class Geo {
     }
 
     @JvmOverloads
+    fun poiLookup(
+        location: Coordinate,
+        type: POIType,
+        city: String? = null,
+        number: Int = 10,
+        lang: Lang = Lang.ZH
+    ): POIBean {
+        return this.poiLookup(location(), type, city, number, lang)
+    }
+
+    @JvmOverloads
+    @Throws(GeoNumberException::class)
     fun poiRange(
-        location: String,
+        location: Coordinate,
         type: POIType,
         radius: Int = 5,
         city: String? = null,

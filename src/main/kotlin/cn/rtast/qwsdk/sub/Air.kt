@@ -19,6 +19,7 @@ package cn.rtast.qwsdk.sub
 import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
 import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
@@ -44,6 +45,14 @@ class Air {
     }
 
     @JvmOverloads
+    fun now(
+        location: Coordinate,
+        lang: Lang = Lang.ZH
+    ): AirBean {
+        return this.now(location(), lang)
+    }
+
+    @JvmOverloads
     fun daily(
         location: String,
         lang: Lang = Lang.ZH
@@ -57,5 +66,13 @@ class Air {
         )
         val result = get(url)
         return gson.fromJson(result, AirDailyBean::class.java)
+    }
+
+    @JvmOverloads
+    fun daily(
+        location: Coordinate,
+        lang: Lang = Lang.ZH
+    ): AirDailyBean {
+        return this.daily(location(), lang)
     }
 }

@@ -16,24 +16,30 @@
 
 package cn.rtast.qwsdk.sub
 
+import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.enums.Unit
+import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
+import java.util.logging.Logger
 
 class TimeMachine {
 
     private val gson = Gson()
 
+    init {
+        QWeather.logger.info("This API only support Location ID to get weather.")
+    }
+
     @JvmOverloads
     fun weatherHistory(
         location: String,
         date: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherHistoricalBean {
         DateUtil(date).verifyYMD()
@@ -54,7 +60,7 @@ class TimeMachine {
     fun airHistory(
         location: String,
         date: String,
-        unit: Unit = Unit.M,
+        unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): AirHistoricalBean {
         DateUtil(date).verifyYMD()
