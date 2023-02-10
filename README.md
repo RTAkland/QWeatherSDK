@@ -92,11 +92,13 @@ configurations {
 
 dependencies {
     embed(api("com.github.RTAkland:QWeatherSDK:v0.2.0"))
-    // 使用embed将会把embed内包裹的依赖中的.class文件全部打包进, 你的jar文件中
-    // 和gradle中的include类似, 但是gradle是将依赖jar打包进jar
-    // embed 不会和implementation关键字冲突, embed仅在编译时生效
 }
 ```
+
+> 使用embed将会把embed内包裹的库中的.class文件全部打包进, 你的jar文件中
+> 如果库使用了别的库, 那embed也会把该库使用的库的.class文件打包进你的jar中 和 shadowJar比较类似
+> 和gradle中的include类似, 但是gradle是将依赖jar打包进jar
+> embed 不会和implementation关键字冲突, embed仅在编译时生效
 
 > 使用embed后就可以在独立的环境运行而不需要额外下载依赖
 
