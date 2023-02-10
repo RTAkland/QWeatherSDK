@@ -119,8 +119,6 @@ fun main() {
 
 ### Java
 
-> 不建议Java使用此SDK进行开发, 因为kotlin中的特性在Java中无法使用
-
 ```java
 import cn.rtast.qwsdk.QWeather;
 import cn.rtast.qwsdk.enums.Lang;
@@ -131,8 +129,8 @@ public class Main {
     public static void main(String[] args) {
         QWeather qw = new QWeather();
         qw.init(Plans.Free, "<replace your key here>");
-        System.out.println(qw.weather().now("101010100", Lang.ZH, Unit.M));
-        // 在Kotlin中有默认值可以不填, 在Java中必须填写
+        System.out.println(qw.weather().now("101010100"));
+        // 最后两个参数有默认值, 通过给函数添加@JvmOverloads注解在编译时生成重载函数来实现Java参数默认值
     }
 }
 ```
@@ -149,7 +147,7 @@ public class Main {
 > 测试完成后你可以在`build/reports/tests/test/index.html` 找到测试报告
 
 *** 如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
-你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别**
+你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别***
 
 # 注意事项
 
