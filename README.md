@@ -109,7 +109,7 @@ import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
-    val qw = QWeather()  // 创建一的对象
+    val qw = QWeather()
     // 可用的计划有 Free, Standard, Custom
     qw.init(Plans.Free, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
