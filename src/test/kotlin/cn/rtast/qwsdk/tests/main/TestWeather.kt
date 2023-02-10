@@ -19,12 +19,14 @@ package cn.rtast.qwsdk.tests.main
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.isFreePlan
 import cn.rtast.qwsdk.tests.utils.randomID
+import cn.rtast.qwsdk.utils.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestWeather {
 
     private val locationID = randomID()
+    private val coordinate = Coordinate(116.41,39.92)
 
     @Test
     fun nowTest() {
@@ -34,7 +36,7 @@ class TestWeather {
 
     @Test
     fun weatherMinutelyTest() {
-        val result = qw.weather().weatherMinutely("116.41,39.92")
+        val result = qw.weather().weatherMinutely(coordinate)
         assertEquals(result.code.toInt(), 200)
     }
 
@@ -83,7 +85,7 @@ class TestWeather {
     @Test
     fun weatherGridNowTest() {
         if (!isFreePlan()) {
-            val result = qw.weather().weatherGridNow(locationID)
+            val result = qw.weather().weatherGridNow(coordinate)
             assertEquals(result.code.toInt(), 200)
         }
     }
@@ -91,7 +93,7 @@ class TestWeather {
     @Test
     fun weatherGrid24hTest() {
         if (!isFreePlan()) {
-            val result = qw.weather().weatherGrid24h(locationID)
+            val result = qw.weather().weatherGrid24h(coordinate)
             assertEquals(result.code.toInt(), 200)
         }
     }
@@ -99,7 +101,7 @@ class TestWeather {
     @Test
     fun weatherGrid72hTest() {
         if (!isFreePlan()) {
-            val result = qw.weather().weatherGrid72h("116.41,39.92")
+            val result = qw.weather().weatherGrid72h(coordinate)
             assertEquals(result.code.toInt(), 200)
         }
     }
@@ -107,7 +109,7 @@ class TestWeather {
     @Test
     fun weatherGrid3dTest() {
         if (!isFreePlan()) {
-            val result = qw.weather().weatherGrid3d("116.41,39.92")
+            val result = qw.weather().weatherGrid3d(coordinate)
             assertEquals(result.code.toInt(), 200)
         }
     }
@@ -115,8 +117,7 @@ class TestWeather {
     @Test
     fun weatherGrid7dTest() {
         if (!isFreePlan()) {
-
-            val result = qw.weather().weatherGrid7d("116.41,39.92")
+            val result = qw.weather().weatherGrid7d(coordinate)
             assertEquals(result.code.toInt(), 200)
         }
     }

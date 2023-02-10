@@ -19,6 +19,7 @@ package cn.rtast.qwsdk.tests.main
 import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.randomID
+import cn.rtast.qwsdk.utils.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -40,13 +41,13 @@ class TestGeo {
 
     @Test
     fun poiLookupTest() {
-        val result = qw.geo().poiLookup("116.41,39.92", POIType.scenic)
+        val result = qw.geo().poiLookup(Coordinate(116.41, 39.92), POIType.scenic)
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun poiRangeTest() {
-        val result = qw.geo().poiRange("116.41,39.92", POIType.scenic)
+        val result = qw.geo().poiRange(Coordinate(116.41, 39.92), POIType.scenic)
         assertEquals(result.code.toInt(), 200)
     }
 }
