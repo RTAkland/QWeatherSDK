@@ -17,8 +17,7 @@
 package cn.rtast.qwsdk.tests.main.utils
 
 import cn.rtast.qwsdk.exceptions.InvalidDateException
-import cn.rtast.qwsdk.utils.verifyHM
-import cn.rtast.qwsdk.utils.verifyYMD
+import cn.rtast.qwsdk.utils.DateUtil
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -28,26 +27,26 @@ class TestDateUtil {
     @Test
     fun verifyYMDTest() {
         assertThrows<InvalidDateException> {
-            verifyYMD("202201021")  // wrong length
-            verifyYMD("20210229")  // not leap year
-            verifyYMD("20221320")  // Month 13 (
+            DateUtil("202201021").verifyYMD()  // wrong length
+            DateUtil("20210229").verifyYMD()  // not leap year
+            DateUtil("20221320").verifyYMD()  // Month 13 (
         }
 
         assertDoesNotThrow {
-            verifyYMD("20230110")  // correct
+            DateUtil("20230110").verifyYMD()  // correct
         }
     }
 
     @Test
     fun verifyHMTest() {
         assertThrows<InvalidDateException> {
-            verifyHM("3010")
-            verifyHM("22100")
-            verifyHM("1961")
+            DateUtil("3010").verifyHM()
+            DateUtil("22100").verifyHM()
+            DateUtil("1961").verifyHM()
         }
 
         assertDoesNotThrow {
-            verifyHM("0110")
+            DateUtil("0110").verifyHM()
         }
     }
 }

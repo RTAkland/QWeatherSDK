@@ -16,13 +16,13 @@
 
 package cn.rtast.qwsdk.tests.utils
 
-import cn.rtast.qwsdk.Global
+import cn.rtast.qwsdk.QWeather
 import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.random.Random
 
 fun isFreePlan(): Boolean {
-    return Global.rootAPI.contains("https://devapi")
+    return QWeather.rootAPI.contains("https://devapi")
 }
 
 fun randomID(): String {
