@@ -16,6 +16,6 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class Unit {
+enum class Units {
     M, I
 }
