@@ -20,23 +20,24 @@ import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
+import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
-import cn.rtast.qwsdk.utils.verifyYMD
+import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
 
 class TimeMachine {
 
     private val gson = Gson()
 
+    @JvmOverloads
     fun weatherHistory(
         location: String,
         date: String,
         unit: Unit = Unit.M,
         lang: Lang = Lang.ZH
     ): WeatherHistoricalBean {
-        verifyYMD(date)
-        val url = make(
+        DateUtil(date).verifyYMD()
+        val url = makeParams(
             "historical/weather",
             mapOf(
                 "location" to location,
@@ -49,14 +50,15 @@ class TimeMachine {
         return gson.fromJson(result, WeatherHistoricalBean::class.java)
     }
 
+    @JvmOverloads
     fun airHistory(
         location: String,
         date: String,
         unit: Unit = Unit.M,
         lang: Lang = Lang.ZH
     ): AirHistoricalBean {
-        verifyYMD(date)
-        val url = make(
+        DateUtil(date).verifyYMD()
+        val url = makeParams(
             "historical/air",
             mapOf(
                 "location" to location,

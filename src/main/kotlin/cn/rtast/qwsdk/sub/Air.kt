@@ -20,18 +20,19 @@ import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
 import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
 
 class Air {
 
     private val gson = Gson()
 
+    @JvmOverloads
     fun now(
         location: String,
         lang: Lang = Lang.ZH
     ): AirBean {
-        val url = make(
+        val url = makeParams(
             "air/now",
             mapOf(
                 "location" to location,
@@ -42,11 +43,12 @@ class Air {
         return gson.fromJson(result, AirBean::class.java)
     }
 
+    @JvmOverloads
     fun daily(
         location: String,
         lang: Lang = Lang.ZH
     ): AirDailyBean {
-        val url = make(
+        val url = makeParams(
             "air/5d",
             mapOf(
                 "location" to location,

@@ -26,13 +26,14 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.exceptions.GeoNumberException
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
 
 class Geo {
 
     private val gson = Gson()
 
+    @JvmOverloads
     fun citySearch(
         location: String,
         adm: String? = null,
@@ -43,7 +44,7 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = make(
+        val url = makeParams(
             "city/lookup",
             mapOf(
                 "location" to location,
@@ -58,6 +59,7 @@ class Geo {
         return gson.fromJson(result, GeoLookupBean::class.java)
     }
 
+    @JvmOverloads
     fun topCity(
         range: CountryCode = CountryCode.CN,
         number: Int = 10,
@@ -66,7 +68,7 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = make(
+        val url = makeParams(
             "city/top",
             mapOf(
                 "range" to range,
@@ -79,6 +81,7 @@ class Geo {
         return gson.fromJson(result, GeoTopBean::class.java)
     }
 
+    @JvmOverloads
     fun poiLookup(
         location: String,
         type: POIType,
@@ -89,7 +92,7 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = make(
+        val url = makeParams(
             "poi/lookup",
             mapOf(
                 "location" to location,
@@ -104,6 +107,7 @@ class Geo {
         return gson.fromJson(result, POIBean::class.java)
     }
 
+    @JvmOverloads
     fun poiRange(
         location: String,
         type: POIType,
@@ -118,7 +122,7 @@ class Geo {
         if (radius !in 1..50) {  // range 1-50
             throw GeoNumberException("Invalid Radius: $radius, please choose from 1-50!")
         }
-        val url = make(
+        val url = makeParams(
             "poi/range",
             mapOf(
                 "location" to location,

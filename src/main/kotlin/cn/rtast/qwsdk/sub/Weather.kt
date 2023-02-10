@@ -26,7 +26,7 @@ import cn.rtast.qwsdk.entity.weather.now.WeatherNowBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Unit
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
 
 class Weather {
@@ -39,7 +39,7 @@ class Weather {
         lang: Lang,
         unit: Unit
     ): WeatherHourlyBean {
-        val url = make(
+        val url = makeParams(
             "weather/$hours",
             mapOf(
                 "location" to location,
@@ -58,7 +58,7 @@ class Weather {
         unit: Unit,
         lang: Lang
     ): WeatherDailyBean {
-        val url = make(
+        val url = makeParams(
             "weather/$days",
             mapOf(
                 "location" to location,
@@ -76,7 +76,7 @@ class Weather {
         unit: Unit,
         lang: Lang
     ): WeatherGridHourlyBean {
-        val url = make(
+        val url = makeParams(
             "grid-weather/$hours",
             mapOf(
                 "location" to location,
@@ -94,7 +94,7 @@ class Weather {
         unit: Unit,
         lang: Lang
     ): WeatherGridDailyBean {
-        val url = make(
+        val url = makeParams(
             "grid-weather/$days",
             mapOf(
                 "location" to location,
@@ -106,12 +106,13 @@ class Weather {
         return gson.fromJson(result, WeatherGridDailyBean::class.java)
     }
 
+    @JvmOverloads
     fun now(
         location: String,
         unit: Unit = Unit.M,
         lang: Lang = Lang.ZH
     ): WeatherNowBean {
-        val url = make(
+        val url = makeParams(
             "weather/now",
             mapOf(
                 "location" to location,
@@ -123,11 +124,12 @@ class Weather {
         return gson.fromJson(result, WeatherNowBean::class.java)
     }
 
+    @JvmOverloads
     fun weatherMinutely(
         location: String,
         lang: Lang = Lang.ZH
     ): WeatherMinutelyBean {
-        val url = make(
+        val url = makeParams(
             "minutely/5m",
             mapOf(
                 "location" to location,
@@ -138,6 +140,7 @@ class Weather {
         return gson.fromJson(result, WeatherMinutelyBean::class.java)
     }
 
+    @JvmOverloads
     fun weather24h(
         location: String,
         unit: Unit = Unit.M,
@@ -146,6 +149,7 @@ class Weather {
         return this.weatherHourly("24h", location, lang, unit)
     }
 
+    @JvmOverloads
     fun weather72h(
         location: String,
         unit: Unit = Unit.M,
@@ -154,6 +158,7 @@ class Weather {
         return this.weatherHourly("72h", location, lang, unit)
     }
 
+    @JvmOverloads
     fun weather168h(
         location: String,
         unit: Unit = Unit.M,
@@ -162,6 +167,7 @@ class Weather {
         return this.weatherHourly("168h", location, lang, unit)
     }
 
+    @JvmOverloads
     fun weather3d(
         location: String,
         unit: Unit = Unit.M,
@@ -170,6 +176,7 @@ class Weather {
         return this.weatherDaily("3d", location, unit, lang)
     }
 
+    @JvmOverloads
     fun weather7d(
         location: String,
         unit: Unit = Unit.M,
@@ -178,6 +185,7 @@ class Weather {
         return this.weatherDaily("7d", location, unit, lang)
     }
 
+    @JvmOverloads
     fun weather15d(
         location: String,
         unit: Unit = Unit.M,
@@ -186,12 +194,13 @@ class Weather {
         return this.weatherDaily("15d", location, unit, lang)
     }
 
+    @JvmOverloads
     fun weatherGridNow(
         location: String,
         unit: Unit = Unit.M,
         lang: Lang = Lang.ZH
     ): WeatherGridRealtimeBean {
-        val url = make(
+        val url = makeParams(
             "grid-weather/now",
             mapOf(
                 "location" to location,
@@ -203,6 +212,7 @@ class Weather {
         return gson.fromJson(result, WeatherGridRealtimeBean::class.java)
     }
 
+    @JvmOverloads
     fun weatherGrid24h(
         location: String,
         unit: Unit = Unit.M,
@@ -211,6 +221,7 @@ class Weather {
         return this.gridHourlyWeather("24h", location, unit, lang)
     }
 
+    @JvmOverloads
     fun weatherGrid72h(
         location: String,
         unit: Unit = Unit.M,
@@ -219,6 +230,7 @@ class Weather {
         return this.gridHourlyWeather("72h", location, unit, lang)
     }
 
+    @JvmOverloads
     fun weatherGrid3d(
         location: String,
         unit: Unit = Unit.M,
@@ -227,6 +239,7 @@ class Weather {
         return this.gridDailyWeather("3d", location, unit, lang)
     }
 
+    @JvmOverloads
     fun weatherGrid7d(
         location: String,
         unit: Unit = Unit.M,

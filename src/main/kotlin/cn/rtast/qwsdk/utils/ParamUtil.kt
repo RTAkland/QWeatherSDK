@@ -16,11 +16,11 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.Global
+import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.*
 import cn.rtast.qwsdk.enums.Unit
 
-fun make(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
+fun makeParams(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
     var result = ""
     for ((k, v) in params.entries) {
         var value = v
@@ -35,10 +35,10 @@ fun make(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Comm
             result += "$k=$value&"
         }
     }
-    val param = "$prefix/?key=${Global.key}&${result.substring(0, result.length - 1)}"
+    val param = "$prefix/?key=${QWeather.key}&${result.substring(0, result.length - 1)}"
     return if (type == ApiType.Common) {
-        "${Global.rootAPI}/$param"
+        "${QWeather.rootAPI}/$param"
     } else {
-        "${Global.geoAPI}/$param"
+        "${QWeather.geoAPI}/$param"
     }
 }

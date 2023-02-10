@@ -21,18 +21,19 @@ import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
 
 class Warning {
 
     private val gson = Gson()
 
+    @JvmOverloads
     fun now(
         location: String,
         lang: Lang = Lang.ZH
     ): WarningBean {
-        val url = make(
+        val url = makeParams(
             "warning/now",
             mapOf(
                 "location" to location,
@@ -43,10 +44,11 @@ class Warning {
         return gson.fromJson(result, WarningBean::class.java)
     }
 
+    @JvmOverloads
     fun list(
         range: CountryCode = CountryCode.CN
     ): WarningCityListBean {
-        val url = make(
+        val url = makeParams(
             "warning/list",
             mapOf("range" to range)
         )

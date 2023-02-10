@@ -21,7 +21,7 @@ import cn.rtast.qwsdk.enums.IndicesType
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
+import cn.rtast.qwsdk.utils.makeParams
 import cn.rtast.qwsdk.utils.parseIndices
 import com.google.gson.Gson
 
@@ -40,7 +40,7 @@ class Indices {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
         val typeName = parseIndices(type)
-        val url = make(
+        val url = makeParams(
             "indices/$days",
             mapOf(
                 "location" to location,
@@ -51,6 +51,7 @@ class Indices {
         return gson.fromJson(result, IndicesBean::class.java)
     }
 
+    @JvmOverloads
     fun indices1d(
         location: String,
         type: IndicesType = IndicesType.ALL,
@@ -59,6 +60,7 @@ class Indices {
         return this.indices("1d", location, type, lang)
     }
 
+    @JvmOverloads
     fun indices3d(
         location: String,
         type: IndicesType = IndicesType.ALL,

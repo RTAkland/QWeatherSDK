@@ -42,9 +42,6 @@ private fun unGZip(byteArray: ByteArray): String {
     }
 }
 
-
 fun get(url: String): String {
-    println(url)
-    val response = URL(url).readBytes()
-    return unGZip(response)
+    return unGZip(URL(url).readBytes())
 }

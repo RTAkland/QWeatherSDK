@@ -25,8 +25,14 @@ class QWeather {
 
     private val logger = Logger.getLogger("QWSDK-MAIN")
 
-    fun init(plan: Plans, key: String) {
-        Global.rootAPI = when (plan) {
+    companion object {
+        var key: String? = null
+        var rootAPI = "https://devapi.qweather.com/v7"
+        const val geoAPI = "https://geoapi.qweather.com/v2"
+    }
+
+    fun init(plan: Plans, apiKey: String) {
+        rootAPI = when (plan) {
             Plans.Free -> {
                 "https://devapi.qweather.com/v7"
             }
@@ -39,8 +45,8 @@ class QWeather {
                 "https://api.qweather.com/v7"
             }
         }
-        Global.key = key
-        logger.info("Current Plan: $plan, Current API Host: ${Global.rootAPI}")
+        key = apiKey
+        logger.info("Current Plan: $plan, Current API Host: $rootAPI")
     }
 
     fun geo(): Geo {
@@ -71,8 +77,10 @@ class QWeather {
         return Ocean()
     }
 
+    @Deprecated("This API is not impl! (No data to create data bean!)")
     fun solarRadiation() {
-        TODO("No data can be display")
+        logger.warning("Not Available!")
+        TODO("Not available!")
     }
 
     fun astronomy(): Astronomy {

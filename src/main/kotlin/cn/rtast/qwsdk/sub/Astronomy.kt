@@ -20,23 +20,23 @@ import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.make
-import cn.rtast.qwsdk.utils.verifyHM
-import cn.rtast.qwsdk.utils.verifyYMD
+import cn.rtast.qwsdk.utils.makeParams
 import com.google.gson.Gson
 
 class Astronomy {
 
     private val gson = Gson()
 
+    @JvmOverloads
     fun sun(
         location: String,
         date: String,
         lang: Lang = Lang.ZH
     ): SunBean {
-        verifyYMD(date)
-        val url = make(
+        DateUtil(date).verifyYMD()
+        val url = makeParams(
             "astronomy/sun",
             mapOf(
                 "location" to location,
@@ -48,13 +48,14 @@ class Astronomy {
         return gson.fromJson(result, SunBean::class.java)
     }
 
+    @JvmOverloads
     fun moon(
         location: String,
         date: String,
         lang: Lang = Lang.ZH
     ): MoonBean {
-        verifyYMD(date)
-        val url = make(
+        DateUtil(date).verifyYMD()
+        val url = makeParams(
             "astronomy/moon", mapOf(
                 "location" to location,
                 "date" to date, "lang" to lang
@@ -71,9 +72,9 @@ class Astronomy {
         tz: String,
         alt: Int
     ): SolarElevationAngleBean {
-        verifyYMD(date)
-        verifyHM(date)
-        val url = make(
+        DateUtil(date).verifyYMD()
+        DateUtil(date).verifyHM()
+        val url = makeParams(
             "astronomy/solar-elevation-angle",
             mapOf(
                 "location" to location,
