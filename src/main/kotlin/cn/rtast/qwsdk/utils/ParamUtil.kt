@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.*
-import cn.rtast.qwsdk.enums.Unit
+import cn.rtast.qwsdk.enums.Units
 
 fun makeParams(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
     var result = ""
@@ -28,7 +28,7 @@ fun makeParams(prefix: String, params: Map<String, Any?>, type: ApiType = ApiTyp
             is BasinType -> value.name.lowercase()
             is CountryCode -> value.name.lowercase()
             is Lang -> value.name.lowercase()
-            is Unit -> value.name.lowercase()
+            is Units -> value.name.lowercase()
             else -> v
         }
         if (v != null) {  // if null then pass it
