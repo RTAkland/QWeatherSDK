@@ -23,9 +23,8 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
-import java.util.logging.Logger
 
 class TimeMachine {
 
@@ -43,7 +42,7 @@ class TimeMachine {
         lang: Lang = Lang.ZH
     ): WeatherHistoricalBean {
         DateUtil(date).verifyYMD()
-        val url = makeParams(
+        val url = makeParam(
             "historical/weather",
             mapOf(
                 "location" to location,
@@ -64,7 +63,7 @@ class TimeMachine {
         lang: Lang = Lang.ZH
     ): AirHistoricalBean {
         DateUtil(date).verifyYMD()
-        val url = makeParams(
+        val url = makeParam(
             "historical/air",
             mapOf(
                 "location" to location,

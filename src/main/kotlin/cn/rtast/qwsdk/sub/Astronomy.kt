@@ -23,7 +23,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 
 class Astronomy {
@@ -37,7 +37,7 @@ class Astronomy {
         lang: Lang = Lang.ZH
     ): SunBean {
         DateUtil(date).verifyYMD()
-        val url = makeParams(
+        val url = makeParam(
             "astronomy/sun",
             mapOf(
                 "location" to location,
@@ -65,7 +65,7 @@ class Astronomy {
         lang: Lang = Lang.ZH
     ): MoonBean {
         DateUtil(date).verifyYMD()
-        val url = makeParams(
+        val url = makeParam(
             "astronomy/moon", mapOf(
                 "location" to location,
                 "date" to date, "lang" to lang
@@ -93,7 +93,7 @@ class Astronomy {
     ): SolarElevationAngleBean {
         DateUtil(date).verifyYMD()
         DateUtil(date).verifyHM()
-        val url = makeParams(
+        val url = makeParam(
             "astronomy/solar-elevation-angle",
             mapOf(
                 "location" to location(),

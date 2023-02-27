@@ -99,7 +99,6 @@ dependencies {
 > 如果库使用了别的库, 那embed也会把该库使用的库的.class文件打包进你的jar中 和 shadowJar比较类似
 > 和gradle中的include类似, 但是gradle是将依赖jar打包进jar
 > embed 不会和implementation关键字冲突, embed仅在编译时生效
-
 > 使用embed后就可以在独立的环境运行而不需要额外下载依赖
 
 ## 简单的例子
@@ -148,8 +147,8 @@ public class Main {
 > `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写***
 > 测试完成后你可以在`build/reports/tests/test/index.html` 找到测试报告
 
-*** 如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
-你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别***
+>如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
+你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别
 
 # 注意事项
 

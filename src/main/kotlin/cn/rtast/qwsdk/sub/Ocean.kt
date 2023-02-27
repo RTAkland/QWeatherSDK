@@ -20,7 +20,7 @@ import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
 import cn.rtast.qwsdk.entity.ocean.tide.TideBean
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 
 class Ocean {
@@ -32,7 +32,7 @@ class Ocean {
         date: String
     ): TideBean {
         DateUtil(date).verifyYMD()
-        val url = makeParams(
+        val url = makeParam(
             "ocean/tide",
             mapOf(
                 "location" to location,
@@ -48,7 +48,7 @@ class Ocean {
         date: String
     ): CurrentsBean {
         DateUtil(date).verifyYMD()
-        val url = makeParams(
+        val url = makeParam(
             "ocean/currents",
             mapOf(
                 "location" to location,

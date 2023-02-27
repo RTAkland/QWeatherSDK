@@ -23,7 +23,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 
 class Warning {
@@ -39,7 +39,7 @@ class Warning {
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
-        val url = makeParams(
+        val url = makeParam(
             "warning/now",
             mapOf(
                 "location" to location,
@@ -62,7 +62,7 @@ class Warning {
     fun list(
         range: CountryCode = CountryCode.CN
     ): WarningCityListBean {
-        val url = makeParams(
+        val url = makeParam(
             "warning/list",
             mapOf("range" to range)
         )

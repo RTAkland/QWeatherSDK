@@ -27,7 +27,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 
 class Weather {
@@ -40,7 +40,7 @@ class Weather {
         lang: Lang,
         unit: Units
     ): WeatherHourlyBean {
-        val url = makeParams(
+        val url = makeParam(
             "weather/$hours",
             mapOf(
                 "location" to location,
@@ -59,7 +59,7 @@ class Weather {
         unit: Units,
         lang: Lang
     ): WeatherDailyBean {
-        val url = makeParams(
+        val url = makeParam(
             "weather/$days",
             mapOf(
                 "location" to location,
@@ -77,7 +77,7 @@ class Weather {
         unit: Units,
         lang: Lang
     ): WeatherGridHourlyBean {
-        val url = makeParams(
+        val url = makeParam(
             "grid-weather/$hours",
             mapOf(
                 "location" to location,
@@ -95,7 +95,7 @@ class Weather {
         unit: Units,
         lang: Lang
     ): WeatherGridDailyBean {
-        val url = makeParams(
+        val url = makeParam(
             "grid-weather/$days",
             mapOf(
                 "location" to location,
@@ -113,7 +113,7 @@ class Weather {
         unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherNowBean {
-        val url = makeParams(
+        val url = makeParam(
             "weather/now",
             mapOf(
                 "location" to location,
@@ -139,7 +139,7 @@ class Weather {
         location: Coordinate,
         lang: Lang = Lang.ZH
     ): WeatherMinutelyBean {
-        val url = makeParams(
+        val url = makeParam(
             "minutely/5m",
             mapOf(
                 "location" to location(),
@@ -264,7 +264,7 @@ class Weather {
         unit: Units = Units.M,
         lang: Lang = Lang.ZH
     ): WeatherGridRealtimeBean {
-        val url = makeParams(
+        val url = makeParam(
             "grid-weather/now",
             mapOf(
                 "location" to location(),

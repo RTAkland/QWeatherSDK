@@ -21,7 +21,7 @@ import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 
 class Air {
@@ -33,7 +33,7 @@ class Air {
         location: String,
         lang: Lang = Lang.ZH
     ): AirBean {
-        val url = makeParams(
+        val url = makeParam(
             "air/now",
             mapOf(
                 "location" to location,
@@ -57,7 +57,7 @@ class Air {
         location: String,
         lang: Lang = Lang.ZH
     ): AirDailyBean {
-        val url = makeParams(
+        val url = makeParam(
             "air/5d",
             mapOf(
                 "location" to location,

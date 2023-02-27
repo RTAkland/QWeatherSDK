@@ -18,10 +18,9 @@ package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.*
-import cn.rtast.qwsdk.enums.Units
 
-fun makeParams(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
-    var result = ""
+fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
+    lateinit var result: String
     for ((k, v) in params.entries) {
         var value = v
         value = when (value) {

@@ -23,7 +23,7 @@ import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedAreaException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 import java.time.Year
 
@@ -32,7 +32,7 @@ class Tropical {
     private val gson = Gson()
 
     fun forecast(stormID: String): TropicalForecastBean {
-        val url = makeParams(
+        val url = makeParam(
             "tropical/tropical/storm-forecast",
             mapOf(
                 "stormid" to stormID,
@@ -43,7 +43,7 @@ class Tropical {
     }
 
     fun track(stormID: String): TropicalTrackBean {
-        val url = makeParams(
+        val url = makeParam(
             "tropical/tropical/storm-track",
             mapOf(
                 "stormid" to stormID,
@@ -69,7 +69,7 @@ class Tropical {
         if (year != currentYear.toString() && year != lastYear.toString()) {
             throw UnsupportedYearException("You can't list the year before last year and future storms!")
         }
-        val url = makeParams(
+        val url = makeParam(
             "tropical/storm-list",
             mapOf(
                 "basin" to basin,

@@ -27,7 +27,7 @@ import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.exceptions.GeoNumberException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import com.google.gson.Gson
 
 class Geo {
@@ -47,7 +47,7 @@ class Geo {
             if (number !in 1..20) {  // range 1-20
                 throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
             }
-        val url = makeParams(
+        val url = makeParam(
             "city/lookup",
             mapOf(
                 "location" to location,
@@ -83,7 +83,7 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = makeParams(
+        val url = makeParam(
             "city/top",
             mapOf(
                 "range" to range,
@@ -108,7 +108,7 @@ class Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = makeParams(
+        val url = makeParam(
             "poi/lookup",
             mapOf(
                 "location" to location,
@@ -150,7 +150,7 @@ class Geo {
         if (radius !in 1..50) {  // range 1-50
             throw GeoNumberException("Invalid Radius: $radius, please choose from 1-50!")
         }
-        val url = makeParams(
+        val url = makeParam(
             "poi/range",
             mapOf(
                 "location" to location,

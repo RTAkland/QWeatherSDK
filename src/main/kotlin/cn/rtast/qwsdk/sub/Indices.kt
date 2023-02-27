@@ -22,7 +22,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParams
+import cn.rtast.qwsdk.utils.makeParam
 import cn.rtast.qwsdk.utils.parseIndices
 import com.google.gson.Gson
 import kotlin.jvm.Throws
@@ -43,7 +43,7 @@ class Indices {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
         val typeName = parseIndices(type)
-        val url = makeParams(
+        val url = makeParam(
             "indices/$days",
             mapOf(
                 "location" to location,
