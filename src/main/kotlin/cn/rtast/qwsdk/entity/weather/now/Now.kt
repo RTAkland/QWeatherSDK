@@ -16,8 +16,6 @@
 
 package cn.rtast.qwsdk.entity.weather.now
 
-import java.io.Serializable
-
 data class Now(
     val cloud: String,
     val dew: String,
