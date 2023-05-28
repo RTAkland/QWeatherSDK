@@ -16,6 +16,8 @@
 
 package cn.rtast.qwsdk.entity.weather.hourly
 
+import java.io.Serializable
+
 data class Daily(
     val cloud: String,
     val fxDate: String,
@@ -44,4 +46,4 @@ data class Daily(
     val windScaleNight: String,
     val windSpeedDay: String,
     val windSpeedNight: String
-)
+): Serializable
