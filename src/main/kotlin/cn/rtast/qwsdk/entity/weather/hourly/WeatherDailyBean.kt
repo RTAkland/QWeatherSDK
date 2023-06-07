@@ -20,7 +20,7 @@ import cn.rtast.qwsdk.entity.Refer
 
 data class WeatherDailyBean(
     val code: String,
-    val daily: List<Daily>,
+    val daily: ArrayList<Daily>,
     val fxLink: String,
     val refer: Refer,
     val updateTime: String
