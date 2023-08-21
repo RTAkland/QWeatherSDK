@@ -22,6 +22,7 @@ import java.io.InputStreamReader
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import java.util.zip.GZIPInputStream
+import java.util.zip.ZipException
 
 
 private fun unGZip(byteArray: ByteArray): String {
@@ -43,5 +44,13 @@ private fun unGZip(byteArray: ByteArray): String {
 }
 
 fun get(url: String): String {
-    return unGZip(URL(url).readBytes())
+    val response = URL(url).readBytes()
+    try {
+        return unGZip(response)
+    } catch (e: ZipException) {
+        if (e.message == "Not in GZIP format") {
+            return String(response)
+        }
+        throw e
+    }
 }
