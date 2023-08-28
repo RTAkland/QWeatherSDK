@@ -19,8 +19,6 @@ package cn.rtast.qwsdk.sub
 import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
-import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
 import cn.rtast.qwsdk.utils.makeParam
@@ -38,8 +36,8 @@ class TimeMachine {
     fun weatherHistory(
         location: String,
         date: String,
-        unit: Units = Units.M,
-        lang: Lang = Lang.ZH
+        unit: QWeather.Units = QWeather.Units.M,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): WeatherHistoricalBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
@@ -59,8 +57,8 @@ class TimeMachine {
     fun airHistory(
         location: String,
         date: String,
-        unit: Units = Units.M,
-        lang: Lang = Lang.ZH
+        unit: QWeather.Units = QWeather.Units.M,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): AirHistoricalBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(

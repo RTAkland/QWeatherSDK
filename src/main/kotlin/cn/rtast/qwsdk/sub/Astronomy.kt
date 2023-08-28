@@ -16,10 +16,10 @@
 
 package cn.rtast.qwsdk.sub
 
+import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
-import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.get
@@ -34,7 +34,7 @@ class Astronomy {
     fun sun(
         location: String,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): SunBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
@@ -53,7 +53,7 @@ class Astronomy {
     fun sun(
         location: Coordinate,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): SunBean {
         return this.sun(location(), date, lang)
     }
@@ -62,7 +62,7 @@ class Astronomy {
     fun moon(
         location: String,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): MoonBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
@@ -79,7 +79,7 @@ class Astronomy {
     fun moon(
         location: Coordinate,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): MoonBean {
         return this.moon(location(), date, lang)
     }

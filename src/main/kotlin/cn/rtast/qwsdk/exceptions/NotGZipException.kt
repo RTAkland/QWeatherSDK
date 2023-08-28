@@ -14,8 +14,6 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.enums
+package cn.rtast.qwsdk.exceptions
 
-enum class ApiType {
-    Geo, Common
-}
+class NotGZipException(message: String): Exception(message)

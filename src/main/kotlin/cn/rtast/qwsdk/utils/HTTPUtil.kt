@@ -16,6 +16,7 @@
 
 package cn.rtast.qwsdk.utils
 
+import cn.rtast.qwsdk.exceptions.NotGZipException
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
@@ -47,10 +48,10 @@ fun get(url: String): String {
     val response = URL(url).readBytes()
     try {
         return unGZip(response)
-    } catch (e: ZipException) {
+    } catch (e : ZipException) {
         if (e.message == "Not in GZIP format") {
-            return String(response)
+            return response.toString()
         }
-        throw e
+        throw NotGZipException(e.message!!)
     }
 }

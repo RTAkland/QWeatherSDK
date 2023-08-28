@@ -16,10 +16,9 @@
 
 package cn.rtast.qwsdk.sub
 
+import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.warning.WarningBean
 import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
-import cn.rtast.qwsdk.enums.CountryCode
-import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
@@ -33,9 +32,9 @@ class Warning {
     @JvmOverloads
     fun now(
         location: String,
-        lang: Lang = Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): WarningBean {
-        val supportedLang = listOf(Lang.ZH, Lang.EN)
+        val supportedLang = listOf(QWeather.Lang.ZH, QWeather.Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
@@ -53,14 +52,14 @@ class Warning {
     @JvmOverloads
     fun now(
         location: Coordinate,
-        lang: Lang = Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): WarningBean {
         return this.now(location(), lang)
     }
 
     @JvmOverloads
     fun list(
-        range: CountryCode = CountryCode.CN
+        range: QWeather.CountryCode = QWeather.CountryCode.CN
     ): WarningCityListBean {
         val url = makeParam(
             "warning/list",

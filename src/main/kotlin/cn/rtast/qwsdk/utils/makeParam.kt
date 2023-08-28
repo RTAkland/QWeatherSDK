@@ -17,17 +17,16 @@
 package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.QWeather
-import cn.rtast.qwsdk.enums.*
 
-fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
+fun makeParam(prefix: String, params: Map<String, Any?>, type: QWeather.ApiType = QWeather.ApiType.Common): String {
     lateinit var result: String
     for ((k, v) in params.entries) {
         var value = v
         value = when (value) {
-            is BasinType -> value.name.lowercase()
-            is CountryCode -> value.name.lowercase()
-            is Lang -> value.name.lowercase()
-            is Units -> value.name.lowercase()
+            is QWeather.BasinType -> value.name.lowercase()
+            is QWeather.CountryCode -> value.name.lowercase()
+            is QWeather.Lang -> value.name.lowercase()
+            is QWeather.Units -> value.name.lowercase()
             else -> v
         }
         if (v != null) {  // if null then pass it
@@ -35,7 +34,7 @@ fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType
         }
     }
     val param = "$prefix/?key=${QWeather.key}&${result.substring(0, result.length - 1)}"
-    return if (type == ApiType.Common) {
+    return if (type == QWeather.ApiType.Common) {
         "${QWeather.rootAPI}/$param"
     } else {
         "${QWeather.geoAPI}/$param"

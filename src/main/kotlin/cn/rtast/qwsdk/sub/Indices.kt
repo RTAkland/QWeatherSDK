@@ -16,9 +16,8 @@
 
 package cn.rtast.qwsdk.sub
 
+import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.entity.indices.IndicesBean
-import cn.rtast.qwsdk.enums.IndicesType
-import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.get
@@ -35,10 +34,10 @@ class Indices {
     private fun indices(
         days: String,
         location: String,
-        type: IndicesType = IndicesType.ALL,
-        lang: Lang = Lang.ZH
+        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): IndicesBean {
-        val supportedLang = listOf(Lang.ZH, Lang.EN)
+        val supportedLang = listOf(QWeather.Lang.ZH, QWeather.Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
@@ -57,8 +56,8 @@ class Indices {
     @JvmOverloads
     fun indices1d(
         location: String,
-        type: IndicesType = IndicesType.ALL,
-        lang: Lang = Lang.ZH
+        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): IndicesBean {
         return this.indices("1d", location, type, lang)
     }
@@ -66,8 +65,8 @@ class Indices {
     @JvmOverloads
     fun indices1d(
         location: Coordinate,
-        type: IndicesType = IndicesType.ALL,
-        lang: Lang = Lang.ZH
+        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): IndicesBean {
         return this.indices1d(location(), type, lang)
     }
@@ -75,8 +74,8 @@ class Indices {
     @JvmOverloads
     fun indices3d(
         location: String,
-        type: IndicesType = IndicesType.ALL,
-        lang: Lang = Lang.ZH
+        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): IndicesBean {
         return this.indices("3d", location, type, lang)
     }
@@ -84,8 +83,8 @@ class Indices {
     @JvmOverloads
     fun indices3d(
         location: Coordinate,
-        type: IndicesType = IndicesType.ALL,
-        lang: Lang = Lang.ZH
+        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
+        lang: QWeather.Lang = QWeather.Lang.ZH
     ): IndicesBean {
         return this.indices1d(location(), type, lang)
     }
