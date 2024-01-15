@@ -18,7 +18,6 @@ package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.getCurrentDate
-import cn.rtast.qwsdk.tests.utils.isFreePlan
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -26,17 +25,13 @@ class TestOcean {
 
     @Test
     fun tideTest() {
-        if (!isFreePlan()) {
-            val result = qw.ocean().tide("P2951", getCurrentDate())
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.ocean().tide("P2951", getCurrentDate())
+        assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun currentsTest() {
-        if (!isFreePlan()) {
-            val result = qw.ocean().currents("P66981", getCurrentDate())
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.ocean().currents("P66981", getCurrentDate())
+        assertEquals(result.code.toInt(), 200)
     }
 }

@@ -18,7 +18,6 @@ package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.getCurrentYear
-import cn.rtast.qwsdk.tests.utils.isFreePlan
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -26,27 +25,21 @@ class TestTropical {
 
     @Test
     fun forecastTest() {
-        if (!isFreePlan()) {
-            val id = qw.tropical().list(getCurrentYear()).storm[0].id
-            val result = qw.tropical().forecast(id)
-            assertEquals(result.code.toInt(), 200)
-        }
+        val id = qw.tropical().list(getCurrentYear()).storm[0].id
+        val result = qw.tropical().forecast(id)
+        assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun trackTest() {
-        if (!isFreePlan()) {
-            val id = qw.tropical().list(getCurrentYear()).storm[0].id
-            val result = qw.tropical().track(id)
-            assertEquals(result.code.toInt(), 200)
-        }
+        val id = qw.tropical().list(getCurrentYear()).storm[0].id
+        val result = qw.tropical().track(id)
+        assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun listTest() {
-        if (!isFreePlan()) {
-            val result = qw.tropical().list(getCurrentYear())
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.tropical().list(getCurrentYear())
+        assertEquals(result.code.toInt(), 200)
     }
 }

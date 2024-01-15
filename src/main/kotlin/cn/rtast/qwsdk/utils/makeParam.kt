@@ -19,7 +19,7 @@ package cn.rtast.qwsdk.utils
 import cn.rtast.qwsdk.QWeather
 
 fun makeParam(prefix: String, params: Map<String, Any?>, type: QWeather.ApiType = QWeather.ApiType.Common): String {
-    lateinit var result: String
+    var result = ""
     for ((k, v) in params.entries) {
         var value = v
         value = when (value) {
