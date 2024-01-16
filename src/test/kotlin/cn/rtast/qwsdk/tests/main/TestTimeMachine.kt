@@ -17,7 +17,6 @@
 package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.tests.Initial.qw
-import cn.rtast.qwsdk.tests.utils.isFreePlan
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -28,17 +27,13 @@ class TestTimeMachine {
 
     @Test
     fun weatherHistoricalTest() {
-        if (!isFreePlan()) {
-            val result = qw.timeMachine().weatherHistory(locationID, "20200531")
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.timeMachine().weatherHistory(locationID, "20200531")
+        assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun airHistoricalTest() {
-        if (!isFreePlan()) {
-            val result = qw.timeMachine().airHistory(locationID, "20200531")
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.timeMachine().airHistory(locationID, "20200531")
+        assertEquals(result.code.toInt(), 200)
     }
 }

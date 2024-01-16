@@ -92,7 +92,7 @@ class Astronomy {
         alt: Int
     ): SolarElevationAngleBean {
         DateUtil(date).verifyYMD()
-        DateUtil(date).verifyHM()
+        DateUtil(time).verifyHM()
         val url = makeParam(
             "astronomy/solar-elevation-angle",
             mapOf(

@@ -18,7 +18,6 @@ package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.getCurrentDate
-import cn.rtast.qwsdk.tests.utils.isFreePlan
 import cn.rtast.qwsdk.tests.utils.randomID
 import cn.rtast.qwsdk.utils.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -42,11 +41,9 @@ class TestAstronomy {
 
     @Test
     fun solarElevationAngleTest() {
-        if (!isFreePlan()) {
-            val result = qw.astronomy().solarElevationAngle(
-                Coordinate(116.41, 39.92), "20170809", "1230", "0800", 43
-            )
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.astronomy().solarElevationAngle(
+            Coordinate(116.41, 39.92), "20170809", "1230", "0800", 43
+        )
+        assertEquals(result.code.toInt(), 200)
     }
 }

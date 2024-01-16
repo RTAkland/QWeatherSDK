@@ -16,14 +16,9 @@
 
 package cn.rtast.qwsdk.tests.utils
 
-import cn.rtast.qwsdk.QWeather
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 import kotlin.random.Random
-
-fun isFreePlan(): Boolean {
-    return QWeather.rootAPI.contains("https://devapi")
-}
 
 fun randomID(): String {
     val idList = listOf(

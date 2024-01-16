@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.enums.POIType
+import cn.rtast.qwsdk.QWeather.POIType
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.randomID
 import cn.rtast.qwsdk.utils.Coordinate

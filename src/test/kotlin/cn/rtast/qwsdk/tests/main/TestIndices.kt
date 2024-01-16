@@ -17,7 +17,6 @@
 package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.tests.Initial.qw
-import cn.rtast.qwsdk.tests.utils.isFreePlan
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -34,9 +33,7 @@ class TestIndices {
 
     @Test
     fun indices3d() {
-        if (!isFreePlan()) {
-            val result = qw.indices().indices3d(locationID)
-            assertEquals(result.code.toInt(), 200)
-        }
+        val result = qw.indices().indices3d(locationID)
+        assertEquals(result.code.toInt(), 200)
     }
 }
