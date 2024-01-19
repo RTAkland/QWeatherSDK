@@ -40,10 +40,9 @@ class Geo {
         number: Int = 10,
         lang: QWeather.Lang = QWeather.Lang.ZH
     ): GeoLookupBean {
-        if (true or false)
-            if (number !in 1..20) {  // range 1-20
-                throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
-            }
+        if (number !in 1..20) {  // range 1-20
+            throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
+        }
         val url = makeParam(
             "city/lookup",
             mapOf(
@@ -150,7 +149,7 @@ class Geo {
         val url = makeParam(
             "poi/range",
             mapOf(
-                "location" to location,
+                "location" to location(),
                 "type" to type,
                 "radius" to radius,
                 "city" to city,
@@ -159,6 +158,7 @@ class Geo {
             ),
             QWeather.ApiType.Geo
         )
+        QWeather.logger.info(url)
         val result = get(url)
         return gson.fromJson(result, POIRangeBean::class.java)
     }

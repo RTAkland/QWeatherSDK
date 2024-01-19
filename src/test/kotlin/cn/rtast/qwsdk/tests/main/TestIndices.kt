@@ -16,6 +16,7 @@
 
 package cn.rtast.qwsdk.tests.main
 
+import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.tests.Initial.qw
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -27,13 +28,21 @@ class TestIndices {
 
     @Test
     fun indices1dTest() {
-        val result = qw.indices().indices1d(locationID)
+        val result = qw.indices().indices1d(locationID).apply {
+            daily.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun indices3d() {
-        val result = qw.indices().indices3d(locationID)
+        val result = qw.indices().indices3d(
+            locationID, types = arrayOf(QWeather.IndicesType.AIR_CONDITIONER, QWeather.IndicesType.WASH_CAR)
+        ).apply {
+            daily.forEach { println(it) }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 }

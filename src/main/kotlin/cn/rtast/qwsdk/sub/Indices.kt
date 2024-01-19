@@ -34,19 +34,22 @@ class Indices {
     private fun indices(
         days: String,
         location: String,
-        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH,
+        vararg types: QWeather.IndicesType = arrayOf(QWeather.IndicesType.ALL),
     ): IndicesBean {
         val supportedLang = listOf(QWeather.Lang.ZH, QWeather.Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
-        val typeName = parseIndices(type)
+        val typeArray = if (types.contains(QWeather.IndicesType.ALL)) {
+            arrayOf(QWeather.IndicesType.ALL)
+        } else types
+        val typeString = typeArray.map { parseIndices(it) }.joinToString(",")
         val url = makeParam(
             "indices/$days",
             mapOf(
                 "location" to location,
-                "type" to typeName
+                "type" to typeString
             )
         )
         val result = get(url)
@@ -56,36 +59,36 @@ class Indices {
     @JvmOverloads
     fun indices1d(
         location: String,
-        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH,
+        vararg types: QWeather.IndicesType = arrayOf(QWeather.IndicesType.ALL)
     ): IndicesBean {
-        return this.indices("1d", location, type, lang)
+        return this.indices("1d", location, lang, *types)
     }
 
     @JvmOverloads
     fun indices1d(
         location: Coordinate,
-        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH,
+        vararg types: QWeather.IndicesType = arrayOf(QWeather.IndicesType.ALL)
     ): IndicesBean {
-        return this.indices1d(location(), type, lang)
+        return this.indices1d(location(), lang, *types)
     }
 
     @JvmOverloads
     fun indices3d(
         location: String,
-        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH,
+        vararg types: QWeather.IndicesType = arrayOf(QWeather.IndicesType.ALL)
     ): IndicesBean {
-        return this.indices("3d", location, type, lang)
+        return this.indices("3d", location, lang, *types)
     }
 
     @JvmOverloads
     fun indices3d(
         location: Coordinate,
-        type: QWeather.IndicesType = QWeather.IndicesType.ALL,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        lang: QWeather.Lang = QWeather.Lang.ZH,
+        vararg types: QWeather.IndicesType = arrayOf(QWeather.IndicesType.ALL)
     ): IndicesBean {
-        return this.indices1d(location(), type, lang)
+        return this.indices1d(location(), lang, *types)
     }
 }

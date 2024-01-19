@@ -19,23 +19,29 @@ package cn.rtast.qwsdk.tests.main
 import cn.rtast.qwsdk.QWeather.CountryCode
 import cn.rtast.qwsdk.QWeather.Lang
 import cn.rtast.qwsdk.tests.Initial.qw
-import cn.rtast.qwsdk.tests.utils.randomID
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestWarning {
 
-    private val locationID = randomID()
-
     @Test
     fun nowTest() {
-        val result = qw.warning().now(locationID, Lang.JA)
-        Assertions.assertEquals(result.code.toInt(), 200)
+        val id = qw.warning().list(CountryCode.CN).warningLocList[0].locationId
+        val result = qw.warning().now(id, Lang.ZH).apply {
+            warning.forEach {
+                println(it)
+            }
+        }
+        assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun listTest() {
-        val result = qw.warning().list(CountryCode.CN)
-        Assertions.assertEquals(result.code.toInt(), 200)
+        val result = qw.warning().list(CountryCode.CN).apply {
+            warningLocList.forEach {
+                println(it)
+            }
+        }
+        assertEquals(result.code.toInt(), 200)
     }
 }

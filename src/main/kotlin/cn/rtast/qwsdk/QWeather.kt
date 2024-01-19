@@ -93,7 +93,9 @@ class QWeather {
     }
 
     enum class BasinType {
-        NP, AL, EP, SP, NI, SI
+        NP, AL, EP, SP, NI, SI;
+
+        override fun toString(): String = name
     }
 
     enum class CountryCode {
@@ -121,7 +123,9 @@ class QWeather {
         SD, SR, SJ, SZ, SE, CH, SY, TW, TJ, TZ,
         TH, TL, TG, TK, TO, TT, TN, TR, TM, TC,
         TV, UG, UA, AE, GB, US, UM, UY, UZ, VU,
-        VE, VN, VG, VI, WF, EH, YE, ZM, ZW
+        VE, VN, VG, VI, WF, EH, YE, ZM, ZW;
+
+        override fun toString(): String = name.lowercase()
     }
 
     enum class IndicesType {
@@ -136,7 +140,9 @@ class QWeather {
         ZH, ZH_HANT, EN, DE, ES, FR, IT,
         JA, KO, RU, HI, TH, AR, PT, BN,
         MS, NL, EL, LA, SV, ID, PL, TR,
-        CS, ET, VI, FIL, FI, HE, IS, NB
+        CS, ET, VI, FIL, FI, HE, IS, NB;
+
+        override fun toString(): String = name.lowercase()
     }
 
     enum class Plans {
@@ -144,10 +150,14 @@ class QWeather {
     }
 
     enum class POIType {
-        scenic, CSTA, TSTA
+        scenic, CSTA, TSTA;
+
+        override fun toString(): String = name
     }
 
     enum class Units {
-        M, I
+        M, I;
+
+        override fun toString(): String = name.lowercase()
     }
 }

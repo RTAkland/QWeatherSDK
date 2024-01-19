@@ -22,24 +22,35 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestTropical {
-
     @Test
     fun forecastTest() {
         val id = qw.tropical().list(getCurrentYear()).storm[0].id
-        val result = qw.tropical().forecast(id)
+        val result = qw.tropical().forecast(id).apply {
+            forecast.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun trackTest() {
         val id = qw.tropical().list(getCurrentYear()).storm[0].id
-        val result = qw.tropical().track(id)
+        val result = qw.tropical().track(id).apply {
+            track.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun listTest() {
-        val result = qw.tropical().list(getCurrentYear())
+        val result = qw.tropical().list(getCurrentYear()).apply {
+            storm.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 }

@@ -33,7 +33,7 @@ class Tropical {
 
     fun forecast(stormID: String): TropicalForecastBean {
         val url = makeParam(
-            "tropical/tropical/storm-forecast",
+            "tropical/storm-forecast",
             mapOf(
                 "stormid" to stormID,
             )
@@ -44,7 +44,7 @@ class Tropical {
 
     fun track(stormID: String): TropicalTrackBean {
         val url = makeParam(
-            "tropical/tropical/storm-track",
+            "tropical/storm-track",
             mapOf(
                 "stormid" to stormID,
             )
@@ -76,6 +76,7 @@ class Tropical {
                 "year" to year
             )
         )
+        QWeather.logger.info(url)
         val result = get(url)
         return gson.fromJson(result, TropicalListBean::class.java)
     }
