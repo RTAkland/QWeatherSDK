@@ -22,18 +22,25 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestTimeMachine {
-
     private val locationID = randomID()
 
     @Test
     fun weatherHistoricalTest() {
-        val result = qw.timeMachine().weatherHistory(locationID, "20200531")
+        val result = qw.timeMachine().weatherHistory("101010100", "20240118").apply {
+            weatherHourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun airHistoricalTest() {
-        val result = qw.timeMachine().airHistory(locationID, "20200531")
+        val result = qw.timeMachine().airHistory(locationID, "20240118").apply {
+            airHourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 }

@@ -25,13 +25,21 @@ class TestOcean {
 
     @Test
     fun tideTest() {
-        val result = qw.ocean().tide("P2951", getCurrentDate())
+        val result = qw.ocean().tide("P2951", getCurrentDate()).apply {
+            tideHourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun currentsTest() {
-        val result = qw.ocean().currents("P66981", getCurrentDate())
+        val result = qw.ocean().currents("P66981", getCurrentDate()).apply {
+            currentsHourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 }

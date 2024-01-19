@@ -18,25 +18,19 @@ package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.QWeather
 
+/**
+ * 构建请求字符串。
+ */
 fun makeParam(prefix: String, params: Map<String, Any?>, type: QWeather.ApiType = QWeather.ApiType.Common): String {
-    var result = ""
-    for ((k, v) in params.entries) {
-        var value = v
-        value = when (value) {
-            is QWeather.BasinType -> value.name.lowercase()
-            is QWeather.CountryCode -> value.name.lowercase()
-            is QWeather.Lang -> value.name.lowercase()
-            is QWeather.Units -> value.name.lowercase()
-            else -> v
-        }
-        if (v != null) {  // if null then pass it
-            result += "$k=$value&"
-        }
-    }
-    val param = "$prefix/?key=${QWeather.key}&${result.substring(0, result.length - 1)}"
-    return if (type == QWeather.ApiType.Common) {
-        "${QWeather.rootAPI}/$param"
+    val rootUrl = if (type == QWeather.ApiType.Common) {
+        QWeather.rootAPI
     } else {
-        "${QWeather.geoAPI}/$param"
+        QWeather.geoAPI
     }
+    val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
+    // 添加用户 key
+    val urlParams = params.plus("key" to QWeather.key)
+            .filterValues { it != null }.toList().joinToString("&") { (k, v) -> "$k=$v" }
+    url.append(urlParams)
+    return url.toString()
 }

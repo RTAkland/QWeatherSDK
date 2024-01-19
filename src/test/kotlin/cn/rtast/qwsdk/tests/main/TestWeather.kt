@@ -29,79 +29,127 @@ class TestWeather {
 
     @Test
     fun nowTest() {
-        val result = qw.weather().now(locationID)
+        val result = qw.weather().now(locationID).apply {
+            println(this)
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weatherMinutelyTest() {
-        val result = qw.weather().weatherMinutely(coordinate)
+        val result = qw.weather().weatherMinutely(coordinate).apply {
+            minutely.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weather24hTest() {
-        val result = qw.weather().weather24h(locationID)
+        val result = qw.weather().weather24h(locationID).apply {
+            hourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weather72hTest() {
-            val result = qw.weather().weather72h(locationID)
-            assertEquals(result.code.toInt(), 200)
+        val result = qw.weather().weather72h(locationID).apply {
+            hourly.forEach {
+                println(it)
+            }
+        }
+        assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weather168hTest() {
-        val result = qw.weather().weather168h(locationID)
+        val result = qw.weather().weather168h(locationID).apply {
+            hourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weather3dTest() {
-        val result = qw.weather().weather3d(locationID)
+        val result = qw.weather().weather3d(locationID).apply {
+            daily.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weather7dTest() {
-        val result = qw.weather().weather7d(locationID)
+        val result = qw.weather().weather7d(locationID).apply {
+            daily.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weather15dTest() {
-        val result = qw.weather().weather15d(locationID)
+        val result = qw.weather().weather15d(locationID).apply {
+            daily.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weatherGridNowTest() {
-        val result = qw.weather().weatherGridNow(coordinate)
+        val result = qw.weather().weatherGridNow(coordinate).apply {
+            println(this)
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weatherGrid24hTest() {
-        val result = qw.weather().weatherGrid24h(coordinate)
+        val result = qw.weather().weatherGrid24h(coordinate).apply {
+            hourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weatherGrid72hTest() {
-        val result = qw.weather().weatherGrid72h(coordinate)
+        val result = qw.weather().weatherGrid72h(coordinate).apply {
+            hourly.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weatherGrid3dTest() {
-        val result = qw.weather().weatherGrid3d(coordinate)
+        val result = qw.weather().weatherGrid3d(coordinate).apply {
+            daily.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun weatherGrid7dTest() {
-        val result = qw.weather().weatherGrid7d(coordinate)
+        val result = qw.weather().weatherGrid7d(coordinate).apply {
+            daily.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 

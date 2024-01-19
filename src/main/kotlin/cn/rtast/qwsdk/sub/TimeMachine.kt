@@ -49,6 +49,7 @@ class TimeMachine {
                 "date" to date
             )
         )
+        QWeather.logger.info(url)
         val result = get(url)
         return gson.fromJson(result, WeatherHistoricalBean::class.java)
     }

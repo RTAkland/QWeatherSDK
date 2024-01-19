@@ -29,13 +29,17 @@ class TestAstronomy {
 
     @Test
     fun sunTest() {
-        val result = qw.astronomy().sun(locationID, getCurrentDate())
+        val result = qw.astronomy().sun(locationID, getCurrentDate()).apply {
+            println(this)
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun moonTest() {
-        val result = qw.astronomy().moon(locationID, getCurrentDate())
+        val result = qw.astronomy().moon(locationID, getCurrentDate()).apply {
+            println(this)
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
@@ -43,7 +47,9 @@ class TestAstronomy {
     fun solarElevationAngleTest() {
         val result = qw.astronomy().solarElevationAngle(
             Coordinate(116.41, 39.92), "20170809", "1230", "0800", 43
-        )
+        ).apply {
+            println(this)
+        }
         assertEquals(result.code.toInt(), 200)
     }
 }

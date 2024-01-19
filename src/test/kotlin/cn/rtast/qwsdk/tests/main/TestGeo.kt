@@ -29,25 +29,42 @@ class TestGeo {
 
     @Test
     fun citySearchTest() {
-        val result = qw.geo().citySearch(locationID)
+        val result = qw.geo().citySearch(locationID).apply {
+            location.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun topCityTest() {
-        val result = qw.geo().topCity()
+        val result = qw.geo().topCity().apply {
+            topCityList.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun poiLookupTest() {
-        val result = qw.geo().poiLookup(Coordinate(116.41, 39.92), POIType.scenic)
+        val result = qw.geo().poiLookup(Coordinate(116.41, 39.92), POIType.scenic).apply {
+            poi.forEach {
+                println(it)
+            }
+        }
         assertEquals(result.code.toInt(), 200)
     }
 
     @Test
     fun poiRangeTest() {
-        val result = qw.geo().poiRange(Coordinate(116.41, 39.92), POIType.scenic)
+        val result = qw.geo().poiRange(Coordinate(116.41, 39.92), POIType.scenic).apply {
+            poi.forEach {
+                println(it)
+            }
+        }
+        println(result)
         assertEquals(result.code.toInt(), 200)
     }
 }
