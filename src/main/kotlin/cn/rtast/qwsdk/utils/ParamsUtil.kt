@@ -25,7 +25,7 @@ fun makeParam(prefix: String, params: Map<String, Any?>, type: QWeatherSDK.ApiTy
     val rootUrl = if (type == QWeatherSDK.ApiType.Common) {
         QWeatherSDK.rootAPI
     } else {
-        QWeatherSDK.geoAPI
+        QWeatherSDK.GEO_API
     }
     val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
     // 添加用户 key

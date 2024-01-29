@@ -24,7 +24,7 @@ class QWeatherSDK {
     companion object {
         var key: String? = null
         var rootAPI = "https://devapi.qweather.com/v7"
-        const val geoAPI = "https://geoapi.qweather.com/v2"
+        const val GEO_API = "https://geoapi.qweather.com/v2"
         val logger: Logger = Logger.getLogger("QWSDK-MAIN")
     }
 
@@ -161,3 +161,4 @@ class QWeatherSDK {
         override fun toString(): String = name.lowercase()
     }
 }
+
