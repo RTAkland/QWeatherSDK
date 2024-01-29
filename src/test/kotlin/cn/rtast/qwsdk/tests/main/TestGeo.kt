@@ -16,8 +16,8 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.QWeather.POIType
-import cn.rtast.qwsdk.tests.Initial.qw
+import cn.rtast.qwsdk.QWeatherSDK.POIType
+import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
 import cn.rtast.qwsdk.tests.utils.randomID
 import cn.rtast.qwsdk.utils.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals

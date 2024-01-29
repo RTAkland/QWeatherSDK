@@ -1,12 +1,12 @@
 package cn.rtast.qwsdk.tests
 
-import cn.rtast.qwsdk.QWeather
-import cn.rtast.qwsdk.QWeather.Plans
+import cn.rtast.qwsdk.QWeatherSDK
+import cn.rtast.qwsdk.QWeatherSDK.Plans
 import cn.rtast.qwsdk.tests.errs.NoKeyFoundException
 
-object Initial {
+object QWeatherSDKTest {
 
-    val qw = QWeather()
+    val qw = QWeatherSDK()
 
     init {
         val envs = System.getenv()

@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.tests.main.utils
 
-import cn.rtast.qwsdk.QWeather.IndicesType
+import cn.rtast.qwsdk.QWeatherSDK.IndicesType
 import cn.rtast.qwsdk.utils.parseIndices
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

@@ -16,8 +16,8 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.QWeather.Lang
-import cn.rtast.qwsdk.tests.Initial.qw
+import cn.rtast.qwsdk.QWeatherSDK.Lang
+import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
