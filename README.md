@@ -110,7 +110,7 @@ import cn.rtast.qwsdk.QWeather
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
-    val qw = QWeather()
+    val qw = QWeatherSDK()
     // 可用的计划有 Free, Standard, Custom
     qw.init(Plans.Free, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
@@ -128,7 +128,7 @@ import cn.rtast.qwsdk.enums.Plans;
 
 public class Main {
     public static void main(String[] args) {
-        QWeather qw = new QWeather();
+        QWeather qw = new QWeatherSDK();
         qw.init(Plans.Free, "<replace your key here>");
         System.out.println(qw.weather().now("101010100"));
         // 最后两个参数有默认值, 通过给函数添加@JvmOverloads注解在编译时生成重载函数来实现Java参数默认值
