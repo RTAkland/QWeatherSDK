@@ -3,6 +3,7 @@ package cn.rtast.qwsdk.tests
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.QWeatherSDK.Plans
 import cn.rtast.qwsdk.tests.errs.NoKeyFoundException
+import org.junit.jupiter.api.Test
 
 object QWeatherSDKTest {
 
@@ -21,5 +22,10 @@ object QWeatherSDKTest {
             }
             qw.init(type, envs["QW_KEY"]!!)
         }
+    }
+
+    @Test
+    fun startTest() {
+        println()
     }
 }
