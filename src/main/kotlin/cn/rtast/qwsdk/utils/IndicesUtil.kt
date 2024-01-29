@@ -16,27 +16,27 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.QWeather
+import cn.rtast.qwsdk.QWeatherSDK
 
-fun parseIndices(indices: QWeather.IndicesType): Int {
+fun parseIndices(indices: QWeatherSDK.IndicesType): Int {
     val number = when (indices) {
-        QWeather.IndicesType.ALL -> 0
-        QWeather.IndicesType.SPORT -> 1
-        QWeather.IndicesType.WASH_CAR -> 2
-        QWeather.IndicesType.CLOTHING -> 3
-        QWeather.IndicesType.FISHING -> 4
-        QWeather.IndicesType.UV_RAY -> 5
-        QWeather.IndicesType.TRAVEL -> 6
-        QWeather.IndicesType.POLLEN_ALLERGY -> 7
-        QWeather.IndicesType.COMFORT -> 8
-        QWeather.IndicesType.COLD -> 9
-        QWeather.IndicesType.AIR_POLLUTION_DIFFUSION_CONDITION -> 10
-        QWeather.IndicesType.AIR_CONDITIONER -> 11
-        QWeather.IndicesType.SUNGLASSES -> 12
-        QWeather.IndicesType.MAKEUP -> 13
-        QWeather.IndicesType.DRYING -> 14
-        QWeather.IndicesType.TRAFFIC -> 15
-        QWeather.IndicesType.SPF -> 16
+        QWeatherSDK.IndicesType.ALL -> 0
+        QWeatherSDK.IndicesType.SPORT -> 1
+        QWeatherSDK.IndicesType.WASH_CAR -> 2
+        QWeatherSDK.IndicesType.CLOTHING -> 3
+        QWeatherSDK.IndicesType.FISHING -> 4
+        QWeatherSDK.IndicesType.UV_RAY -> 5
+        QWeatherSDK.IndicesType.TRAVEL -> 6
+        QWeatherSDK.IndicesType.POLLEN_ALLERGY -> 7
+        QWeatherSDK.IndicesType.COMFORT -> 8
+        QWeatherSDK.IndicesType.COLD -> 9
+        QWeatherSDK.IndicesType.AIR_POLLUTION_DIFFUSION_CONDITION -> 10
+        QWeatherSDK.IndicesType.AIR_CONDITIONER -> 11
+        QWeatherSDK.IndicesType.SUNGLASSES -> 12
+        QWeatherSDK.IndicesType.MAKEUP -> 13
+        QWeatherSDK.IndicesType.DRYING -> 14
+        QWeatherSDK.IndicesType.TRAFFIC -> 15
+        QWeatherSDK.IndicesType.SPF -> 16
     }
     return number
 }

@@ -16,20 +16,20 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.QWeather
+import cn.rtast.qwsdk.QWeatherSDK
 
 /**
  * 构建请求字符串。
  */
-fun makeParam(prefix: String, params: Map<String, Any?>, type: QWeather.ApiType = QWeather.ApiType.Common): String {
-    val rootUrl = if (type == QWeather.ApiType.Common) {
-        QWeather.rootAPI
+fun makeParam(prefix: String, params: Map<String, Any?>, type: QWeatherSDK.ApiType = QWeatherSDK.ApiType.Common): String {
+    val rootUrl = if (type == QWeatherSDK.ApiType.Common) {
+        QWeatherSDK.rootAPI
     } else {
-        QWeather.geoAPI
+        QWeatherSDK.geoAPI
     }
     val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
     // 添加用户 key
-    val urlParams = params.plus("key" to QWeather.key)
+    val urlParams = params.plus("key" to QWeatherSDK.key)
             .filterValues { it != null }.toList().joinToString("&") { (k, v) -> "$k=$v" }
     url.append(urlParams)
     return url.toString()
