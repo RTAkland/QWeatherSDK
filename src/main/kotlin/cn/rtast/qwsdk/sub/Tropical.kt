@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
+import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastBean
 import cn.rtast.qwsdk.entity.tropical.list.TropicalListBean
 import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
@@ -57,10 +57,10 @@ class Tropical {
     @Throws(UnsupportedYearException::class)
     fun list(
         year: String,
-        basin: QWeather.BasinType = QWeather.BasinType.NP
+        basin: QWeatherSDK.BasinType = QWeatherSDK.BasinType.NP
     ): TropicalListBean {
 
-        if (basin != QWeather.BasinType.NP) {
+        if (basin != QWeatherSDK.BasinType.NP) {
             throw UnsupportedAreaException("Current not support this area: ${basin.name.lowercase()}!")
         }
 
@@ -76,7 +76,7 @@ class Tropical {
                 "year" to year
             )
         )
-        QWeather.logger.info(url)
+        QWeatherSDK.logger.info(url)
         val result = get(url)
         return gson.fromJson(result, TropicalListBean::class.java)
     }

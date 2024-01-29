@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.sub
 
-import cn.rtast.qwsdk.QWeather
+import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.weather.daily.WeatherHourlyBean
 import cn.rtast.qwsdk.entity.weather.grid.daily.WeatherGridDailyBean
 import cn.rtast.qwsdk.entity.weather.grid.hourly.WeatherGridHourlyBean
@@ -36,8 +36,8 @@ class Weather {
     private fun weatherHourly(
         hours: String,
         location: String,
-        lang: QWeather.Lang,
-        unit: QWeather.Units
+        lang: QWeatherSDK.Lang,
+        unit: QWeatherSDK.Units
     ): WeatherHourlyBean {
         val url = makeParam(
             "weather/$hours",
@@ -55,8 +55,8 @@ class Weather {
     private fun weatherDaily(
         days: String,
         location: String,
-        unit: QWeather.Units,
-        lang: QWeather.Lang
+        unit: QWeatherSDK.Units,
+        lang: QWeatherSDK.Lang
     ): WeatherDailyBean {
         val url = makeParam(
             "weather/$days",
@@ -73,8 +73,8 @@ class Weather {
     private fun gridHourlyWeather(
         hours: String,
         location: String,
-        unit: QWeather.Units,
-        lang: QWeather.Lang
+        unit: QWeatherSDK.Units,
+        lang: QWeatherSDK.Lang
     ): WeatherGridHourlyBean {
         val url = makeParam(
             "grid-weather/$hours",
@@ -91,8 +91,8 @@ class Weather {
     private fun gridDailyWeather(
         days: String,
         location: String,
-        unit: QWeather.Units,
-        lang: QWeather.Lang
+        unit: QWeatherSDK.Units,
+        lang: QWeatherSDK.Lang
     ): WeatherGridDailyBean {
         val url = makeParam(
             "grid-weather/$days",
@@ -109,8 +109,8 @@ class Weather {
     @JvmOverloads
     fun now(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherNowBean {
         val url = makeParam(
             "weather/now",
@@ -127,8 +127,8 @@ class Weather {
     @JvmOverloads
     fun now(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherNowBean {
         return this.now(location(), unit, lang)
     }
@@ -136,7 +136,7 @@ class Weather {
     @JvmOverloads
     fun weatherMinutely(
         location: Coordinate,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherMinutelyBean {
         val url = makeParam(
             "minutely/5m",
@@ -152,8 +152,8 @@ class Weather {
     @JvmOverloads
     fun weather24h(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherHourlyBean {
         return this.weatherHourly("24h", location, lang, unit)
     }
@@ -161,8 +161,8 @@ class Weather {
     @JvmOverloads
     fun weather24h(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherHourlyBean {
         return this.weather24h(location(), unit, lang)
     }
@@ -170,8 +170,8 @@ class Weather {
     @JvmOverloads
     fun weather72h(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherHourlyBean {
         return this.weatherHourly("72h", location, lang, unit)
     }
@@ -179,8 +179,8 @@ class Weather {
     @JvmOverloads
     fun weather72h(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherHourlyBean {
         return this.weather72h(location(), unit, lang)
     }
@@ -188,8 +188,8 @@ class Weather {
     @JvmOverloads
     fun weather168h(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherHourlyBean {
         return this.weatherHourly("168h", location, lang, unit)
     }
@@ -197,8 +197,8 @@ class Weather {
     @JvmOverloads
     fun weather168h(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherHourlyBean {
         return this.weather168h(location(), unit, lang)
     }
@@ -206,8 +206,8 @@ class Weather {
     @JvmOverloads
     fun weather3d(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("3d", location, unit, lang)
     }
@@ -215,8 +215,8 @@ class Weather {
     @JvmOverloads
     fun weather3d(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherDailyBean {
         return this.weather3d(location(), unit, lang)
     }
@@ -224,8 +224,8 @@ class Weather {
     @JvmOverloads
     fun weather7d(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("7d", location, unit, lang)
     }
@@ -233,8 +233,8 @@ class Weather {
     @JvmOverloads
     fun weather7d(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherDailyBean {
         return this.weather7d(location(), unit, lang)
     }
@@ -242,8 +242,8 @@ class Weather {
     @JvmOverloads
     fun weather15d(
         location: String,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherDailyBean {
         return this.weatherDaily("15d", location, unit, lang)
     }
@@ -251,8 +251,8 @@ class Weather {
     @JvmOverloads
     fun weather15d(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherDailyBean {
         return this.weather15d(location(), unit, lang)
     }
@@ -260,8 +260,8 @@ class Weather {
     @JvmOverloads
     fun weatherGridNow(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherGridRealtimeBean {
         val url = makeParam(
             "grid-weather/now",
@@ -278,8 +278,8 @@ class Weather {
     @JvmOverloads
     fun weatherGrid24h(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherGridHourlyBean {
         return this.gridHourlyWeather("24h", location(), unit, lang)
     }
@@ -287,8 +287,8 @@ class Weather {
     @JvmOverloads
     fun weatherGrid72h(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherGridHourlyBean {
         return this.gridHourlyWeather("72h", location(), unit, lang)
     }
@@ -296,8 +296,8 @@ class Weather {
     @JvmOverloads
     fun weatherGrid3d(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherGridDailyBean {
         return this.gridDailyWeather("3d", location(), unit, lang)
     }
@@ -305,8 +305,8 @@ class Weather {
     @JvmOverloads
     fun weatherGrid7d(
         location: Coordinate,
-        unit: QWeather.Units = QWeather.Units.M,
-        lang: QWeather.Lang = QWeather.Lang.ZH
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
     ): WeatherGridDailyBean {
         return this.gridDailyWeather("7d", location(), unit, lang)
     }
