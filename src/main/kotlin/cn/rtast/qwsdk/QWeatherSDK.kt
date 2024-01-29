@@ -20,7 +20,7 @@ import cn.rtast.qwsdk.sub.*
 import java.util.logging.Logger
 
 
-class QWeather {
+class QWeatherSDK {
     companion object {
         var key: String? = null
         var rootAPI = "https://devapi.qweather.com/v7"
