@@ -21,13 +21,10 @@ import cn.rtast.qwsdk.entity.warning.WarningBean
 import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 
 class Warning {
-
-    private val gson = Gson()
 
     @JvmOverloads
     fun now(
@@ -45,8 +42,8 @@ class Warning {
                 "lang" to lang
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WarningBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WarningBean::class.java)
     }
 
     @JvmOverloads
@@ -65,7 +62,7 @@ class Warning {
             "warning/list",
             mapOf("range" to range)
         )
-        val result = get(url)
-        return gson.fromJson(result, WarningCityListBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WarningCityListBean::class.java)
     }
 }

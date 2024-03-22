@@ -25,13 +25,10 @@ import cn.rtast.qwsdk.entity.weather.hourly.WeatherDailyBean
 import cn.rtast.qwsdk.entity.weather.minutely.WeatherMinutelyBean
 import cn.rtast.qwsdk.entity.weather.now.WeatherNowBean
 import cn.rtast.qwsdk.utils.Coordinate
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 
 class Weather {
-
-    private val gson = Gson()
 
     private fun weatherHourly(
         hours: String,
@@ -47,8 +44,8 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherHourlyBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherHourlyBean::class.java)
     }
 
 
@@ -66,8 +63,8 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherDailyBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherDailyBean::class.java)
     }
 
     private fun gridHourlyWeather(
@@ -84,8 +81,8 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherGridHourlyBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherGridHourlyBean::class.java)
     }
 
     private fun gridDailyWeather(
@@ -102,8 +99,8 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherGridDailyBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherGridDailyBean::class.java)
     }
 
     @JvmOverloads
@@ -120,8 +117,8 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherNowBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherNowBean::class.java)
     }
 
     @JvmOverloads
@@ -145,8 +142,8 @@ class Weather {
                 "lang" to lang,
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherMinutelyBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherMinutelyBean::class.java)
     }
 
     @JvmOverloads
@@ -271,8 +268,8 @@ class Weather {
                 "unit" to unit
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, WeatherGridRealtimeBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherGridRealtimeBean::class.java)
     }
 
     @JvmOverloads

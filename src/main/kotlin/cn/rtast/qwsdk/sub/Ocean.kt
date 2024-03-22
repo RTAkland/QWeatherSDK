@@ -16,16 +16,14 @@
 
 package cn.rtast.qwsdk.sub
 
+import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
 import cn.rtast.qwsdk.entity.ocean.tide.TideBean
 import cn.rtast.qwsdk.utils.DateUtil
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 
 class Ocean {
-
-    private val gson = Gson()
 
     fun tide(
         location: String,
@@ -39,8 +37,8 @@ class Ocean {
                 "date" to date
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, TideBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, TideBean::class.java)
     }
 
     fun currents(
@@ -55,7 +53,7 @@ class Ocean {
                 "date" to date
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, CurrentsBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, CurrentsBean::class.java)
     }
 }

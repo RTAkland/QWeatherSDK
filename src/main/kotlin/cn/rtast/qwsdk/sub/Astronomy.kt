@@ -20,15 +20,9 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
-import cn.rtast.qwsdk.utils.Coordinate
-import cn.rtast.qwsdk.utils.DateUtil
-import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
+import cn.rtast.qwsdk.utils.*
 
 class Astronomy {
-
-    private val gson = Gson()
 
     @JvmOverloads
     fun sun(
@@ -45,8 +39,8 @@ class Astronomy {
                 "lang" to lang
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, SunBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, SunBean::class.java)
     }
 
     @JvmOverloads
@@ -71,8 +65,8 @@ class Astronomy {
                 "date" to date, "lang" to lang
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, MoonBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, MoonBean::class.java)
     }
 
     @JvmOverloads
@@ -103,7 +97,7 @@ class Astronomy {
                 "alt" to alt
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, SolarElevationAngleBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, SolarElevationAngleBean::class.java)
     }
 }

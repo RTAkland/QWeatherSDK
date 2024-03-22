@@ -19,16 +19,10 @@ package cn.rtast.qwsdk.sub
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.indices.IndicesBean
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
-import cn.rtast.qwsdk.utils.Coordinate
-import cn.rtast.qwsdk.utils.get
-import cn.rtast.qwsdk.utils.makeParam
-import cn.rtast.qwsdk.utils.parseIndices
-import com.google.gson.Gson
+import cn.rtast.qwsdk.utils.*
 import kotlin.jvm.Throws
 
 class Indices {
-
-    private val gson = Gson()
 
     @Throws(UnsupportedLanguageException::class)
     private fun indices(
@@ -52,8 +46,8 @@ class Indices {
                 "type" to typeString
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, IndicesBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, IndicesBean::class.java)
     }
 
     @JvmOverloads

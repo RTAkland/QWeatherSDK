@@ -22,14 +22,11 @@ import cn.rtast.qwsdk.entity.tropical.list.TropicalListBean
 import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
 import cn.rtast.qwsdk.exceptions.UnsupportedAreaException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 import java.time.Year
 
 class Tropical {
-
-    private val gson = Gson()
 
     fun forecast(stormID: String): TropicalForecastBean {
         val url = makeParam(
@@ -38,8 +35,8 @@ class Tropical {
                 "stormid" to stormID,
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, TropicalForecastBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, TropicalForecastBean::class.java)
     }
 
     fun track(stormID: String): TropicalTrackBean {
@@ -49,8 +46,8 @@ class Tropical {
                 "stormid" to stormID,
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, TropicalTrackBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, TropicalTrackBean::class.java)
     }
 
     @JvmOverloads
@@ -77,7 +74,7 @@ class Tropical {
             )
         )
         QWeatherSDK.logger.info(url)
-        val result = get(url)
-        return gson.fromJson(result, TropicalListBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, TropicalListBean::class.java)
     }
 }

@@ -20,13 +20,10 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
 import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
 import cn.rtast.qwsdk.utils.DateUtil
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 
 class TimeMachine {
-
-    private val gson = Gson()
 
     init {
         QWeatherSDK.logger.info("This API only support Location ID to get weather.")
@@ -50,8 +47,8 @@ class TimeMachine {
             )
         )
         QWeatherSDK.logger.info(url)
-        val result = get(url)
-        return gson.fromJson(result, WeatherHistoricalBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherHistoricalBean::class.java)
     }
 
     @JvmOverloads
@@ -71,7 +68,7 @@ class TimeMachine {
                 "date" to date
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, AirHistoricalBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, AirHistoricalBean::class.java)
     }
 }

@@ -20,13 +20,10 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
 import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.utils.Coordinate
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 
 class Air {
-
-    private val gson = Gson()
 
     @JvmOverloads
     fun now(
@@ -40,8 +37,8 @@ class Air {
                 "lang" to lang
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, AirBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, AirBean::class.java)
     }
 
     @JvmOverloads
@@ -64,8 +61,8 @@ class Air {
                 "lang" to lang
             )
         )
-        val result = get(url)
-        return gson.fromJson(result, AirDailyBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, AirDailyBean::class.java)
     }
 
     @JvmOverloads

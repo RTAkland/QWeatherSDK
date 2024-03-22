@@ -23,13 +23,10 @@ import cn.rtast.qwsdk.entity.geo.poi.range.POIRangeBean
 import cn.rtast.qwsdk.entity.geo.top.GeoTopBean
 import cn.rtast.qwsdk.exceptions.GeoNumberException
 import cn.rtast.qwsdk.utils.Coordinate
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import com.google.gson.Gson
 
 class Geo {
-
-    private val gson = Gson()
 
     @JvmOverloads
     @Throws(GeoNumberException::class)
@@ -54,8 +51,8 @@ class Geo {
             ),
             QWeatherSDK.ApiType.Geo
         )
-        val result = get(url)
-        return gson.fromJson(result, GeoLookupBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, GeoLookupBean::class.java)
     }
 
     @JvmOverloads
@@ -88,8 +85,8 @@ class Geo {
             ),
             QWeatherSDK.ApiType.Geo
         )
-        val result = get(url)
-        return gson.fromJson(result, GeoTopBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, GeoTopBean::class.java)
     }
 
     @JvmOverloads
@@ -115,8 +112,8 @@ class Geo {
             ),
             QWeatherSDK.ApiType.Geo
         )
-        val result = get(url)
-        return gson.fromJson(result, POIBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, POIBean::class.java)
     }
 
     @JvmOverloads
@@ -159,7 +156,7 @@ class Geo {
             QWeatherSDK.ApiType.Geo
         )
         QWeatherSDK.logger.info(url)
-        val result = get(url)
-        return gson.fromJson(result, POIRangeBean::class.java)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, POIRangeBean::class.java)
     }
 }
