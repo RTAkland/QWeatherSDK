@@ -17,31 +17,21 @@
 package cn.rtast.qwsdk
 
 import cn.rtast.qwsdk.sub.*
+import com.google.gson.Gson
 import java.util.logging.Logger
 
 
 class QWeatherSDK {
     companion object {
         var key: String? = null
-        var rootAPI = "https://devapi.qweather.com/v7"
+        var rootAPI: String? = null
         const val GEO_API = "https://geoapi.qweather.com/v2"
         val logger: Logger = Logger.getLogger("QWSDK-MAIN")
+        val gson = Gson()
     }
 
     fun init(plan: Plans, apiKey: String) {
-        rootAPI = when (plan) {
-            Plans.Free -> {
-                "https://devapi.qweather.com/v7"
-            }
-
-            Plans.Standard -> {
-                "https://api.qweather.com/v7"
-            }
-
-            Plans.Custom -> {
-                "https://api.qweather.com/v7"
-            }
-        }
+        rootAPI = plan.apiUrl
         key = apiKey
         logger.info("Current Plan: $plan, Current API Host: $rootAPI")
     }
@@ -145,18 +135,22 @@ class QWeatherSDK {
         override fun toString(): String = name.lowercase()
     }
 
-    enum class Plans {
-        Free, Standard, Custom
+    enum class Plans(val apiUrl: String) {
+        Free("https://devapi.qweather.com/v7"),
+        Standard("https://api.qweather.com/v7"),
+        Custom("https://api.qweather.com/v7")
     }
 
     enum class POIType {
         scenic, CSTA, TSTA;
+        // 不要更改这里的枚举元素的名称
 
         override fun toString(): String = name
     }
 
     enum class Units {
         M, I;
+        // 这里也是,不要修改
 
         override fun toString(): String = name.lowercase()
     }
