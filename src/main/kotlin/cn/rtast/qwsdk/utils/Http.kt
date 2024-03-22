@@ -26,32 +26,36 @@ import java.util.zip.GZIPInputStream
 import java.util.zip.ZipException
 
 
-private fun unGZip(byteArray: ByteArray): String {
-    val byteArrayInputStream = ByteArrayInputStream(byteArray)
-    val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
-    val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
-    val stringBuilder = StringBuilder()
-    while (true) {
-        val readLine = bufferedReader.readLine()
-        if (readLine != null) {
-            stringBuilder.append(readLine)
-        } else {
-            bufferedReader.close()
-            gZIPInputStream.close()
-            byteArrayInputStream.close()
-            return stringBuilder.toString()
+object Http {
+
+    private fun unGZip(byteArray: ByteArray): String {
+        val byteArrayInputStream = ByteArrayInputStream(byteArray)
+        val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
+        val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
+        val stringBuilder = StringBuilder()
+        while (true) {
+            val readLine = bufferedReader.readLine()
+            if (readLine != null) {
+                stringBuilder.append(readLine)
+            } else {
+                bufferedReader.close()
+                gZIPInputStream.close()
+                byteArrayInputStream.close()
+                return stringBuilder.toString()
+            }
+        }
+    }
+
+    fun get(url: String): String {
+        val response = URL(url).readBytes()
+        try {
+            return unGZip(response)
+        } catch (e: ZipException) {
+            if (e.message == "Not in GZIP format") {
+                return response.toString()
+            }
+            throw NotGZipException(e.message!!)
         }
     }
 }
 
-fun get(url: String): String {
-    val response = URL(url).readBytes()
-    try {
-        return unGZip(response)
-    } catch (e : ZipException) {
-        if (e.message == "Not in GZIP format") {
-            return response.toString()
-        }
-        throw NotGZipException(e.message!!)
-    }
-}
