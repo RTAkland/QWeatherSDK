@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.tests.main.utils
 
-import cn.rtast.qwsdk.utils.get
+import cn.rtast.qwsdk.utils.Http
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.util.zip.ZipException
@@ -26,7 +26,7 @@ class TestHTTPUtil {
     @Test
     fun getTest() {
         assertThrows<ZipException> {
-            get("https://dev.qweather.com/")
+            Http.get("https://dev.qweather.com/")
         }
     }
 }
