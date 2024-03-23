@@ -15,10 +15,11 @@
 
 # 概述
 
-> 此项目是一个非官方 [`Kotlin`](https://kotl.in)/[`Java`](https://java.com) 的
-> [`和风天气`](https://dev.qweather.com) SDK, 使用Kotlin开发
-> 和官方的[`SDK`](https://a.hecdn.net/download/api_sdk/QWeather_Public_Android_V4.11.jar)
-> 区别在于此SDK只需要申请一个 `WEB API`即可使用
+> 本项目是一个非官方的[`QWeather`](https://dev.qweather.com) `Android SDK`, 可以在基于`JVM`的语言使用,
+> 例如[`Kotlin`](https://kotl.in)、[`Java`](https://java.com)、[`Scala`](https://www.scala-lang.org/)
+
+> 本项目基于`Web API` 所以只需要申请一个`Web API key`即可使用, 点击[这里](https://dev.qweather.com/docs/configuration/project-and-key/)
+> 来查看如何申请一个`Web API key`
 
 # 目录
 
@@ -164,7 +165,7 @@ public class Main {
 ## 克隆项目
 
 ```shell
-$ git clone https://github.com/RTAkland/RMusic.git
+$ git clone https://github.com/RTAkland/QWeather.git
 ```
 
 ## 手动编译
