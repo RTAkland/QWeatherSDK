@@ -14,55 +14,62 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.sub
+package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.warning.WarningBean
-import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
-import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
+import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
+import cn.rtast.qwsdk.entity.air.realtime.AirBean
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Warning {
+class Air {
 
     @JvmOverloads
     fun now(
         location: String,
         lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): WarningBean {
-        val supportedLang = listOf(QWeatherSDK.Lang.ZH, QWeatherSDK.Lang.EN)
-        if (lang !in supportedLang) {
-            throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
-        }
+    ): AirBean {
         val url = makeParam(
-            "warning/now",
+            "air/now",
             mapOf(
                 "location" to location,
                 "lang" to lang
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WarningBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, AirBean::class.java)
     }
 
     @JvmOverloads
     fun now(
         location: Coordinate,
         lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): WarningBean {
+    ): AirBean {
         return this.now(location(), lang)
     }
 
     @JvmOverloads
-    fun list(
-        range: QWeatherSDK.CountryCode = QWeatherSDK.CountryCode.CN
-    ): WarningCityListBean {
+    fun daily(
+        location: String,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+    ): AirDailyBean {
         val url = makeParam(
-            "warning/list",
-            mapOf("range" to range)
+            "air/5d",
+            mapOf(
+                "location" to location,
+                "lang" to lang
+            )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WarningCityListBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, AirDailyBean::class.java)
+    }
+
+    @JvmOverloads
+    fun daily(
+        location: Coordinate,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+    ): AirDailyBean {
+        return this.daily(location(), lang)
     }
 }

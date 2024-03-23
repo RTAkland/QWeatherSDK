@@ -14,61 +14,46 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.sub
+package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
-import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
+import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
+import cn.rtast.qwsdk.entity.ocean.tide.TideBean
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class TimeMachine {
+class Ocean {
 
-    init {
-        QWeatherSDK.logger.info("This API only support Location ID to get weather.")
-    }
-
-    @JvmOverloads
-    fun weatherHistory(
+    fun tide(
         location: String,
-        date: String,
-        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): WeatherHistoricalBean {
+        date: String
+    ): TideBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
-            "historical/weather",
+            "ocean/tide",
             mapOf(
                 "location" to location,
-                "lang" to lang,
-                "unit" to unit,
-                "date" to date
-            )
-        )
-        QWeatherSDK.logger.info(url)
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherHistoricalBean::class.java)
-    }
-
-    @JvmOverloads
-    fun airHistory(
-        location: String,
-        date: String,
-        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): AirHistoricalBean {
-        DateUtil(date).verifyYMD()
-        val url = makeParam(
-            "historical/air",
-            mapOf(
-                "location" to location,
-                "lang" to lang,
-                "unit" to unit,
                 "date" to date
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirHistoricalBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, TideBean::class.java)
+    }
+
+    fun currents(
+        location: String,
+        date: String
+    ): CurrentsBean {
+        DateUtil(date).verifyYMD()
+        val url = makeParam(
+            "ocean/currents",
+            mapOf(
+                "location" to location,
+                "date" to date
+            )
+        )
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, CurrentsBean::class.java)
     }
 }

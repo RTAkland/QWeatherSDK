@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.sub
+package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastBean

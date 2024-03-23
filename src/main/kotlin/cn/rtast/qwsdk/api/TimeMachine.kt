@@ -14,62 +14,61 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.sub
+package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
-import cn.rtast.qwsdk.entity.air.realtime.AirBean
-import cn.rtast.qwsdk.utils.Coordinate
+import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
+import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
+import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Air {
+class TimeMachine {
+
+    init {
+        QWeatherSDK.logger.info("This API only support Location ID to get weather.")
+    }
 
     @JvmOverloads
-    fun now(
+    fun weatherHistory(
         location: String,
+        date: String,
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
         lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): AirBean {
+    ): WeatherHistoricalBean {
+        DateUtil(date).verifyYMD()
         val url = makeParam(
-            "air/now",
+            "historical/weather",
             mapOf(
                 "location" to location,
-                "lang" to lang
+                "lang" to lang,
+                "unit" to unit,
+                "date" to date
+            )
+        )
+        QWeatherSDK.logger.info(url)
+        val result = Http.get(url)
+        return QWeatherSDK.gson.fromJson(result, WeatherHistoricalBean::class.java)
+    }
+
+    @JvmOverloads
+    fun airHistory(
+        location: String,
+        date: String,
+        unit: QWeatherSDK.Units = QWeatherSDK.Units.M,
+        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+    ): AirHistoricalBean {
+        DateUtil(date).verifyYMD()
+        val url = makeParam(
+            "historical/air",
+            mapOf(
+                "location" to location,
+                "lang" to lang,
+                "unit" to unit,
+                "date" to date
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirBean::class.java)
-    }
-
-    @JvmOverloads
-    fun now(
-        location: Coordinate,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): AirBean {
-        return this.now(location(), lang)
-    }
-
-    @JvmOverloads
-    fun daily(
-        location: String,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): AirDailyBean {
-        val url = makeParam(
-            "air/5d",
-            mapOf(
-                "location" to location,
-                "lang" to lang
-            )
-        )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirDailyBean::class.java)
-    }
-
-    @JvmOverloads
-    fun daily(
-        location: Coordinate,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
-    ): AirDailyBean {
-        return this.daily(location(), lang)
+        return QWeatherSDK.gson.fromJson(result, AirHistoricalBean::class.java)
     }
 }
