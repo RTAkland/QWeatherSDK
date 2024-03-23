@@ -1,9 +1,9 @@
 <div align="center">
-<img src="https://static.rtakland.icu/static/qwsdk/qwsdkIcon.png" alt="SDKIcon">
+<img src="https://static.rtast.cn/static/qwsdk/qwsdkIcon.png" alt="SDKIcon">
 
 <h3>Made By <a href="https://github.com/RTAkland">RTAkland</a></h3>
 
-<img src="https://static.rtakland.icu/static/kotlin/made-with-kotlin.svg" alt="MadeWithKotlin">
+<img src="https://static.rtast.cn/static/kotlin/made-with-kotlin.svg" alt="MadeWithKotlin">
 
 <br>
 <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/RTAkland/QWeatherSDK/build.yml">
