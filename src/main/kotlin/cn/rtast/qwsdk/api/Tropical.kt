@@ -20,6 +20,7 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastBean
 import cn.rtast.qwsdk.entity.tropical.list.TropicalListBean
 import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
+import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedAreaException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
 import cn.rtast.qwsdk.utils.Http
@@ -54,10 +55,10 @@ class Tropical {
     @Throws(UnsupportedYearException::class)
     fun list(
         year: String,
-        basin: QWeatherSDK.BasinType = QWeatherSDK.BasinType.NP
+        basin: BasinType = BasinType.NP,
     ): TropicalListBean {
 
-        if (basin != QWeatherSDK.BasinType.NP) {
+        if (basin != BasinType.NP) {
             throw UnsupportedAreaException("Current not support this area: ${basin.name.lowercase()}!")
         }
 

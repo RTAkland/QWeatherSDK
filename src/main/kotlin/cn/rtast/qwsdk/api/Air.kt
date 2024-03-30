@@ -19,6 +19,7 @@ package cn.rtast.qwsdk.api
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
 import cn.rtast.qwsdk.entity.air.realtime.AirBean
+import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
@@ -28,7 +29,7 @@ class Air {
     @JvmOverloads
     fun now(
         location: String,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+        lang: Lang = Lang.ZH,
     ): AirBean {
         val url = makeParam(
             "air/now",
@@ -44,7 +45,7 @@ class Air {
     @JvmOverloads
     fun now(
         location: Coordinate,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+        lang: Lang = Lang.ZH,
     ): AirBean {
         return this.now(location(), lang)
     }
@@ -52,7 +53,7 @@ class Air {
     @JvmOverloads
     fun daily(
         location: String,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+        lang: Lang = Lang.ZH,
     ): AirDailyBean {
         val url = makeParam(
             "air/5d",
@@ -68,7 +69,7 @@ class Air {
     @JvmOverloads
     fun daily(
         location: Coordinate,
-        lang: QWeatherSDK.Lang = QWeatherSDK.Lang.ZH
+        lang: Lang = Lang.ZH,
     ): AirDailyBean {
         return this.daily(location(), lang)
     }
