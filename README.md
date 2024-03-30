@@ -127,7 +127,7 @@ import cn.rtast.qwsdk.enums.Plans;
 
 public class Main {
     public static void main(String[] args) {
-        QWeather qw = new QWeatherSDK();
+        QWeatherSDK qw = new QWeatherSDK();
         qw.init(Plans.Free, "<replace your key here>");
         System.out.println(qw.weather().now("101010100"));
         // 最后两个参数有默认值, 通过给函数添加@JvmOverloads注解在编译时生成重载函数来实现Java参数默认值
