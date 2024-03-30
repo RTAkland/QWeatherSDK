@@ -16,7 +16,6 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.IndicesType
 
 fun parseIndices(indices: IndicesType): Int {
