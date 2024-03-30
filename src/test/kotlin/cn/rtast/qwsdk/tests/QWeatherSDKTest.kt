@@ -1,7 +1,7 @@
 package cn.rtast.qwsdk.tests
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.QWeatherSDK.Plans
+import cn.rtast.qwsdk.enums.Plans
 import cn.rtast.qwsdk.tests.errs.NoKeyFoundException
 import org.junit.jupiter.api.Test
 
