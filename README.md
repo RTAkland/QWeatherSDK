@@ -165,7 +165,7 @@ public class Main {
 ## 克隆项目
 
 ```shell
-$ git clone https://github.com/RTAkland/QWeather.git
+$ git clone https://github.com/RTAkland/QWeatherSDK.git
 ```
 
 ## 手动编译
