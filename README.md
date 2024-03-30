@@ -107,7 +107,7 @@ dependencies {
 ### Kotlin
 
 ```kotlin
-import cn.rtast.qwsdk.QWeather
+import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
@@ -122,7 +122,7 @@ fun main() {
 ### Java
 
 ```java
-import cn.rtast.qwsdk.QWeather;
+import cn.rtast.qwsdk.QWeatherSDK;
 import cn.rtast.qwsdk.enums.Lang;
 import cn.rtast.qwsdk.enums.Unit;
 import cn.rtast.qwsdk.enums.Plans;
