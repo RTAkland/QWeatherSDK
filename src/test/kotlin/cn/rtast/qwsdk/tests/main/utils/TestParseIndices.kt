@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.tests.main.utils
 
-import cn.rtast.qwsdk.QWeatherSDK.IndicesType
+import cn.rtast.qwsdk.enums.IndicesType
 import cn.rtast.qwsdk.utils.parseIndices
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test
 class TestParseIndices {
     @Test
     fun parseIndicesTest() {
-        val code = parseIndices(IndicesType.ALL)
+        val code = parseIndices( IndicesType.ALL)
         assertEquals(code, 0)
     }
 }
