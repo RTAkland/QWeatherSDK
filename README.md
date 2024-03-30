@@ -123,8 +123,6 @@ fun main() {
 
 ```java
 import cn.rtast.qwsdk.QWeatherSDK;
-import cn.rtast.qwsdk.enums.Lang;
-import cn.rtast.qwsdk.enums.Unit;
 import cn.rtast.qwsdk.enums.Plans;
 
 public class Main {
