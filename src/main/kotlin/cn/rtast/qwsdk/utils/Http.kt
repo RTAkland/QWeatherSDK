@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.exceptions.NotGZipException
+import cn.rtast.qwsdk.exceptions.GZipException
 import java.io.BufferedReader
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
@@ -54,7 +54,7 @@ object Http {
             if (e.message == "Not in GZIP format") {
                 return response.toString()
             }
-            throw NotGZipException(e.message!!)
+            throw GZipException(e.message!!)
         }
     }
 }

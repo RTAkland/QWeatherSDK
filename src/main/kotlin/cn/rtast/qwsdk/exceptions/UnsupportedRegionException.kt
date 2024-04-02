@@ -16,4 +16,4 @@
 
 package cn.rtast.qwsdk.exceptions
 
-class NotGZipException(message: String): Exception(message)
+class UnsupportedRegionException(msg: String) : Exception(msg)

@@ -16,4 +16,4 @@
 
 package cn.rtast.qwsdk.exceptions
 
-class UnsupportedAreaException(msg: String) : Exception(msg)
+class GZipException(message: String): Exception(message)

@@ -21,7 +21,7 @@ import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastBean
 import cn.rtast.qwsdk.entity.tropical.list.TropicalListBean
 import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
 import cn.rtast.qwsdk.enums.BasinType
-import cn.rtast.qwsdk.exceptions.UnsupportedAreaException
+import cn.rtast.qwsdk.exceptions.UnsupportedRegionException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
@@ -59,7 +59,7 @@ class Tropical {
     ): TropicalListBean {
 
         if (basin != BasinType.NP) {
-            throw UnsupportedAreaException("Current not support this area: ${basin.name.lowercase()}!")
+            throw UnsupportedRegionException("This region is not currently supported: ${basin.description}(${basin.descriptionZH})!")
         }
 
         val currentYear = Year.now().toString().toInt()
