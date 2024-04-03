@@ -25,7 +25,7 @@ import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class TimeMachine {
+object TimeMachine {
 
     init {
         QWeatherSDK.logger.info("This API only support Location ID to get weather.")

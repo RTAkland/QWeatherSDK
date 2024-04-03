@@ -24,7 +24,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.InvalidDateException
 import cn.rtast.qwsdk.utils.*
 
-class Astronomy {
+object Astronomy {
 
     @JvmOverloads
     @Throws(InvalidDateException::class)

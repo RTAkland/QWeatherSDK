@@ -25,7 +25,7 @@ import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Indices {
+object Indices {
 
     @Throws(UnsupportedLanguageException::class)
     private fun indices(

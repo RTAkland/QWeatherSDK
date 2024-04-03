@@ -30,7 +30,7 @@ import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Geo {
+object Geo {
 
     @JvmOverloads
     @Throws(GeoNumberException::class)

@@ -23,7 +23,7 @@ import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Ocean {
+object Ocean {
 
     fun tide(
         location: String,

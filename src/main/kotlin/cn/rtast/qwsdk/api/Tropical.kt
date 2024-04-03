@@ -27,7 +27,7 @@ import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 import java.time.Year
 
-class Tropical {
+object Tropical {
 
     fun forecast(stormID: String): TropicalForecastBean {
         val url = makeParam(

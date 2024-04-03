@@ -30,7 +30,7 @@ import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Weather {
+object Weather {
 
     private fun weatherHourly(
         hours: String,

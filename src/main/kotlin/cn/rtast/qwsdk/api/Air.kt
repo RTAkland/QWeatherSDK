@@ -24,7 +24,7 @@ import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
 
-class Air {
+object Air {
 
     @JvmOverloads
     fun now(
