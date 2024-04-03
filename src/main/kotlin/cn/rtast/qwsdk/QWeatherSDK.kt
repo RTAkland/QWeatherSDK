@@ -17,6 +17,8 @@
 package cn.rtast.qwsdk
 
 import cn.rtast.qwsdk.api.*
+import cn.rtast.qwsdk.enums.IndicesType
+import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Plans
 import com.google.gson.Gson
 import java.util.logging.Logger

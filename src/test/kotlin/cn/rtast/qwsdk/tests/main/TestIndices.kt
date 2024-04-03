@@ -40,7 +40,7 @@ class TestIndices {
     @Test
     fun indices3d() {
         val result = qw.indices().indices3d(
-            locationID, types = arrayOf(IndicesType.AIR_CONDITIONER, IndicesType.WASH_CAR)
+            locationID, types = listOf(IndicesType.AIR_CONDITIONER, IndicesType.WASH_CAR)
         ).apply {
             daily.forEach { println(it) }
         }
