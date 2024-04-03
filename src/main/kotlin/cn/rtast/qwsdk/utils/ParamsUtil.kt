@@ -18,6 +18,7 @@ package cn.rtast.qwsdk.utils
 
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.ApiType
+import java.net.URLEncoder
 
 /**
  * 构建请求字符串。
@@ -30,8 +31,11 @@ fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType
     }
     val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
     // 添加用户 key
-    val urlParams = params.plus("key" to QWeatherSDK.key)
-        .filterValues { it != null }.toList().joinToString("&") { (k, v) -> "$k=$v" }
-    url.append(urlParams)
+    val encodedParams = params.plus("key" to QWeatherSDK.key)
+        .filterValues { it != null }
+        .map { (k, v) -> k to (v?.toString()?.let { URLEncoder.encode(it, "UTF-8") }) }
+        .joinToString("&") { (k, v) -> "$k=$v" }
+    url.append(encodedParams)
+    println(url.toString())
     return url.toString()
 }
