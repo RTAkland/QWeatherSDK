@@ -154,7 +154,7 @@ public class Main {
 > 本SDK无法使用[`太阳辐射`](https://dev.qweather.com/docs/api/solar-radiation/solar-radiation-hourly-forecast/)
 > 因为没有条件测试返回结果, 并且官方文档也没有写明返回的数据, 故无法创建数据类实现接口
 
-> 目前编译出的产物的JVM版本为 1.8, 所以你至少需要1.8以上版本来使用此JDK
+> 目前编译出的产物的JVM版本为 1.8, 所以你至少需要JVM1.8以上版本来使用此SDK
 
 # 开发
 
