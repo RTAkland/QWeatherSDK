@@ -36,6 +36,5 @@ fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType
         .map { (k, v) -> k to (v?.toString()?.let { URLEncoder.encode(it, "UTF-8") }) }
         .joinToString("&") { (k, v) -> "$k=$v" }
     url.append(encodedParams)
-    println(url.toString())
     return url.toString()
 }
