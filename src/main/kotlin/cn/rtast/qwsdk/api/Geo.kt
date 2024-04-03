@@ -60,6 +60,7 @@ class Geo {
     }
 
     @JvmOverloads
+    @Throws(GeoNumberException::class)
     fun citySearch(
         location: Coordinate,
         adm: String? = null,
@@ -121,6 +122,7 @@ class Geo {
     }
 
     @JvmOverloads
+    @Throws(GeoNumberException::class)
     fun poiLookup(
         location: Coordinate,
         type: POIType,

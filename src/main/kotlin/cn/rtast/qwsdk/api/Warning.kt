@@ -29,6 +29,7 @@ import cn.rtast.qwsdk.utils.makeParam
 class Warning {
 
     @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun now(
         location: String,
         lang: Lang = Lang.ZH,
@@ -49,6 +50,7 @@ class Warning {
     }
 
     @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun now(
         location: Coordinate,
         lang: Lang = Lang.ZH,

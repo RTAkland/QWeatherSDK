@@ -21,15 +21,17 @@ import cn.rtast.qwsdk.entity.astronomy.MoonBean
 import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
 import cn.rtast.qwsdk.entity.astronomy.SunBean
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.exceptions.InvalidDateException
 import cn.rtast.qwsdk.utils.*
 
 class Astronomy {
 
     @JvmOverloads
+    @Throws(InvalidDateException::class)
     fun sun(
         location: String,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: Lang = Lang.ZH,
     ): SunBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
@@ -45,19 +47,21 @@ class Astronomy {
     }
 
     @JvmOverloads
+    @Throws(InvalidDateException::class)
     fun sun(
         location: Coordinate,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: Lang = Lang.ZH,
     ): SunBean {
         return this.sun(location(), date, lang)
     }
 
     @JvmOverloads
+    @Throws(InvalidDateException::class)
     fun moon(
         location: String,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: Lang = Lang.ZH,
     ): MoonBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
@@ -71,20 +75,22 @@ class Astronomy {
     }
 
     @JvmOverloads
+    @Throws(InvalidDateException::class)
     fun moon(
         location: Coordinate,
         date: String,
-        lang: Lang = Lang.ZH
+        lang: Lang = Lang.ZH,
     ): MoonBean {
         return this.moon(location(), date, lang)
     }
 
+    @Throws(InvalidDateException::class)
     fun solarElevationAngle(
         location: Coordinate,
         date: String,
         time: String,
         tz: String,
-        alt: Int
+        alt: Int,
     ): SolarElevationAngleBean {
         DateUtil(date).verifyYMD()
         DateUtil(time).verifyHM()
