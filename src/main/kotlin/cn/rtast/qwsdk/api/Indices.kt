@@ -24,7 +24,6 @@ import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
-import cn.rtast.qwsdk.utils.parseIndices
 
 class Indices {
 
@@ -33,16 +32,16 @@ class Indices {
         days: String,
         location: String,
         lang: Lang = Lang.ZH,
-        vararg types: IndicesType = arrayOf(IndicesType.ALL),
+        types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesBean {
         val supportedLang = listOf(Lang.ZH, Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
         val typeArray = if (types.contains(IndicesType.ALL)) {
-            arrayOf(IndicesType.ALL)
+            listOf(IndicesType.ALL)
         } else types
-        val typeString = typeArray.map { parseIndices(it) }.joinToString(",")
+        val typeString = typeArray.joinToString(",") { it.type.toString() }
         val url = makeParam(
             "indices/$days",
             mapOf(
@@ -55,38 +54,42 @@ class Indices {
     }
 
     @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun indices1d(
         location: String,
         lang: Lang = Lang.ZH,
-        vararg types: IndicesType = arrayOf(IndicesType.ALL),
+        types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesBean {
-        return this.indices("1d", location, lang, *types)
+        return this.indices("1d", location, lang, types)
     }
 
     @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun indices1d(
         location: Coordinate,
         lang: Lang = Lang.ZH,
-        vararg types: IndicesType = arrayOf(IndicesType.ALL),
+        types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesBean {
-        return this.indices1d(location(), lang, *types)
+        return this.indices1d(location(), lang, types)
     }
 
     @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun indices3d(
         location: String,
         lang: Lang = Lang.ZH,
-        vararg types: IndicesType = arrayOf(IndicesType.ALL),
+        types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesBean {
-        return this.indices("3d", location, lang, *types)
+        return this.indices("3d", location, lang, types)
     }
 
     @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun indices3d(
         location: Coordinate,
         lang: Lang = Lang.ZH,
-        vararg types: IndicesType = arrayOf(IndicesType.ALL),
+        types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesBean {
-        return this.indices1d(location(), lang, *types)
+        return this.indices1d(location(), lang, types)
     }
 }
