@@ -16,7 +16,6 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.IndicesType
 import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
 import cn.rtast.qwsdk.tests.utils.randomID
