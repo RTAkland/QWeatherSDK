@@ -17,8 +17,13 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class BasinType {
-    NP, AL, EP, SP, NI, SI;
+enum class BasinType(val description: String, val descriptionZH: String) {
+    AL("North Atlantic","北太平洋"),
+    EP("Eastern Pacific", "东太平洋"),
+    NP("NorthWest Pacific", "西北太平洋"),
+    SP("SouthWestern Pacific", "西南太平洋"),
+    NI("North Indian", "北印度洋"),
+    SI("South Indian", "南印度洋");
 
     override fun toString(): String = name
 }
