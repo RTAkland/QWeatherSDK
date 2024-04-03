@@ -17,10 +17,22 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class IndicesType {
-    ALL, SPORT, WASH_CAR, CLOTHING, FISHING,
-    UV_RAY, TRAVEL, POLLEN_ALLERGY, COMFORT,
-    COLD, AIR_POLLUTION_DIFFUSION_CONDITION,
-    AIR_CONDITIONER, SUNGLASSES, MAKEUP, DRYING,
-    TRAFFIC, SPF
+enum class IndicesType(val type: Int) {
+    ALL(0),
+    SPORT(1),
+    WASH_CAR(2),
+    CLOTHING(3),
+    FISHING(4),
+    UV_RAY(5),
+    TRAVEL(6),
+    POLLEN_ALLERGY(7),
+    COMFORT(8),
+    COLD(9),
+    AIR_POLLUTION_DIFFUSION_CONDITION(10),
+    AIR_CONDITIONER(11),
+    SUNGLASSES(12),
+    MAKEUP(13),
+    DRYING(14),
+    TRAFFIC(15),
+    SPF(16)
 }
