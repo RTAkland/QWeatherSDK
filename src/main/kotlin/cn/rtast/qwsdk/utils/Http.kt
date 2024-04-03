@@ -16,46 +16,37 @@
 
 package cn.rtast.qwsdk.utils
 
-import cn.rtast.qwsdk.exceptions.GZipException
 import java.io.BufferedReader
-import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
+import java.net.HttpURLConnection
 import java.net.URL
-import java.nio.charset.StandardCharsets
 import java.util.zip.GZIPInputStream
-import java.util.zip.ZipException
 
 
 object Http {
-
-    private fun unGZip(byteArray: ByteArray): String {
-        val byteArrayInputStream = ByteArrayInputStream(byteArray)
-        val gZIPInputStream = GZIPInputStream(byteArrayInputStream)
-        val bufferedReader = BufferedReader(InputStreamReader(gZIPInputStream, StandardCharsets.UTF_8))
-        val stringBuilder = StringBuilder()
-        while (true) {
-            val readLine = bufferedReader.readLine()
-            if (readLine != null) {
-                stringBuilder.append(readLine)
-            } else {
-                bufferedReader.close()
-                gZIPInputStream.close()
-                byteArrayInputStream.close()
-                return stringBuilder.toString()
-            }
-        }
-    }
-
     fun get(url: String): String {
-        val response = URL(url).readBytes()
-        try {
-            return unGZip(response)
-        } catch (e: ZipException) {
-            if (e.message == "Not in GZIP format") {
-                return response.toString()
-            }
-            throw GZipException(e.message!!)
+        val connection = URL(url).openConnection() as HttpURLConnection
+        connection.setRequestProperty("Accept-Encoding", "gzip")
+        connection.connect()
+
+        val inputStream = if ("gzip".equals(connection.contentEncoding, ignoreCase = true)) {
+            GZIPInputStream(connection.inputStream)
+        } else {
+            connection.inputStream
         }
+
+        val reader = BufferedReader(InputStreamReader(inputStream))
+        val response = StringBuilder()
+        var line: String? = reader.readLine()
+        while (line != null) {
+            response.append(line)
+            line = reader.readLine()
+        }
+
+        reader.close()
+        connection.disconnect()
+
+        return response.toString()
     }
 }
 
