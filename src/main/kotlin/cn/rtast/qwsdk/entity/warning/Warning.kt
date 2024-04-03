@@ -28,5 +28,5 @@ data class Warning(
     val text: String,
     val title: String,
     val type: String,
-    val typeName: String
+    val typeName: String,
 )

@@ -21,5 +21,5 @@ import cn.rtast.qwsdk.entity.Refer
 data class POIBean(
     val code: String,
     val poi: List<Poi>,
-    val refer: Refer
+    val refer: Refer,
 )

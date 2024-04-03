@@ -27,5 +27,5 @@ data class WeatherHourly(
     val wind360: String,
     val windDir: String,
     val windScale: String,
-    val windSpeed: String
+    val windSpeed: String,
 )

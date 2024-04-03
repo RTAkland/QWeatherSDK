@@ -19,5 +19,5 @@ package cn.rtast.qwsdk.entity.weather.minutely
 data class Minutely(
     val fxTime: String,
     val precip: String,
-    val type: String
+    val type: String,
 )

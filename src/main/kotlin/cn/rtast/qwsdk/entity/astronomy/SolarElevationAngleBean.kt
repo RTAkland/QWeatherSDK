@@ -24,5 +24,5 @@ data class SolarElevationAngleBean(
     val refer: Refer,
     val solarAzimuthAngle: String,
     val solarElevationAngle: String,
-    val solarHour: String
+    val solarHour: String,
 )

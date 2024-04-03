@@ -27,5 +27,5 @@ data class AirHourly(
     val pm2p5: String,
     val primary: String,
     val pubTime: String,
-    val so2: String
+    val so2: String,
 )

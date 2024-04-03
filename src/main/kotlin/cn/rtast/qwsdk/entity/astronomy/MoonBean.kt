@@ -25,5 +25,5 @@ data class MoonBean(
     val moonrise: String,
     val moonset: String,
     val refer: Refer,
-    val updateTime: String
+    val updateTime: String,
 )

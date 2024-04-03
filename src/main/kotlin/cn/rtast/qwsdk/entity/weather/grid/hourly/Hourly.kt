@@ -29,5 +29,5 @@ data class Hourly(
     val wind360: String,
     val windDir: String,
     val windScale: String,
-    val windSpeed: String
+    val windSpeed: String,
 )

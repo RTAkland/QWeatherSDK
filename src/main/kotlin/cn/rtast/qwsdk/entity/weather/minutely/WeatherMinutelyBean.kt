@@ -24,5 +24,5 @@ data class WeatherMinutelyBean(
     val minutely: List<Minutely>,
     val refer: Refer,
     val summary: String,
-    val updateTime: String
+    val updateTime: String,
 )

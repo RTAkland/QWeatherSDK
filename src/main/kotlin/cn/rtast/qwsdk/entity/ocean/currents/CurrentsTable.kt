@@ -19,5 +19,5 @@ package cn.rtast.qwsdk.entity.ocean.currents
 data class CurrentsTable(
     val dir360: String,
     val fxTime: String,
-    val speedMax: String
+    val speedMax: String,
 )

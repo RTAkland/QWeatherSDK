@@ -23,5 +23,5 @@ data class IndicesBean(
     val daily: List<Daily>,
     val fxLink: String,
     val refer: Refer,
-    val updateTime: String
+    val updateTime: String,
 )

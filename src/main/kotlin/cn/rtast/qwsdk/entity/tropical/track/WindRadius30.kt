@@ -20,5 +20,5 @@ data class WindRadius30(
     val neRadius: String,
     val nwRadius: String,
     val seRadius: String,
-    val swRadius: String
+    val swRadius: String,
 )

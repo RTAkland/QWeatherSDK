@@ -31,7 +31,7 @@ fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType
     val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
     // 添加用户 key
     val urlParams = params.plus("key" to QWeatherSDK.key)
-            .filterValues { it != null }.toList().joinToString("&") { (k, v) -> "$k=$v" }
+        .filterValues { it != null }.toList().joinToString("&") { (k, v) -> "$k=$v" }
     url.append(urlParams)
     return url.toString()
 }

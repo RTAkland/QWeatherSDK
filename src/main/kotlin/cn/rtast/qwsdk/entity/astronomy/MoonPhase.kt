@@ -21,5 +21,5 @@ data class MoonPhase(
     val icon: String,
     val illumination: String,
     val name: String,
-    val value: String
+    val value: String,
 )

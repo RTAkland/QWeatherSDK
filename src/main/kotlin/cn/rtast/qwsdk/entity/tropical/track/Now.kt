@@ -28,5 +28,5 @@ data class Now(
     val windRadius30: WindRadius30,
     val windRadius50: WindRadius30,
     val windRadius64: WindRadius30,
-    val windSpeed: String
+    val windSpeed: String,
 )

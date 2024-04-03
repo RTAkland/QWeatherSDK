@@ -18,5 +18,5 @@ package cn.rtast.qwsdk.entity.ocean.tide
 
 data class TideHourly(
     val fxTime: String,
-    val height: String
+    val height: String,
 )

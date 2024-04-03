@@ -17,5 +17,5 @@
 package cn.rtast.qwsdk.entity.warning.list
 
 data class WarningLoc(
-    val locationId: String
+    val locationId: String,
 )

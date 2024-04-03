@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.utils
 
 class Coordinate(
     private val longitude: Double,
-    private val latitude: Double
+    private val latitude: Double,
 ) {
     // overload operator to impl Class name as method
     operator fun invoke(): String {

@@ -24,5 +24,5 @@ data class AirBean(
     val now: Now,
     val refer: Refer,
     val station: List<Station>,
-    val updateTime: String
+    val updateTime: String,
 )

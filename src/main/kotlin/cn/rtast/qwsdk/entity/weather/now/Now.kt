@@ -33,5 +33,5 @@ data class Now(
     val wind360: String,
     val windDir: String,
     val windScale: String,
-    val windSpeed: String
-): Serializable
+    val windSpeed: String,
+) : Serializable

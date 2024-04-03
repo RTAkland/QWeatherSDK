@@ -23,5 +23,5 @@ data class TropicalListBean(
     val fxLink: String,
     val refer: Refer,
     val storm: List<Storm>,
-    val updateTime: String
+    val updateTime: String,
 )

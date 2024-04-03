@@ -23,5 +23,5 @@ data class WeatherGridRealtimeBean(
     val fxLink: String,
     val now: Now,
     val refer: Refer,
-    val updateTime: String
+    val updateTime: String,
 )

@@ -29,5 +29,5 @@ data class Poi(
     val rank: String,
     val type: String,
     val tz: String,
-    val utcOffset: String
+    val utcOffset: String,
 )

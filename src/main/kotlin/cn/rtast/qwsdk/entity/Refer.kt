@@ -18,5 +18,5 @@ package cn.rtast.qwsdk.entity
 
 data class Refer(
     val license: List<String>,
-    val sources: List<String>
+    val sources: List<String>,
 )

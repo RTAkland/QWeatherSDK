@@ -25,5 +25,5 @@ data class Forecast(
     val moveSpeed: String,
     val pressure: String,
     val type: String,
-    val windSpeed: String
+    val windSpeed: String,
 )

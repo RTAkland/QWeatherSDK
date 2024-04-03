@@ -25,5 +25,5 @@ data class TropicalTrackBean(
     val now: Now,
     val refer: Refer,
     val track: List<Track>,
-    val updateTime: String
+    val updateTime: String,
 )

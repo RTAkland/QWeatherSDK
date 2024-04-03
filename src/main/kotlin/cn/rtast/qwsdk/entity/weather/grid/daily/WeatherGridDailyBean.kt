@@ -23,5 +23,5 @@ data class WeatherGridDailyBean(
     val daily: List<Daily>,
     val fxLink: String,
     val refer: Refer,
-    val updateTime: String
+    val updateTime: String,
 )

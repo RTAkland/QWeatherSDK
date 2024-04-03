@@ -22,5 +22,5 @@ data class AirHistoricalBean(
     val airHourly: List<AirHourly>,
     val code: String,
     val fxLink: String,
-    val refer: Refer
+    val refer: Refer,
 )

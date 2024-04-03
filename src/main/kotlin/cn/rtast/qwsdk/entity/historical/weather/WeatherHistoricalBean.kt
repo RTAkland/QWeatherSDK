@@ -23,5 +23,5 @@ data class WeatherHistoricalBean(
     val fxLink: String,
     val refer: Refer,
     val weatherDaily: WeatherDaily,
-    val weatherHourly: List<WeatherHourly>
+    val weatherHourly: List<WeatherHourly>,
 )

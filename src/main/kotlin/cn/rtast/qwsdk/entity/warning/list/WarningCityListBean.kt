@@ -22,5 +22,5 @@ data class WarningCityListBean(
     val code: String,
     val refer: Refer,
     val updateTime: String,
-    val warningLocList: List<WarningLoc>
+    val warningLocList: List<WarningLoc>,
 )

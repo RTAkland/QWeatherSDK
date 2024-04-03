@@ -27,5 +27,5 @@ data class WeatherDaily(
     val sunrise: String,
     val sunset: String,
     val tempMax: String,
-    val tempMin: String
+    val tempMin: String,
 )

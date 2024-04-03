@@ -21,5 +21,5 @@ import cn.rtast.qwsdk.entity.Refer
 data class GeoLookupBean(
     val code: String,
     val location: List<Location>,
-    val refer: Refer
+    val refer: Refer,
 )

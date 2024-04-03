@@ -23,5 +23,5 @@ data class WeatherDailyBean(
     val daily: ArrayList<Daily>,
     val fxLink: String,
     val refer: Refer,
-    val updateTime: String
+    val updateTime: String,
 )

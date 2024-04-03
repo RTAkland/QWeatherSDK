@@ -22,5 +22,5 @@ import cn.rtast.qwsdk.entity.geo.poi.Poi
 data class POIRangeBean(
     val code: String,
     val poi: List<Poi>,
-    val refer: Refer
+    val refer: Refer,
 )

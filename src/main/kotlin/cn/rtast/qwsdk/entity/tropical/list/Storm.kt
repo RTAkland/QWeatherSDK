@@ -21,5 +21,5 @@ data class Storm(
     val basin: String,
     val id: String,
     val name: String,
-    val year: String
+    val year: String,
 )

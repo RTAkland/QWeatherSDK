@@ -23,5 +23,5 @@ data class WarningBean(
     val fxLink: String,
     val refer: Refer,
     val updateTime: String,
-    val warning: List<Warning>
+    val warning: List<Warning>,
 )

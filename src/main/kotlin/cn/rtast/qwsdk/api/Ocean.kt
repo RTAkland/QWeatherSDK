@@ -27,7 +27,7 @@ object Ocean {
 
     fun tide(
         location: String,
-        date: String
+        date: String,
     ): TideBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(
@@ -43,7 +43,7 @@ object Ocean {
 
     fun currents(
         location: String,
-        date: String
+        date: String,
     ): CurrentsBean {
         DateUtil(date).verifyYMD()
         val url = makeParam(

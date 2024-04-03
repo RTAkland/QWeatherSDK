@@ -34,5 +34,5 @@ data class Daily(
     val windScaleDay: String,
     val windScaleNight: String,
     val windSpeedDay: String,
-    val windSpeedNight: String
+    val windSpeedNight: String,
 )

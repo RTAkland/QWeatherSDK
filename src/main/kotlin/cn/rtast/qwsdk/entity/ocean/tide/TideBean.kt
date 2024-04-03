@@ -24,5 +24,5 @@ data class TideBean(
     val refer: Refer,
     val tideHourly: List<TideHourly>,
     val tideTable: List<TideTable>,
-    val updateTime: String
+    val updateTime: String,
 )

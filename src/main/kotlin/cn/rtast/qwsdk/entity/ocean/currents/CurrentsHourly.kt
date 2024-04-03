@@ -19,5 +19,5 @@ package cn.rtast.qwsdk.entity.ocean.currents
 data class CurrentsHourly(
     val dir360: String,
     val fxTime: String,
-    val speed: String
+    val speed: String,
 )

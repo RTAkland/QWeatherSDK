@@ -24,5 +24,5 @@ data class SunBean(
     val refer: Refer,
     val sunrise: String,
     val sunset: String,
-    val updateTime: String
+    val updateTime: String,
 )

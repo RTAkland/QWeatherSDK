@@ -21,5 +21,5 @@ data class Daily(
     val category: String,
     val fxDate: String,
     val level: String,
-    val primary: String
+    val primary: String,
 )

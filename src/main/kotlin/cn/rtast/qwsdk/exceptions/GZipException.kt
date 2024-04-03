@@ -16,4 +16,4 @@
 
 package cn.rtast.qwsdk.exceptions
 
-class GZipException(message: String): Exception(message)
+class GZipException(message: String) : Exception(message)
