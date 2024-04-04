@@ -17,9 +17,6 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class POIType {
-    scenic, CSTA, TSTA;
-    // 不要更改这里的枚举元素的名称
-
-    override fun toString(): String = name
+enum class POIType(val id: String) {
+    SCENIC("scenic"), CSTA("CSTA"), TSTA("TSTA");
 }
