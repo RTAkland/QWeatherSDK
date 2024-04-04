@@ -49,7 +49,7 @@ class TestGeo {
 
     @Test
     fun poiLookupTest() {
-        val result = qw.geo().poiLookup(Coordinate(116.41, 39.92), POIType.scenic).apply {
+        val result = qw.geo().poiLookup(Coordinate(116.41, 39.92), POIType.SCENIC).apply {
             poi.forEach {
                 println(it)
             }
@@ -59,7 +59,7 @@ class TestGeo {
 
     @Test
     fun poiRangeTest() {
-        val result = qw.geo().poiRange(Coordinate(116.41, 39.92), POIType.scenic).apply {
+        val result = qw.geo().poiRange(Coordinate(116.41, 39.92), POIType.SCENIC).apply {
             poi.forEach {
                 println(it)
             }
