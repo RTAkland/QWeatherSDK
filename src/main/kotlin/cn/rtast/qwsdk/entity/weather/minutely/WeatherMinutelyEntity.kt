@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.weather.minutely
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherMinutelyBean(
+data class WeatherMinutelyEntity(
     val code: String,
     val fxLink: String,
     val minutely: List<Minutely>,

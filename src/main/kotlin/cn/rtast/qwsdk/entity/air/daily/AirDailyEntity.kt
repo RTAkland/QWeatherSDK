@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.air.daily
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class AirDailyBean(
+data class AirDailyEntity(
     val code: String,
     val daily: List<Daily>,
     val fxLink: String,

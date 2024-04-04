@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.air.daily.AirDailyBean
-import cn.rtast.qwsdk.entity.air.realtime.AirBean
+import cn.rtast.qwsdk.entity.air.daily.AirDailyEntity
+import cn.rtast.qwsdk.entity.air.realtime.AirEntity
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
@@ -30,7 +30,7 @@ object Air {
     fun now(
         location: String,
         lang: Lang = Lang.ZH,
-    ): AirBean {
+    ): AirEntity {
         val url = makeParam(
             "air/now",
             mapOf(
@@ -39,14 +39,14 @@ object Air {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, AirEntity::class.java)
     }
 
     @JvmOverloads
     fun now(
         location: Coordinate,
         lang: Lang = Lang.ZH,
-    ): AirBean {
+    ): AirEntity {
         return this.now(location(), lang)
     }
 
@@ -54,7 +54,7 @@ object Air {
     fun daily(
         location: String,
         lang: Lang = Lang.ZH,
-    ): AirDailyBean {
+    ): AirDailyEntity {
         val url = makeParam(
             "air/5d",
             mapOf(
@@ -63,14 +63,14 @@ object Air {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirDailyBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, AirDailyEntity::class.java)
     }
 
     @JvmOverloads
     fun daily(
         location: Coordinate,
         lang: Lang = Lang.ZH,
-    ): AirDailyBean {
+    ): AirDailyEntity {
         return this.daily(location(), lang)
     }
 }

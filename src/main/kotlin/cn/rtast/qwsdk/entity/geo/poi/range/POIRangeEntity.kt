@@ -19,7 +19,7 @@ package cn.rtast.qwsdk.entity.geo.poi.range
 import cn.rtast.qwsdk.entity.Refer
 import cn.rtast.qwsdk.entity.geo.poi.Poi
 
-data class POIRangeBean(
+data class POIRangeEntity(
     val code: String,
     val poi: List<Poi>,
     val refer: Refer,

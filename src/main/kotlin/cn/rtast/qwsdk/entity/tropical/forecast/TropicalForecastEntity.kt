@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.tropical.forecast
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class TropicalForecastBean(
+data class TropicalForecastEntity(
     val code: String,
     val forecast: List<Forecast>,
     val fxLink: String,

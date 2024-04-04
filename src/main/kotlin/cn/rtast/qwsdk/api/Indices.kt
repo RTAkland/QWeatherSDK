@@ -17,7 +17,7 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.indices.IndicesBean
+import cn.rtast.qwsdk.entity.indices.IndicesEntity
 import cn.rtast.qwsdk.enums.IndicesType
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
@@ -33,7 +33,7 @@ object Indices {
         location: String,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
-    ): IndicesBean {
+    ): IndicesEntity {
         val supportedLang = listOf(Lang.ZH, Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
@@ -50,7 +50,7 @@ object Indices {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, IndicesBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, IndicesEntity::class.java)
     }
 
     @JvmOverloads
@@ -59,7 +59,7 @@ object Indices {
         location: String,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
-    ): IndicesBean {
+    ): IndicesEntity {
         return this.indices("1d", location, lang, types)
     }
 
@@ -69,7 +69,7 @@ object Indices {
         location: Coordinate,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
-    ): IndicesBean {
+    ): IndicesEntity {
         return this.indices1d(location(), lang, types)
     }
 
@@ -79,7 +79,7 @@ object Indices {
         location: String,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
-    ): IndicesBean {
+    ): IndicesEntity {
         return this.indices("3d", location, lang, types)
     }
 
@@ -89,7 +89,7 @@ object Indices {
         location: Coordinate,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
-    ): IndicesBean {
+    ): IndicesEntity {
         return this.indices1d(location(), lang, types)
     }
 }

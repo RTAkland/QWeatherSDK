@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.indices
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class IndicesBean(
+data class IndicesEntity(
     val code: String,
     val daily: List<Daily>,
     val fxLink: String,

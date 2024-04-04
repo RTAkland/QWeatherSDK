@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.weather.hourly
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherDailyBean(
+data class WeatherDailyEntity(
     val code: String,
     val daily: ArrayList<Daily>,
     val fxLink: String,

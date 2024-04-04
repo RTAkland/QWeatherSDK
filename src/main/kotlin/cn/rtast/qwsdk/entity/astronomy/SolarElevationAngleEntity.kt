@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.astronomy
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class SolarElevationAngleBean(
+data class SolarElevationAngleEntity(
     val code: String,
     val hourAngle: String,
     val refer: Refer,

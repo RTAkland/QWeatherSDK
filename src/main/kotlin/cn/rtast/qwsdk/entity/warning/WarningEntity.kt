@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.warning
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WarningBean(
+data class WarningEntity(
     val code: String,
     val fxLink: String,
     val refer: Refer,

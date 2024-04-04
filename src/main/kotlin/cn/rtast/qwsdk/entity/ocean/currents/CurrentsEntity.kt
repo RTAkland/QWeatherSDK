@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.ocean.currents
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class CurrentsBean(
+data class CurrentsEntity(
     val code: String,
     val currentsHourly: List<CurrentsHourly>,
     val currentsTable: List<CurrentsTable>,

@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.geo.lookup
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class GeoLookupBean(
+data class GeoLookupEntity(
     val code: String,
     val location: List<Location>,
     val refer: Refer,

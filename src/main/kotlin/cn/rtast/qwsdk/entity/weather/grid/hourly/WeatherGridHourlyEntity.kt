@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.weather.grid.hourly
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherGridHourlyBean(
+data class WeatherGridHourlyEntity(
     val code: String,
     val fxLink: String,
     val hourly: List<Hourly>,

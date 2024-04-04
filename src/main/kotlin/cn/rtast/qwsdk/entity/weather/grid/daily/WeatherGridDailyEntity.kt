@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.weather.grid.daily
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherGridDailyBean(
+data class WeatherGridDailyEntity(
     val code: String,
     val daily: List<Daily>,
     val fxLink: String,

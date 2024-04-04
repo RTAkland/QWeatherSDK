@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.tropical.track
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class TropicalTrackBean(
+data class TropicalTrackEntity(
     val code: String,
     val fxLink: String,
     val isActive: String,

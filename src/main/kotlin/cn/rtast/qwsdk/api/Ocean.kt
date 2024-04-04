@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.ocean.currents.CurrentsBean
-import cn.rtast.qwsdk.entity.ocean.tide.TideBean
+import cn.rtast.qwsdk.entity.ocean.currents.CurrentsEntity
+import cn.rtast.qwsdk.entity.ocean.tide.TideEntity
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam
@@ -28,7 +28,7 @@ object Ocean {
     fun tide(
         location: String,
         date: String,
-    ): TideBean {
+    ): TideEntity {
         DateUtil(date).verifyYMD()
         val url = makeParam(
             "ocean/tide",
@@ -38,13 +38,13 @@ object Ocean {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TideBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, TideEntity::class.java)
     }
 
     fun currents(
         location: String,
         date: String,
-    ): CurrentsBean {
+    ): CurrentsEntity {
         DateUtil(date).verifyYMD()
         val url = makeParam(
             "ocean/currents",
@@ -54,6 +54,6 @@ object Ocean {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, CurrentsBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, CurrentsEntity::class.java)
     }
 }

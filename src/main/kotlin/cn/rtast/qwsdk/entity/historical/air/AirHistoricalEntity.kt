@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.historical.air
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class AirHistoricalBean(
+data class AirHistoricalEntity(
     val airHourly: List<AirHourly>,
     val code: String,
     val fxLink: String,

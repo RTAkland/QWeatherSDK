@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.ocean.tide
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class TideBean(
+data class TideEntity(
     val code: String,
     val fxLink: String,
     val refer: Refer,

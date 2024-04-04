@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.historical.weather
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherHistoricalBean(
+data class WeatherHistoricalEntity(
     val code: String,
     val fxLink: String,
     val refer: Refer,

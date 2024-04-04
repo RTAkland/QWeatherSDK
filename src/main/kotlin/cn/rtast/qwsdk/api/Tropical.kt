@@ -17,9 +17,9 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastBean
-import cn.rtast.qwsdk.entity.tropical.list.TropicalListBean
-import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackBean
+import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastEntity
+import cn.rtast.qwsdk.entity.tropical.list.TropicalListEntity
+import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackEntity
 import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedRegionException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
@@ -29,7 +29,7 @@ import java.time.Year
 
 object Tropical {
 
-    fun forecast(stormID: String): TropicalForecastBean {
+    fun forecast(stormID: String): TropicalForecastEntity {
         val url = makeParam(
             "tropical/storm-forecast",
             mapOf(
@@ -37,10 +37,10 @@ object Tropical {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TropicalForecastBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, TropicalForecastEntity::class.java)
     }
 
-    fun track(stormID: String): TropicalTrackBean {
+    fun track(stormID: String): TropicalTrackEntity {
         val url = makeParam(
             "tropical/storm-track",
             mapOf(
@@ -48,7 +48,7 @@ object Tropical {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TropicalTrackBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, TropicalTrackEntity::class.java)
     }
 
     @JvmOverloads
@@ -56,7 +56,7 @@ object Tropical {
     fun list(
         year: String,
         basin: BasinType = BasinType.NP,
-    ): TropicalListBean {
+    ): TropicalListEntity {
 
         if (basin != BasinType.NP) {
             throw UnsupportedRegionException("This region is not currently supported: ${basin.description}(${basin.descriptionZH})!")
@@ -76,6 +76,6 @@ object Tropical {
         )
         QWeatherSDK.logger.info(url)
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TropicalListBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, TropicalListEntity::class.java)
     }
 }

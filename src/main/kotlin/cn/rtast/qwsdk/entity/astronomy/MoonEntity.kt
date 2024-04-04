@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.astronomy
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class MoonBean(
+data class MoonEntity(
     val code: String,
     val fxLink: String,
     val moonPhase: List<MoonPhase>,

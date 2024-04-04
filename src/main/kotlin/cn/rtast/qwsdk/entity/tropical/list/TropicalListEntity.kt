@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.tropical.list
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class TropicalListBean(
+data class TropicalListEntity(
     val code: String,
     val fxLink: String,
     val refer: Refer,

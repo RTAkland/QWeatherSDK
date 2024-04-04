@@ -17,9 +17,9 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.astronomy.MoonBean
-import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleBean
-import cn.rtast.qwsdk.entity.astronomy.SunBean
+import cn.rtast.qwsdk.entity.astronomy.MoonEntity
+import cn.rtast.qwsdk.entity.astronomy.SolarElevationAngleEntity
+import cn.rtast.qwsdk.entity.astronomy.SunEntity
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.InvalidDateException
 import cn.rtast.qwsdk.utils.*
@@ -32,7 +32,7 @@ object Astronomy {
         location: String,
         date: String,
         lang: Lang = Lang.ZH,
-    ): SunBean {
+    ): SunEntity {
         DateUtil(date).verifyYMD()
         val url = makeParam(
             "astronomy/sun",
@@ -43,7 +43,7 @@ object Astronomy {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, SunBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, SunEntity::class.java)
     }
 
     @JvmOverloads
@@ -52,7 +52,7 @@ object Astronomy {
         location: Coordinate,
         date: String,
         lang: Lang = Lang.ZH,
-    ): SunBean {
+    ): SunEntity {
         return this.sun(location(), date, lang)
     }
 
@@ -62,7 +62,7 @@ object Astronomy {
         location: String,
         date: String,
         lang: Lang = Lang.ZH,
-    ): MoonBean {
+    ): MoonEntity {
         DateUtil(date).verifyYMD()
         val url = makeParam(
             "astronomy/moon", mapOf(
@@ -71,7 +71,7 @@ object Astronomy {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, MoonBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, MoonEntity::class.java)
     }
 
     @JvmOverloads
@@ -80,7 +80,7 @@ object Astronomy {
         location: Coordinate,
         date: String,
         lang: Lang = Lang.ZH,
-    ): MoonBean {
+    ): MoonEntity {
         return this.moon(location(), date, lang)
     }
 
@@ -91,7 +91,7 @@ object Astronomy {
         time: String,
         tz: String,
         alt: Int,
-    ): SolarElevationAngleBean {
+    ): SolarElevationAngleEntity {
         DateUtil(date).verifyYMD()
         DateUtil(time).verifyHM()
         val url = makeParam(
@@ -105,6 +105,6 @@ object Astronomy {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, SolarElevationAngleBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, SolarElevationAngleEntity::class.java)
     }
 }

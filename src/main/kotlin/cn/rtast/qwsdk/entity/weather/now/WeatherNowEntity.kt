@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.weather.now
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherNowBean(
+data class WeatherNowEntity(
     val code: String,
     val fxLink: String,
     val now: Now,

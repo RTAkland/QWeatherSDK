@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.astronomy
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class SunBean(
+data class SunEntity(
     val code: String,
     val fxLink: String,
     val refer: Refer,

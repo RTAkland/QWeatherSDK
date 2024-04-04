@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.weather.grid.realtime
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherGridRealtimeBean(
+data class WeatherGridRealtimeEntity(
     val code: String,
     val fxLink: String,
     val now: Now,

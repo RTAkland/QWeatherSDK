@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.warning.WarningBean
-import cn.rtast.qwsdk.entity.warning.list.WarningCityListBean
+import cn.rtast.qwsdk.entity.warning.WarningEntity
+import cn.rtast.qwsdk.entity.warning.list.WarningCityListEntity
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
@@ -33,7 +33,7 @@ object Warning {
     fun now(
         location: String,
         lang: Lang = Lang.ZH,
-    ): WarningBean {
+    ): WarningEntity {
         val supportedLang = listOf(Lang.ZH, Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
@@ -46,7 +46,7 @@ object Warning {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WarningBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, WarningEntity::class.java)
     }
 
     @JvmOverloads
@@ -54,19 +54,19 @@ object Warning {
     fun now(
         location: Coordinate,
         lang: Lang = Lang.ZH,
-    ): WarningBean {
+    ): WarningEntity {
         return this.now(location(), lang)
     }
 
     @JvmOverloads
     fun list(
         range: CountryCode = CountryCode.CN,
-    ): WarningCityListBean {
+    ): WarningCityListEntity {
         val url = makeParam(
             "warning/list",
             mapOf("range" to range)
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WarningCityListBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, WarningCityListEntity::class.java)
     }
 }

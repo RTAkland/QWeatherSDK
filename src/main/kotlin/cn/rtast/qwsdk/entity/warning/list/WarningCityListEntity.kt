@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.warning.list
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WarningCityListBean(
+data class WarningCityListEntity(
     val code: String,
     val refer: Refer,
     val updateTime: String,

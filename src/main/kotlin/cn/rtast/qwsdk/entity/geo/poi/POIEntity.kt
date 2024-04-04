@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.geo.poi
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class POIBean(
+data class POIEntity(
     val code: String,
     val poi: List<Poi>,
     val refer: Refer,

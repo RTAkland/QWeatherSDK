@@ -17,10 +17,10 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.geo.lookup.GeoLookupBean
-import cn.rtast.qwsdk.entity.geo.poi.POIBean
-import cn.rtast.qwsdk.entity.geo.poi.range.POIRangeBean
-import cn.rtast.qwsdk.entity.geo.top.GeoTopBean
+import cn.rtast.qwsdk.entity.geo.lookup.GeoLookupEntity
+import cn.rtast.qwsdk.entity.geo.poi.POIEntity
+import cn.rtast.qwsdk.entity.geo.poi.range.POIRangeEntity
+import cn.rtast.qwsdk.entity.geo.top.GeoTopEntity
 import cn.rtast.qwsdk.enums.ApiType
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
@@ -40,7 +40,7 @@ object Geo {
         range: CountryCode = CountryCode.CN,
         number: Int = 10,
         lang: Lang = Lang.ZH,
-    ): GeoLookupBean {
+    ): GeoLookupEntity {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
@@ -56,7 +56,7 @@ object Geo {
             ApiType.Geo
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, GeoLookupBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, GeoLookupEntity::class.java)
     }
 
     @JvmOverloads
@@ -67,7 +67,7 @@ object Geo {
         range: CountryCode = CountryCode.CN,
         number: Int = 10,
         lang: Lang = Lang.ZH,
-    ): GeoLookupBean {
+    ): GeoLookupEntity {
         return this.citySearch(location(), adm, range, number, lang)
     }
 
@@ -77,7 +77,7 @@ object Geo {
         range: CountryCode = CountryCode.CN,
         number: Int = 10,
         lang: Lang = Lang.ZH,
-    ): GeoTopBean {
+    ): GeoTopEntity {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
@@ -91,7 +91,7 @@ object Geo {
             ApiType.Geo
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, GeoTopBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, GeoTopEntity::class.java)
     }
 
     @JvmOverloads
@@ -102,7 +102,7 @@ object Geo {
         city: String? = null,
         number: Int = 10,
         lang: Lang = Lang.ZH,
-    ): POIBean {
+    ): POIEntity {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
@@ -110,7 +110,7 @@ object Geo {
             "poi/lookup",
             mapOf(
                 "location" to location,
-                "type" to type,
+                "type" to type.id,
                 "city" to city,
                 "number" to number,
                 "lang" to lang
@@ -118,7 +118,7 @@ object Geo {
             ApiType.Geo
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, POIBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, POIEntity::class.java)
     }
 
     @JvmOverloads
@@ -129,7 +129,7 @@ object Geo {
         city: String? = null,
         number: Int = 10,
         lang: Lang = Lang.ZH,
-    ): POIBean {
+    ): POIEntity {
         return this.poiLookup(location(), type, city, number, lang)
     }
 
@@ -142,7 +142,7 @@ object Geo {
         city: String? = null,
         number: Int = 10,
         lang: Lang = Lang.ZH,
-    ): POIRangeBean {
+    ): POIRangeEntity {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
@@ -163,6 +163,6 @@ object Geo {
         )
         QWeatherSDK.logger.info(url)
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, POIRangeBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, POIRangeEntity::class.java)
     }
 }

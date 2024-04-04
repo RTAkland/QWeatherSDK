@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.geo.top
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class GeoTopBean(
+data class GeoTopEntity(
     val code: String,
     val refer: Refer,
     val topCityList: List<TopCity>,

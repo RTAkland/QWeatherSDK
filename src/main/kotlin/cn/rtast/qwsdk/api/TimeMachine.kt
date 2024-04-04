@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.historical.air.AirHistoricalBean
-import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalBean
+import cn.rtast.qwsdk.entity.historical.air.AirHistoricalEntity
+import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalEntity
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil
@@ -37,7 +37,7 @@ object TimeMachine {
         date: String,
         unit: Units = Units.M,
         lang: Lang = Lang.ZH,
-    ): WeatherHistoricalBean {
+    ): WeatherHistoricalEntity {
         DateUtil(date).verifyYMD()
         val url = makeParam(
             "historical/weather",
@@ -50,7 +50,7 @@ object TimeMachine {
         )
         QWeatherSDK.logger.info(url)
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherHistoricalBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, WeatherHistoricalEntity::class.java)
     }
 
     @JvmOverloads
@@ -59,7 +59,7 @@ object TimeMachine {
         date: String,
         unit: Units = Units.M,
         lang: Lang = Lang.ZH,
-    ): AirHistoricalBean {
+    ): AirHistoricalEntity {
         DateUtil(date).verifyYMD()
         val url = makeParam(
             "historical/air",
@@ -71,6 +71,6 @@ object TimeMachine {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirHistoricalBean::class.java)
+        return QWeatherSDK.gson.fromJson(result, AirHistoricalEntity::class.java)
     }
 }
