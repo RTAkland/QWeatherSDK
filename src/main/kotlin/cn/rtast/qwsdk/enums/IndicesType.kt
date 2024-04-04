@@ -17,22 +17,22 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class IndicesType(val type: Int) {
-    ALL(0),
-    SPORT(1),
-    WASH_CAR(2),
-    CLOTHING(3),
-    FISHING(4),
-    UV_RAY(5),
-    TRAVEL(6),
-    POLLEN_ALLERGY(7),
-    COMFORT(8),
-    COLD(9),
-    AIR_POLLUTION_DIFFUSION_CONDITION(10),
-    AIR_CONDITIONER(11),
-    SUNGLASSES(12),
-    MAKEUP(13),
-    DRYING(14),
-    TRAFFIC(15),
-    SPF(16)
+enum class IndicesType(val type: Int, val descZH: String) {
+    ALL(0, "全部天气指数"),
+    SPT(1, "运动指数"),
+    CW(2, "洗车指数"),
+    DRSG(3, "穿衣指数"),
+    FIS(4, "钓鱼指数"),
+    UV(5, "紫外线指数"),
+    TRA(6, "旅游指数"),
+    AG(7, "花粉过敏指数"),
+    COMF(8, "舒适度指数"),
+    FLU(9, "感冒指数"),
+    AP(10, "空气污染扩散条件指数"),
+    AC(11, "空调开启指数"),
+    GL(12, "太阳镜指数"),
+    MU(13, "化妆指数"),
+    DC(14, "晾晒指数"),
+    PTFC(15, "交通指数"),
+    SPI(16, "防晒指数")
 }

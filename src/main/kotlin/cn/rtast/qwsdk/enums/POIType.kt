@@ -17,6 +17,8 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class POIType(val id: String) {
-    SCENIC("scenic"), CSTA("CSTA"), TSTA("TSTA");
+enum class POIType(val id: String, val desc: String) {
+    SCENIC("scenic", "景点"),
+    CSTA("CSTA", "潮流站点"),
+    TSTA("TSTA", "潮汐站点");
 }
