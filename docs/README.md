@@ -86,120 +86,120 @@
 
 ### 城市搜索
 
-* 接口: `geo().citySearch()`  参数: `location` `adm?` `range?` `number?` `lang?`  数据类: `GeoLookupBean`
+* 接口: `geo().citySearch()`  参数: `location` `adm?` `range?` `number?` `lang?`  数据类: `GeoLookupEntity`
 
 ### 热门城市查询
 
-* 接口: `geo().topCity()`  参数: `location?` `number?` `lang?`  数据类: `GeoTopBean`
+* 接口: `geo().topCity()`  参数: `location?` `number?` `lang?`  数据类: `GeoTopEntity`
 
 ### POI搜索
 
-* 接口: `geo().poiLookup()`  参数: `location` `type` `city?` `number?` `lang?`  数据类: `POIBean`
+* 接口: `geo().poiLookup()`  参数: `location` `type` `city?` `number?` `lang?`  数据类: `POIEntity`
 
 ### POI范围搜索
 
-* 接口: `geo().poiRange()`  参数: `location` `type` `radius` `city?` `number?` `lang?`  数据类: `POIRangeBean`
+* 接口: `geo().poiRange()`  参数: `location` `type` `radius` `city?` `number?` `lang?`  数据类: `POIRangeEntity`
 
 ## 城市天气
 
 ### 实时天气
 
-* 接口: `weather().now()`  参数: `location` `lang?` `unit?` 数据类: `WeatherBowBean`
+* 接口: `weather().now()`  参数: `location` `lang?` `unit?` 数据类: `WeatherBowEntity`
 
 ### 每日天气预报
 
-* 接口: `weather().weather3d()`  参数: `location` `lang?` `unit?`  数据类: `WeatherDailyBean`
-* 接口: `weather().weather7d()`  参数: `location` `lang?` `unit?`  数据类: `WeatherDailyBean`
-* 接口: `weather().weather15d()`  参数: `location` `lang?` `unit?`  数据类: `WeatherDailyBean`
+* 接口: `weather().weather3d()`  参数: `location` `lang?` `unit?`  数据类: `WeatherDailyEntity`
+* 接口: `weather().weather7d()`  参数: `location` `lang?` `unit?`  数据类: `WeatherDailyEntity`
+* 接口: `weather().weather15d()`  参数: `location` `lang?` `unit?`  数据类: `WeatherDailyEntity`
 
 ### 逐小时天气预报
 
-* 接口: `weather().weather24h()`  参数: `location` `lang?` `unit?`  数据类: `WeatherHourlyBean`
-* 接口: `weather().weather72h()`  参数: `location` `lang?` `unit?`  数据类: `WeatherHourlyBean`
-* 接口: `weather().weather168h()`  参数: `location` `lang?` `unit?`  数据类: `WeatherHourlyBean`
+* 接口: `weather().weather24h()`  参数: `location` `lang?` `unit?`  数据类: `WeatherHourlyEntity`
+* 接口: `weather().weather72h()`  参数: `location` `lang?` `unit?`  数据类: `WeatherHourlyEntity`
+* 接口: `weather().weather168h()`  参数: `location` `lang?` `unit?`  数据类: `WeatherHourlyEntity`
 
 ## 分钟预报
 
 ### 分钟级降水
 
-* 接口: `weather().weatherMinutely()`  参数: `location` `lang?`  数据类: `WeatherMinutelyBean`
+* 接口: `weather().weatherMinutely()`  参数: `location` `lang?`  数据类: `WeatherMinutelyEntity`
 
 ## 格点天气
 
 ### 格点实时天气
 
-* 接口: `weather().weatherGridRealtime()`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridRealtimeBean`
+* 接口: `weather().weatherGridRealtime()`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridRealtimeEntity`
 
 ### 格点每日天气预报
 
-* 接口: `weatherGrid3d`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridDailyBean`
-* 接口: `weatherGrid7d`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridDailyBean`
+* 接口: `weatherGrid3d`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridDailyEntity`
+* 接口: `weatherGrid7d`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridDailyEntity`
 
 ### 格点逐小时天气预报
 
-* 接口: `weatherGrid24h`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridHourlyBean`
-* 接口: `weatherGrid72h`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridHourlyBean`
+* 接口: `weatherGrid24h`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridHourlyEntity`
+* 接口: `weatherGrid72h`  参数: `location` `lang?` `unit?`  数据类: `WeatherGridHourlyEntity`
 
 ## 预警
 
 ### 天气灾害预警
 
-* 接口: `warning().now()`  参数: `location` `lang?`  数据类: `WarningBean`
+* 接口: `warning().now()`  参数: `location` `lang?`  数据类: `WarningEntity`
 
 ### 天气预警城市列表
 
-* 接口: `warning().list()`  参数: `range?`  数据类: `WarningCityListBean`
+* 接口: `warning().list()`  参数: `range?`  数据类: `WarningCityListEntity`
 
 ## 天气指数
 
 ### 天气指数预报
 
-* 接口: `indices1d`  参数: `location` `type?` `lang?`  数据类: `IndicesBean`
-* 接口: `indices3d`  参数: `location` `type?` `lang?`  数据类: `IndicesBean`
+* 接口: `indices1d`  参数: `location` `type?` `lang?`  数据类: `IndicesEntity`
+* 接口: `indices3d`  参数: `location` `type?` `lang?`  数据类: `IndicesEntity`
 
 ## 空气质量
 
 ### 实时空气质量
 
-* 接口: `air().now()`  参数: `location` `lang?`  数据类: `AirBean`
+* 接口: `air().now()`  参数: `location` `lang?`  数据类: `AirEntity`
 
 ### 空气质量每日预报
 
-* 接口: `air().daily()`  参数: `location` `lang?`  数据类: `AirDailyBean`
+* 接口: `air().daily()`  参数: `location` `lang?`  数据类: `AirDailyEntity`
 
 ## 时光机
 
 ### 天气时光机
 
-* 接口: `timemachine().weatherHistory()`  参数: `location` `date` `lang?` `unit?`  数据类: `WeatherHistoricalBean`
+* 接口: `timemachine().weatherHistory()`  参数: `location` `date` `lang?` `unit?`  数据类: `WeatherHistoricalEntity`
 
 ### 空气质量时光机
 
-* 接口: `timeMachine().airHistory()`  参数: `location` `date` `lang?` `unit?`  数据类: `AirHistoricalBean`
+* 接口: `timeMachine().airHistory()`  参数: `location` `date` `lang?` `unit?`  数据类: `AirHistoricalEntity`
 
 ## 热带气旋（台风）
 
 ### 台风预报
 
-* 接口: `tropical().forecast()`  参数: `stormID`  数据类: `TropicalForecastBean`
+* 接口: `tropical().forecast()`  参数: `stormID`  数据类: `TropicalForecastEntity`
 
 ### 台风实况和路径
 
-* 接口: `tropical().track()`  参数: `stormID`  数据类: `TropicalTrackBean`
+* 接口: `tropical().track()`  参数: `stormID`  数据类: `TropicalTrackEntity`
 
 ### 台风列表
 
-* 接口: `tropical().list()`  参数: `basin?` `year`  数据类: `TropicalListBean`
+* 接口: `tropical().list()`  参数: `basin?` `year`  数据类: `TropicalListEntity`
 
 ## 海洋数据
 
 ### 潮汐
 
-* 接口: `ocean().tide()`  参数: `location` `date`  数据类: `TideBean`
+* 接口: `ocean().tide()`  参数: `location` `date`  数据类: `TideEntity`
 
 ### 潮流
 
-* 接口: `ocean().currents()`  参数: `location` `date`  数据类: `CurrentsBean`
+* 接口: `ocean().currents()`  参数: `location` `date`  数据类: `CurrentsEntity`
 
 ## 太阳辐射
 
@@ -211,16 +211,16 @@
 
 ### 日出日落
 
-* 接口: `astronomy().sun()`  参数: `location` `date` `lang?`  数据类: `SunBean`
+* 接口: `astronomy().sun()`  参数: `location` `date` `lang?`  数据类: `SunEntity`
 
 ### 月升月落和月相
 
-* 接口: `astronomy().moon()`  参数: `location` `date` `lang?`  数据类: `MoonBean`
+* 接口: `astronomy().moon()`  参数: `location` `date` `lang?`  数据类: `MoonEntity`
 
 ### 太阳高度角
 
 * 接口: `astronomy().solarElevationAngle()`  参数: `location` `date` `time` `tz` `alt`
-  数据类: `SolarElevationAngleBean`
+  数据类: `SolarElevationAngleEntity`
 
 # 子类
 
