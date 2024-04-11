@@ -15,7 +15,7 @@
 
 # 概述
 
-> 本项目是一个非官方的[`QWeather`](https://dev.qweather.com) `Android SDK`, 可以在基于`JVM`的语言使用,
+> 本项目是一个非官方的[`QWeather`](https://dev.qweather.com) `Kotlin / Java / Android SDK`, 可以在基于`JVM`的语言使用,
 > 例如[`Kotlin`](https://kotl.in)、[`Java`](https://java.com)、[`Scala`](https://www.scala-lang.org/)
 
 > 本项目基于`Web API` 所以只需要申请一个`Web API key`即可使用, 点击[这里](https://dev.qweather.com/docs/configuration/project-and-key/)
