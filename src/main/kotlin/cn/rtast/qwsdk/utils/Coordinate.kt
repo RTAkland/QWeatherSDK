@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.utils
 
-class Coordinate(
+data class Coordinate(
     private val longitude: Double,
     private val latitude: Double,
 ) {
