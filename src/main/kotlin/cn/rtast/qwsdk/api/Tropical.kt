@@ -59,7 +59,7 @@ object Tropical {
     ): TropicalListEntity {
 
         if (basin != BasinType.NP) {
-            throw UnsupportedRegionException("This region is not currently supported: ${basin.description}(${basin.descriptionZH})!")
+            throw UnsupportedRegionException("This region is not currently supported: ${basin.desc}(${basin.descZH})!")
         }
 
         val currentYear = Year.now().toString().toInt()
