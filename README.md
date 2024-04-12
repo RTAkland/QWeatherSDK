@@ -18,7 +18,8 @@
 > 本项目是一个非官方的[`QWeather`](https://dev.qweather.com) `Kotlin / Java / Android SDK`, 可以在基于`JVM`的语言使用,
 > 例如[`Kotlin`](https://kotl.in)、[`Java`](https://java.com)、[`Scala`](https://www.scala-lang.org/)
 
-> 本项目基于`Web API` 所以只需要申请一个`Web API key`即可使用, 点击[这里](https://dev.qweather.com/docs/configuration/project-and-key/)
+> 本项目基于`Web API` 所以只需要申请一个`Web API key`即可使用,
+> 点击[这里](https://dev.qweather.com/docs/configuration/project-and-key/)
 > 来查看如何申请一个`Web API key`
 
 # 目录
@@ -30,7 +31,9 @@
   * [添加依赖](#添加依赖)
     * [本地文件](#本地文件)
     * [Jitpack](#jitpack)
-  * [embed](#embed)
+    * [fatjar](#fatjar)
+      * [Groovy DSL](#groovy-dsl)
+      * [Kotlin DSL](#kotlin-dsl)
   * [简单的例子](#简单的例子)
     * [Kotlin](#kotlin)
     * [Java](#java)
@@ -73,15 +76,15 @@ repositories {
 
 dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.github.RTAkland:QWeatherSDK:v0.2.0")
+    implementation("com.github.RTAkland:QWeatherSDK:v0.4.3")
 }
 ```
 
-> 如果想要得到`fat jar`包, 你可以使用`embed`, 这里以`Groovy DSL`为例
+### fatjar
 
-## embed
+> 如果想要将获取fatjar包你需要使用以下方法获取, 下面提供了两种脚本语言的解决方法
 
-> 添加embed配置
+#### Groovy DSL
 
 ```groovy
 configurations {
@@ -91,8 +94,17 @@ configurations {
 
 // other configurations...
 
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE  // 排除重复的依赖文件
+    from configurations.embed.collect {
+        it.isDirectory() ? it : zipTree(it)
+    }
+}
+
 dependencies {
-    embed(api("com.github.RTAkland:QWeatherSDK:v0.2.0"))
+
+    implementation("com.github.RTAkland:QWeatherSDK:v0.4.3")  // 这里需要用常规方法添加依赖
+    embed(api("com.github.RTAkland:QWeatherSDK:v0.4.3"))  // 必须在这里使用embed再添加一次
 }
 ```
 
@@ -101,6 +113,24 @@ dependencies {
 > 和gradle中的include类似, 但是gradle是将依赖jar打包进jar
 > embed 不会和implementation关键字冲突, embed仅在编译时生效
 > 使用embed后就可以在独立的环境运行而不需要额外下载依赖
+
+#### Kotlin DSL
+
+> 以下是使用Kotlin作为Gradle构建脚本的解决方法
+
+```kotlin
+
+// other configurations...
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    val files = configurations.runtimeClasspath.get()
+        .filter { it.exists() }
+        .map { if (it.isDirectory) it else zipTree(it) }
+    from(files)
+}
+
+```
 
 ## 简单的例子
 
@@ -146,8 +176,8 @@ public class Main {
 > `QW_PLAN` 可用数据有 `free` `standard` `custom` ***不区分大小写, 但是变量名必须大写***
 > 测试完成后你可以在`build/reports/tests/test/index.html` 找到测试报告
 
->如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
-你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别
+> 如果你的Key无法使用某些api那么这个测试则会直接跳过并判定为成功,
+> 你可以在[这里](https://dev.qweather.com/docs/finance/subscription/#comparison)找到各种订阅之间的差别
 
 # 注意事项
 
