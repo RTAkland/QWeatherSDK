@@ -35,5 +35,6 @@ tasks.compileKotlin {
 }
 
 tasks.compileJava {
-    options.compilerArgs.addAll(listOf("-source", "1.8", "-target", "1.8"))
+    targetCompatibility = "1.8"
+    sourceCompatibility = "1.8"
 }
