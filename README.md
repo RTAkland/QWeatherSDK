@@ -34,7 +34,7 @@
     * [fatjar](#fatjar)
       * [Groovy DSL](#groovy-dsl)
       * [Kotlin DSL](#kotlin-dsl)
-  * [简单的例子](#简单的例子)
+  * [使用例子](#使用例子)
     * [Kotlin](#kotlin)
     * [Java](#java)
     * [Scala](#scala)
@@ -136,7 +136,7 @@ tasks.jar {
 
 ```
 
-## 简单的例子
+## 使用例子
 
 ### Kotlin
 
@@ -145,9 +145,8 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
-    val qw = QWeatherSDK()
+    val qw = QWeatherSDK("<this is your key>", Plans.Free)
     // 可用的计划有 Free, Standard, Custom
-    qw.init(Plans.Free, "<replace your key here>")
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
     println(response)  // 返回的数据已经被反序列化, 可以直接访问对应的数据类来获取数据
 }
@@ -161,8 +160,7 @@ import cn.rtast.qwsdk.enums.Plans;
 
 public class Main {
     public static void main(String[] args) {
-        QWeatherSDK qw = new QWeatherSDK();
-        qw.init(Plans.Free, "<replace your key here>");
+        QWeatherSDK qw = new QWeatherSDK("<this is your key>", Plans.Free);
         System.out.println(qw.weather().now("101010100"));
         // 最后两个参数有默认值, 通过给函数添加@JvmOverloads注解在编译时生成重载函数来实现Java参数默认值
     }
@@ -176,10 +174,8 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.Plans
 
 object Main extends App {
-  val qw = new QWeatherSDK()
-  qw.init(Plans.Free, "<replace your key here>")
+  val qw = new QWeatherSDK("<this is your key", Plans.Free)
   println(qw.weather().now("101010100"))
-  // 在Scala中，不需要显式声明main方法的参数，且App trait已经提供了args参数
 }
 ```
 
