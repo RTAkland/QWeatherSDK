@@ -128,9 +128,3 @@ class QWeatherSDK(key: String, plan: Plans) {
     }
 
 }
-
-fun main() {
-    val qw = QWeatherSDK("0e03e86c8f5441af869237052f365d41", Plans.Free)
-
-    println(qw.weather().weather7d("101210612"))
-}
