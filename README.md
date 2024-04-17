@@ -37,6 +37,7 @@
   * [简单的例子](#简单的例子)
     * [Kotlin](#kotlin)
     * [Java](#java)
+    * [Scala](#scala)
 * [数据类](#数据类)
 * [单元测试](#单元测试)
 * [注意事项](#注意事项)
@@ -102,7 +103,6 @@ jar {
 }
 
 dependencies {
-
     implementation("com.github.RTAkland:QWeatherSDK:v0.4.3")  // 这里需要用常规方法添加依赖
     embed(api("com.github.RTAkland:QWeatherSDK:v0.4.3"))  // 必须在这里使用embed再添加一次
 }
@@ -121,6 +121,10 @@ dependencies {
 ```kotlin
 
 // other configurations...
+
+dependencies {
+    implementation("com.github.RTAkland:QWeatherSDK:v0.4.3")  // 直接使用常规方法添加依赖
+}
 
 tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -162,6 +166,20 @@ public class Main {
         System.out.println(qw.weather().now("101010100"));
         // 最后两个参数有默认值, 通过给函数添加@JvmOverloads注解在编译时生成重载函数来实现Java参数默认值
     }
+}
+```
+
+### Scala
+
+```scala
+import cn.rtast.qwsdk.QWeatherSDK
+import cn.rtast.qwsdk.enums.Plans
+
+object Main extends App {
+  val qw = new QWeatherSDK()
+  qw.init(Plans.Free, "<replace your key here>")
+  println(qw.weather().now("101010100"))
+  // 在Scala中，不需要显式声明main方法的参数，且App trait已经提供了args参数
 }
 ```
 

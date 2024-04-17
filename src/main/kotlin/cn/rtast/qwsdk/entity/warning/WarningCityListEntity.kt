@@ -14,18 +14,17 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.historical.weather
+package cn.rtast.qwsdk.entity.warning.list
 
-data class WeatherHourly(
-    val humidity: String,
-    val icon: String,
-    val precip: String,
-    val pressure: String,
-    val temp: String,
-    val text: String,
-    val time: String,
-    val wind360: String,
-    val windDir: String,
-    val windScale: String,
-    val windSpeed: String,
-)
+import cn.rtast.qwsdk.entity.Refer
+
+data class WarningCityListEntity(
+    val code: String,
+    val refer: Refer,
+    val updateTime: String,
+    val warningLocList: List<WarningLoc>,
+) {
+    data class WarningLoc(
+        val locationId: String,
+    )
+}
