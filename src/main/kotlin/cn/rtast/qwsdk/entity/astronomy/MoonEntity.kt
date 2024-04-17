@@ -26,4 +26,21 @@ data class MoonEntity(
     val moonset: String,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class MoonPhase(
+        val fxTime: String,
+        val icon: String,
+        val illumination: String,
+        val name: String,
+        val value: String,
+    )
+
+    data class SolarElevationAngleEntity(
+        val code: String,
+        val hourAngle: String,
+        val refer: Refer,
+        val solarAzimuthAngle: String,
+        val solarElevationAngle: String,
+        val solarHour: String,
+    )
+}

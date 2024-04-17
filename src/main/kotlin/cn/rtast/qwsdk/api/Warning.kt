@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.warning.WarningEntity
-import cn.rtast.qwsdk.entity.warning.list.WarningCityListEntity
+import cn.rtast.qwsdk.entity.warning.WarningCityListEntity
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.historical.weather
+package cn.rtast.qwsdk.entity.historical
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -24,4 +24,32 @@ data class WeatherHistoricalEntity(
     val refer: Refer,
     val weatherDaily: WeatherDaily,
     val weatherHourly: List<WeatherHourly>,
-)
+) {
+    data class WeatherDaily(
+        val date: String,
+        val humidity: String,
+        val moonPhase: String,
+        val moonrise: String,
+        val moonset: String,
+        val precip: String,
+        val pressure: String,
+        val sunrise: String,
+        val sunset: String,
+        val tempMax: String,
+        val tempMin: String,
+    )
+
+    data class WeatherHourly(
+        val humidity: String,
+        val icon: String,
+        val precip: String,
+        val pressure: String,
+        val temp: String,
+        val text: String,
+        val time: String,
+        val wind360: String,
+        val windDir: String,
+        val windScale: String,
+        val windSpeed: String,
+    )
+}

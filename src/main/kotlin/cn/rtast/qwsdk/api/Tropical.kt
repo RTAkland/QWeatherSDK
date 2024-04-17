@@ -17,9 +17,9 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.tropical.forecast.TropicalForecastEntity
-import cn.rtast.qwsdk.entity.tropical.list.TropicalListEntity
-import cn.rtast.qwsdk.entity.tropical.track.TropicalTrackEntity
+import cn.rtast.qwsdk.entity.tropical.TropicalForecastEntity
+import cn.rtast.qwsdk.entity.tropical.TropicalListEntity
+import cn.rtast.qwsdk.entity.tropical.TropicalTrackEntity
 import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedRegionException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException

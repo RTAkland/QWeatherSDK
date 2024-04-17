@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.ocean.currents.CurrentsEntity
-import cn.rtast.qwsdk.entity.ocean.tide.TideEntity
+import cn.rtast.qwsdk.entity.ocean.CurrentsEntity
+import cn.rtast.qwsdk.entity.ocean.TideEntity
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.makeParam

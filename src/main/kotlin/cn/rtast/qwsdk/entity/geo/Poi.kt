@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.geo.poi
+package cn.rtast.qwsdk.entity.geo
 
 data class Poi(
     val adm1: String,

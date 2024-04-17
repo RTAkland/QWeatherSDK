@@ -24,4 +24,13 @@ data class IndicesEntity(
     val fxLink: String,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class Daily(
+        val category: String,
+        val date: String,
+        val level: String,
+        val name: String,
+        val text: String,
+        val type: String,
+    )
+}

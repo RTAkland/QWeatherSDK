@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.weather.minutely
+package cn.rtast.qwsdk.entity.weather
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -25,4 +25,10 @@ data class WeatherMinutelyEntity(
     val refer: Refer,
     val summary: String,
     val updateTime: String,
-)
+) {
+    data class Minutely(
+        val fxTime: String,
+        val precip: String,
+        val type: String,
+    )
+}

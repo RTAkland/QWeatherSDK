@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.tropical.track
+package cn.rtast.qwsdk.entity.tropical
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -26,4 +26,41 @@ data class TropicalTrackEntity(
     val refer: Refer,
     val track: List<Track>,
     val updateTime: String,
-)
+) {
+    data class Now(
+        val lat: String,
+        val lon: String,
+        val move360: String,
+        val moveDir: String,
+        val moveSpeed: String,
+        val pressure: String,
+        val pubTime: String,
+        val type: String,
+        val windRadius30: WindRadius30,
+        val windRadius50: WindRadius30,
+        val windRadius64: WindRadius30,
+        val windSpeed: String,
+    )
+
+    data class WindRadius30(
+        val neRadius: String,
+        val nwRadius: String,
+        val seRadius: String,
+        val swRadius: String,
+    )
+
+    data class Track(
+        val lat: String,
+        val lon: String,
+        val move360: String,
+        val moveDir: String,
+        val moveSpeed: String,
+        val pressure: String,
+        val time: String,
+        val type: String,
+        val windRadius30: WindRadius30,
+        val windRadius50: WindRadius30,
+        val windRadius64: WindRadius30,
+        val windSpeed: String,
+    )
+}

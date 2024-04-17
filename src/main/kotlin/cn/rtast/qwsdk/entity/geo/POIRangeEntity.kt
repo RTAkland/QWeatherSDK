@@ -14,10 +14,9 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.geo.poi.range
+package cn.rtast.qwsdk.entity.geo
 
 import cn.rtast.qwsdk.entity.Refer
-import cn.rtast.qwsdk.entity.geo.poi.Poi
 
 data class POIRangeEntity(
     val code: String,

@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.historical.air.AirHistoricalEntity
-import cn.rtast.qwsdk.entity.historical.weather.WeatherHistoricalEntity
+import cn.rtast.qwsdk.entity.historical.AirHistoricalEntity
+import cn.rtast.qwsdk.entity.historical.WeatherHistoricalEntity
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil

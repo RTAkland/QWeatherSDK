@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.tropical.forecast
+package cn.rtast.qwsdk.entity.tropical
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -24,4 +24,16 @@ data class TropicalForecastEntity(
     val fxLink: String,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class Forecast(
+        val fxTime: String,
+        val lat: String,
+        val lon: String,
+        val move360: String,
+        val moveDir: String,
+        val moveSpeed: String,
+        val pressure: String,
+        val type: String,
+        val windSpeed: String,
+    )
+}

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.ocean.tide
+package cn.rtast.qwsdk.entity.ocean
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -25,4 +25,15 @@ data class TideEntity(
     val tideHourly: List<TideHourly>,
     val tideTable: List<TideTable>,
     val updateTime: String,
-)
+) {
+    data class TideHourly(
+        val fxTime: String,
+        val height: String,
+    )
+
+    data class TideTable(
+        val fxTime: String,
+        val height: String,
+        val type: String,
+    )
+}

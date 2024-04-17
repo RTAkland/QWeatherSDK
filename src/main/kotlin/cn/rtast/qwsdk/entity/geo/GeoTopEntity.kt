@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.geo.top
+package cn.rtast.qwsdk.entity.geo
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -22,4 +22,20 @@ data class GeoTopEntity(
     val code: String,
     val refer: Refer,
     val topCityList: List<TopCity>,
-)
+) {
+    data class TopCity(
+        val adm1: String,
+        val adm2: String,
+        val country: String,
+        val fxLink: String,
+        val id: String,
+        val isDst: String,
+        val lat: String,
+        val lon: String,
+        val name: String,
+        val rank: String,
+        val type: String,
+        val tz: String,
+        val utcOffset: String,
+    )
+}

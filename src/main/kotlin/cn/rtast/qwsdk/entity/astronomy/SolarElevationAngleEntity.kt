@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 RTAkland
+ * Copyright 2024 RTAkland
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,31 +14,16 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.weather
+
+package cn.rtast.qwsdk.entity.astronomy
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class WeatherHourlyEntity(
+data class SolarElevationAngleEntity(
     val code: String,
-    val fxLink: String,
-    val hourly: List<Hourly>,
+    val hourAngle: String,
     val refer: Refer,
-    val updateTime: String,
-) {
-    data class Hourly(
-        val cloud: String,
-        val dew: String,
-        val fxTime: String,
-        val humidity: String,
-        val icon: String,
-        val pop: String,
-        val precip: String,
-        val pressure: String,
-        val temp: String,
-        val text: String,
-        val wind360: String,
-        val windDir: String,
-        val windScale: String,
-        val windSpeed: String,
-    )
-}
+    val solarAzimuthAngle: String,
+    val solarElevationAngle: String,
+    val solarHour: String,
+)

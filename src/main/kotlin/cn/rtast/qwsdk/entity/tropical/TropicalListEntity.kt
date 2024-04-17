@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.tropical.list
+package cn.rtast.qwsdk.entity.tropical
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -24,4 +24,12 @@ data class TropicalListEntity(
     val refer: Refer,
     val storm: List<Storm>,
     val updateTime: String,
-)
+) {
+    data class Storm(
+        val active: String,
+        val basin: String,
+        val id: String,
+        val name: String,
+        val year: String,
+    )
+}

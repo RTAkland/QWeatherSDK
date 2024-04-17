@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.ocean.currents
+package cn.rtast.qwsdk.entity.ocean
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -25,4 +25,16 @@ data class CurrentsEntity(
     val fxLink: String,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class CurrentsHourly(
+        val dir360: String,
+        val fxTime: String,
+        val speed: String,
+    )
+
+    data class CurrentsTable(
+        val dir360: String,
+        val fxTime: String,
+        val speedMax: String,
+    )
+}

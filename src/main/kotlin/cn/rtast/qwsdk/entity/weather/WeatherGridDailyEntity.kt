@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.weather.grid.daily
+package cn.rtast.qwsdk.entity.weather
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -24,4 +24,25 @@ data class WeatherGridDailyEntity(
     val fxLink: String,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class Daily(
+        val fxDate: String,
+        val humidity: String,
+        val iconDay: String,
+        val iconNight: String,
+        val precip: String,
+        val pressure: String,
+        val tempMax: String,
+        val tempMin: String,
+        val textDay: String,
+        val textNight: String,
+        val wind360Day: String,
+        val wind360Night: String,
+        val windDirDay: String,
+        val windDirNight: String,
+        val windScaleDay: String,
+        val windScaleNight: String,
+        val windSpeedDay: String,
+        val windSpeedNight: String,
+    )
+}

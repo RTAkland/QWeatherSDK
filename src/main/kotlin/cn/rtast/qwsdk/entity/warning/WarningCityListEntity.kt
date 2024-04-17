@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.warning.list
+package cn.rtast.qwsdk.entity.warning
 
 import cn.rtast.qwsdk.entity.Refer
 

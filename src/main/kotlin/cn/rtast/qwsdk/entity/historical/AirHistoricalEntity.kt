@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.historical.air
+package cn.rtast.qwsdk.entity.historical
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -23,4 +23,18 @@ data class AirHistoricalEntity(
     val code: String,
     val fxLink: String,
     val refer: Refer,
-)
+) {
+    data class AirHourly(
+        val aqi: String,
+        val category: String,
+        val co: String,
+        val level: String,
+        val no2: String,
+        val o3: String,
+        val pm10: String,
+        val pm2p5: String,
+        val primary: String,
+        val pubTime: String,
+        val so2: String,
+    )
+}

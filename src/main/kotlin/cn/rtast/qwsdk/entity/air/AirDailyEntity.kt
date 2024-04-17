@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.air.daily
+package cn.rtast.qwsdk.entity.air
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -24,4 +24,12 @@ data class AirDailyEntity(
     val fxLink: String,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class Daily(
+        val aqi: String,
+        val category: String,
+        val fxDate: String,
+        val level: String,
+        val primary: String,
+    )
+}

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package cn.rtast.qwsdk.entity.weather.grid.realtime
+package cn.rtast.qwsdk.entity.weather
 
 import cn.rtast.qwsdk.entity.Refer
 
@@ -24,4 +24,20 @@ data class WeatherGridRealtimeEntity(
     val now: Now,
     val refer: Refer,
     val updateTime: String,
-)
+) {
+    data class Now(
+        val cloud: String,
+        val dew: String,
+        val humidity: String,
+        val icon: String,
+        val obsTime: String,
+        val precip: String,
+        val pressure: String,
+        val temp: String,
+        val text: String,
+        val wind360: String,
+        val windDir: String,
+        val windScale: String,
+        val windSpeed: String,
+    )
+}

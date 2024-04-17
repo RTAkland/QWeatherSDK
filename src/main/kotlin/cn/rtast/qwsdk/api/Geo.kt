@@ -17,10 +17,10 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.geo.lookup.GeoLookupEntity
-import cn.rtast.qwsdk.entity.geo.poi.POIEntity
-import cn.rtast.qwsdk.entity.geo.poi.range.POIRangeEntity
-import cn.rtast.qwsdk.entity.geo.top.GeoTopEntity
+import cn.rtast.qwsdk.entity.geo.GeoLookupEntity
+import cn.rtast.qwsdk.entity.geo.POIEntity
+import cn.rtast.qwsdk.entity.geo.POIRangeEntity
+import cn.rtast.qwsdk.entity.geo.GeoTopEntity
 import cn.rtast.qwsdk.enums.ApiType
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
