@@ -22,18 +22,19 @@ import com.google.gson.Gson
 import java.util.logging.Logger
 
 
-class QWeatherSDK {
+class QWeatherSDK(key: String, plan: Plans) {
+
     companion object {
-        var key: String? = null
-        var rootAPI: String? = null
+        lateinit var apiKey: String
+        lateinit var rootAPI: String
         const val GEO_API = "https://geoapi.qweather.com/v2"
         val logger: Logger = Logger.getLogger("QWSDK-MAIN")
         val gson = Gson()
     }
 
-    fun init(plan: Plans, apiKey: String) {
+    init {
+        apiKey = key
         rootAPI = plan.apiUrl
-        key = apiKey
         logger.info("Current Plan: $plan, Current API Host: $rootAPI")
     }
 
@@ -126,4 +127,10 @@ class QWeatherSDK {
         return Warning
     }
 
+}
+
+fun main() {
+    val qw = QWeatherSDK("0e03e86c8f5441af869237052f365d41", Plans.Free)
+
+    println(qw.weather().weather7d("101210612"))
 }
