@@ -23,7 +23,7 @@ import java.net.URLEncoder
 /**
  * 构建请求字符串。
  */
-fun makeParam(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
+fun buildRequestURL(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
     val rootUrl = if (type == ApiType.Common) {
         QWeatherSDK.rootAPI
     } else {
