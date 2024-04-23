@@ -62,8 +62,3 @@ class QWeatherSDK(key: String, plan: Plans) {
         TODO("Not available!")
     }
 }
-
-fun main() {
-    val qweather = QWeatherSDK("9e31aeca49e34fbf8a27e9024214f0b5", Plans.Free)
-    println(qweather.geo().citySearch("huangyan"))
-}
