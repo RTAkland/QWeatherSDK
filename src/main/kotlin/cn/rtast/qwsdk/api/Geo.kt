@@ -28,7 +28,7 @@ import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.exceptions.GeoNumberException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Geo {
 
@@ -44,7 +44,7 @@ object Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = makeParam(
+        val url = buildRequestURL(
             "city/lookup",
             mapOf(
                 "location" to location,
@@ -81,7 +81,7 @@ object Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = makeParam(
+        val url = buildRequestURL(
             "city/top",
             mapOf(
                 "range" to range,
@@ -106,7 +106,7 @@ object Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = makeParam(
+        val url = buildRequestURL(
             "poi/lookup",
             mapOf(
                 "location" to location,
@@ -149,7 +149,7 @@ object Geo {
         if (radius !in 1..50) {  // range 1-50
             throw GeoNumberException("Invalid Radius: $radius, please choose from 1-50!")
         }
-        val url = makeParam(
+        val url = buildRequestURL(
             "poi/range",
             mapOf(
                 "location" to location(),

@@ -21,7 +21,7 @@ import cn.rtast.qwsdk.entity.ocean.CurrentsEntity
 import cn.rtast.qwsdk.entity.ocean.TideEntity
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Ocean {
 
@@ -30,7 +30,7 @@ object Ocean {
         date: String,
     ): TideEntity {
         DateUtil(date).verifyYMD()
-        val url = makeParam(
+        val url = buildRequestURL(
             "ocean/tide",
             mapOf(
                 "location" to location,
@@ -46,7 +46,7 @@ object Ocean {
         date: String,
     ): CurrentsEntity {
         DateUtil(date).verifyYMD()
-        val url = makeParam(
+        val url = buildRequestURL(
             "ocean/currents",
             mapOf(
                 "location" to location,

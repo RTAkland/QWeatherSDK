@@ -28,7 +28,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Weather {
 
@@ -38,7 +38,7 @@ object Weather {
         lang: Lang,
         unit: Units,
     ): WeatherHourlyEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "weather/$hours", mapOf(
                 "location" to location, "lang" to lang, "unit" to unit
             )
@@ -54,7 +54,7 @@ object Weather {
         unit: Units,
         lang: Lang,
     ): WeatherDailyEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "weather/$days", mapOf(
                 "location" to location, "lang" to lang, "unit" to unit
             )
@@ -69,7 +69,7 @@ object Weather {
         unit: Units,
         lang: Lang,
     ): WeatherGridHourlyEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "grid-weather/$hours", mapOf(
                 "location" to location, "lang" to lang, "unit" to unit
             )
@@ -84,7 +84,7 @@ object Weather {
         unit: Units,
         lang: Lang,
     ): WeatherGridDailyEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "grid-weather/$days", mapOf(
                 "location" to location, "lang" to lang, "unit" to unit
             )
@@ -99,7 +99,7 @@ object Weather {
         unit: Units = Units.M,
         lang: Lang = Lang.ZH,
     ): WeatherNowEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "weather/now", mapOf(
                 "location" to location, "lang" to lang, "unit" to unit
             )
@@ -122,7 +122,7 @@ object Weather {
         location: Coordinate,
         lang: Lang = Lang.ZH,
     ): WeatherMinutelyEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "minutely/5m", mapOf(
                 "location" to location(),
                 "lang" to lang,
@@ -246,7 +246,7 @@ object Weather {
         unit: Units = Units.M,
         lang: Lang = Lang.ZH,
     ): WeatherGridRealtimeEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "grid-weather/now", mapOf(
                 "location" to location(), "lang" to lang, "unit" to unit
             )

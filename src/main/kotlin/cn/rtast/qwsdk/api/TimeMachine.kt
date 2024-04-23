@@ -23,7 +23,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object TimeMachine {
 
@@ -39,7 +39,7 @@ object TimeMachine {
         lang: Lang = Lang.ZH,
     ): WeatherHistoricalEntity {
         DateUtil(date).verifyYMD()
-        val url = makeParam(
+        val url = buildRequestURL(
             "historical/weather",
             mapOf(
                 "location" to location,
@@ -61,7 +61,7 @@ object TimeMachine {
         lang: Lang = Lang.ZH,
     ): AirHistoricalEntity {
         DateUtil(date).verifyYMD()
-        val url = makeParam(
+        val url = buildRequestURL(
             "historical/air",
             mapOf(
                 "location" to location,

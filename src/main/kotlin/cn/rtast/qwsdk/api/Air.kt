@@ -18,11 +18,11 @@ package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.air.AirDailyEntity
-import cn.rtast.qwsdk.entity.air.AirEntity
+import cn.rtast.qwsdk.entity.air.AirNowEntity
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Air {
 
@@ -30,8 +30,8 @@ object Air {
     fun now(
         location: String,
         lang: Lang = Lang.ZH,
-    ): AirEntity {
-        val url = makeParam(
+    ): AirNowEntity {
+        val url = buildRequestURL(
             "air/now",
             mapOf(
                 "location" to location,
@@ -39,14 +39,14 @@ object Air {
             )
         )
         val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirEntity::class.java)
+        return QWeatherSDK.gson.fromJson(result, AirNowEntity::class.java)
     }
 
     @JvmOverloads
     fun now(
         location: Coordinate,
         lang: Lang = Lang.ZH,
-    ): AirEntity {
+    ): AirNowEntity {
         return this.now(location(), lang)
     }
 
@@ -55,7 +55,7 @@ object Air {
         location: String,
         lang: Lang = Lang.ZH,
     ): AirDailyEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "air/5d",
             mapOf(
                 "location" to location,
@@ -73,4 +73,6 @@ object Air {
     ): AirDailyEntity {
         return this.daily(location(), lang)
     }
+
+    fun beta(): AirBeta = AirBeta
 }

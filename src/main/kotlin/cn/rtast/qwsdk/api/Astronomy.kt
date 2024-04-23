@@ -34,7 +34,7 @@ object Astronomy {
         lang: Lang = Lang.ZH,
     ): SunEntity {
         DateUtil(date).verifyYMD()
-        val url = makeParam(
+        val url = buildRequestURL(
             "astronomy/sun",
             mapOf(
                 "location" to location,
@@ -64,7 +64,7 @@ object Astronomy {
         lang: Lang = Lang.ZH,
     ): MoonEntity {
         DateUtil(date).verifyYMD()
-        val url = makeParam(
+        val url = buildRequestURL(
             "astronomy/moon", mapOf(
                 "location" to location,
                 "date" to date, "lang" to lang
@@ -94,7 +94,7 @@ object Astronomy {
     ): SolarElevationAngleEntity {
         DateUtil(date).verifyYMD()
         DateUtil(time).verifyHM()
-        val url = makeParam(
+        val url = buildRequestURL(
             "astronomy/solar-elevation-angle",
             mapOf(
                 "location" to location(),

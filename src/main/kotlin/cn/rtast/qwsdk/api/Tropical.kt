@@ -24,13 +24,13 @@ import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedRegionException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 import java.time.Year
 
 object Tropical {
 
     fun forecast(stormID: String): TropicalForecastEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "tropical/storm-forecast",
             mapOf(
                 "stormid" to stormID,
@@ -41,7 +41,7 @@ object Tropical {
     }
 
     fun track(stormID: String): TropicalTrackEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "tropical/storm-track",
             mapOf(
                 "stormid" to stormID,
@@ -67,7 +67,7 @@ object Tropical {
         if (year != currentYear.toString() && year != lastYear.toString()) {
             throw UnsupportedYearException("You can't list the year before last year and future storms!")
         }
-        val url = makeParam(
+        val url = buildRequestURL(
             "tropical/storm-list",
             mapOf(
                 "basin" to basin,

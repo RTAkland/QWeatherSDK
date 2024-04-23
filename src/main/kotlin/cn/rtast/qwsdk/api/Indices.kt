@@ -23,7 +23,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Indices {
 
@@ -42,7 +42,7 @@ object Indices {
             listOf(IndicesType.ALL)
         } else types
         val typeString = typeArray.joinToString(",") { it.type.toString() }
-        val url = makeParam(
+        val url = buildRequestURL(
             "indices/$days",
             mapOf(
                 "location" to location,

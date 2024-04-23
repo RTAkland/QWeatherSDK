@@ -24,7 +24,7 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Warning {
 
@@ -38,7 +38,7 @@ object Warning {
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
-        val url = makeParam(
+        val url = buildRequestURL(
             "warning/now",
             mapOf(
                 "location" to location,
@@ -62,7 +62,7 @@ object Warning {
     fun list(
         range: CountryCode = CountryCode.CN,
     ): WarningCityListEntity {
-        val url = makeParam(
+        val url = buildRequestURL(
             "warning/list",
             mapOf("range" to range)
         )
