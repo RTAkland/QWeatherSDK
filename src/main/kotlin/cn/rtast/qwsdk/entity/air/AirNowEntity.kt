@@ -18,7 +18,7 @@ package cn.rtast.qwsdk.entity.air
 
 import cn.rtast.qwsdk.entity.Refer
 
-data class AirEntity(
+data class AirNowEntity(
     val code: String,
     val fxLink: String,
     val now: Now,
