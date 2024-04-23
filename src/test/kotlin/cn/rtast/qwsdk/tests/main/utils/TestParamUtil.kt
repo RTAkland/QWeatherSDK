@@ -16,7 +16,7 @@
 
 package cn.rtast.qwsdk.tests.main.utils
 
-import cn.rtast.qwsdk.utils.makeParam
+import cn.rtast.qwsdk.utils.buildRequestURL
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 
@@ -24,7 +24,7 @@ class TestParamUtil {
     @Test
     fun makeTest() {
         assertDoesNotThrow {
-            makeParam("test/a", mapOf("1" to 2, "2" to 4, "4" to 8))
+            buildRequestURL("test/a", mapOf("1" to 2, "2" to 4, "4" to 8))
         }
     }
 }
