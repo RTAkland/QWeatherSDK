@@ -89,7 +89,7 @@ object Astronomy {
         location: Coordinate,
         date: String,
         time: String,
-        tz: String,
+        timezone: String,
         alt: Int,
     ): SolarElevationAngleEntity {
         DateUtil(date).verifyYMD()
@@ -100,7 +100,7 @@ object Astronomy {
                 "location" to location(),
                 "date" to date,
                 "time" to time,
-                "tz" to tz,
+                "tz" to timezone,
                 "alt" to alt
             )
         )
