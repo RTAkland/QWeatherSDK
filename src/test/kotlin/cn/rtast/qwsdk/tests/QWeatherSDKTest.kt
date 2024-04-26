@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 object QWeatherSDKTest {
 
-    lateinit var qw: QWeatherSDK
+    var qw: QWeatherSDK
 
     init {
         val envs = System.getenv()
