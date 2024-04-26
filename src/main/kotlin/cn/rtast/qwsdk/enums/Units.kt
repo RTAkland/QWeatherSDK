@@ -17,9 +17,9 @@
 
 package cn.rtast.qwsdk.enums
 
-enum class Units(val desc: String, val descZH: String) {
-    M("METRIC", "公制单位"),
-    I("IMPERIAL", "英制单位");
+enum class Units(val desc: String) {
+    Metric("METRIC"),
+    Imperial("IMPERIAL");
 
     override fun toString(): String = name.lowercase()
 }
