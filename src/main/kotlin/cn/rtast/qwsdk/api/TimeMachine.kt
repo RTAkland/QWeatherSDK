@@ -35,7 +35,7 @@ object TimeMachine {
     fun weatherHistory(
         location: String,
         date: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHistoricalEntity {
         DateUtil(date).verifyYMD()
@@ -57,7 +57,7 @@ object TimeMachine {
     fun airHistory(
         location: String,
         date: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): AirHistoricalEntity {
         DateUtil(date).verifyYMD()

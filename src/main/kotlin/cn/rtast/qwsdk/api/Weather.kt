@@ -90,7 +90,7 @@ object Weather {
     @JvmOverloads
     fun now(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherNowEntity {
         val url = buildRequestURL(
@@ -105,7 +105,7 @@ object Weather {
     @JvmOverloads
     fun now(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherNowEntity {
         return this.now(location(), unit, lang)
@@ -129,7 +129,7 @@ object Weather {
     @JvmOverloads
     fun weather24h(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weatherHourly("24h", location, lang, unit)
@@ -138,7 +138,7 @@ object Weather {
     @JvmOverloads
     fun weather24h(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weather24h(location(), unit, lang)
@@ -147,7 +147,7 @@ object Weather {
     @JvmOverloads
     fun weather72h(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weatherHourly("72h", location, lang, unit)
@@ -156,7 +156,7 @@ object Weather {
     @JvmOverloads
     fun weather72h(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weather72h(location(), unit, lang)
@@ -165,7 +165,7 @@ object Weather {
     @JvmOverloads
     fun weather168h(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weatherHourly("168h", location, lang, unit)
@@ -174,7 +174,7 @@ object Weather {
     @JvmOverloads
     fun weather168h(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weather168h(location(), unit, lang)
@@ -183,7 +183,7 @@ object Weather {
     @JvmOverloads
     fun weather3d(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherDailyEntity {
         return this.weatherDaily("3d", location, unit, lang)
@@ -192,7 +192,7 @@ object Weather {
     @JvmOverloads
     fun weather3d(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherDailyEntity {
         return this.weather3d(location(), unit, lang)
@@ -201,7 +201,7 @@ object Weather {
     @JvmOverloads
     fun weather7d(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherDailyEntity {
         return this.weatherDaily("7d", location, unit, lang)
@@ -210,7 +210,7 @@ object Weather {
     @JvmOverloads
     fun weather7d(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherDailyEntity {
         return this.weather7d(location(), unit, lang)
@@ -219,7 +219,7 @@ object Weather {
     @JvmOverloads
     fun weather15d(
         location: String,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherDailyEntity {
         return this.weatherDaily("15d", location, unit, lang)
@@ -228,7 +228,7 @@ object Weather {
     @JvmOverloads
     fun weather15d(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherDailyEntity {
         return this.weather15d(location(), unit, lang)
@@ -237,7 +237,7 @@ object Weather {
     @JvmOverloads
     fun weatherGridNow(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherGridRealtimeEntity {
         val url = buildRequestURL(
@@ -252,7 +252,7 @@ object Weather {
     @JvmOverloads
     fun weatherGrid24h(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherGridHourlyEntity {
         return this.gridHourlyWeather("24h", location(), unit, lang)
@@ -261,7 +261,7 @@ object Weather {
     @JvmOverloads
     fun weatherGrid72h(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherGridHourlyEntity {
         return this.gridHourlyWeather("72h", location(), unit, lang)
@@ -270,7 +270,7 @@ object Weather {
     @JvmOverloads
     fun weatherGrid3d(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherGridDailyEntity {
         return this.gridDailyWeather("3d", location(), unit, lang)
@@ -279,7 +279,7 @@ object Weather {
     @JvmOverloads
     fun weatherGrid7d(
         location: Coordinate,
-        unit: Units = Units.M,
+        unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherGridDailyEntity {
         return this.gridDailyWeather("7d", location(), unit, lang)
