@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test
 
 object QWeatherSDKTest {
 
-    val qw = QWeatherSDK()
+    lateinit var qw: QWeatherSDK
 
     init {
         val envs = System.getenv()
-        if (!envs.containsKey("QW_KEY") || !envs.containsKey("QW_PLAN")) {
+        if (!envs.containsKey("QW_KEY") || !envs.containsKey("QW_PLAN") || !envs.containsKey("QW_PUBLICID")) {
             throw NoKeyFoundException("Couldn't find QW_KEY or QW_PLAN in env.")
         } else {
             val qwPlan = envs["QW_PLAN"]
@@ -20,7 +20,10 @@ object QWeatherSDKTest {
                 "custom" -> Plans.Custom
                 else -> Plans.Free
             }
-            qw.init(type, envs["QW_KEY"]!!)
+            val qwKey = envs["QW_KEY"]!!
+            val qwPublicKey = envs["QW_PUBLICID"]!!
+            qw = QWeatherSDK(qwKey, qwPublicKey, type)
+
         }
     }
 
