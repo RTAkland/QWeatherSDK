@@ -17,13 +17,7 @@
 package cn.rtast.qwsdk.api
 
 import cn.rtast.qwsdk.QWeatherSDK
-import cn.rtast.qwsdk.entity.weather.WeatherHourlyEntity
-import cn.rtast.qwsdk.entity.weather.WeatherGridDailyEntity
-import cn.rtast.qwsdk.entity.weather.WeatherGridHourlyEntity
-import cn.rtast.qwsdk.entity.weather.WeatherGridRealtimeEntity
-import cn.rtast.qwsdk.entity.weather.WeatherDailyEntity
-import cn.rtast.qwsdk.entity.weather.WeatherMinutelyEntity
-import cn.rtast.qwsdk.entity.weather.WeatherNowEntity
+import cn.rtast.qwsdk.entity.weather.*
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.Coordinate
