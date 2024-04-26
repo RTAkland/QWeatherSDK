@@ -145,7 +145,7 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.Plans
 
 fun main() {
-    val qw = QWeatherSDK("<this is your key>", Plans.Free)
+    val qw = QWeatherSDK("<this is your key>","<this is your key's publicid>", Plans.Free)
     // 可用的计划有 Free, Standard, Custom
     val response = qw.weather().now("101010100")  // 填入对应的数据, 这里只需要填写一个
     println(response)  // 返回的数据已经被反序列化, 可以直接访问对应的数据类来获取数据
@@ -160,7 +160,7 @@ import cn.rtast.qwsdk.enums.Plans;
 
 public class Main {
     public static void main(String[] args) {
-        QWeatherSDK qw = new QWeatherSDK("<this is your key>", Plans.Free);
+        QWeatherSDK qw = new QWeatherSDK("<this is your key>", "<this is your key's publicid>", Plans.Free);
         System.out.println(qw.weather().now("101010100"));
         // 最后两个参数有默认值, 通过给函数添加@JvmOverloads注解在编译时生成重载函数来实现Java参数默认值
     }
@@ -174,7 +174,7 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.enums.Plans
 
 object Main extends App {
-  val qw = new QWeatherSDK("<this is your key", Plans.Free)
+  val qw = new QWeatherSDK("<this is your key", "<this is your key's publicid>", Plans.Free)
   println(qw.weather().now("101010100"))
 }
 ```
