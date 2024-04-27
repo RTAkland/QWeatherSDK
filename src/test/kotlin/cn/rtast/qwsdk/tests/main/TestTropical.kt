@@ -16,12 +16,15 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
 import cn.rtast.qwsdk.tests.utils.getCurrentYear
+import cn.rtast.qwsdk.tests.utils.getInstance
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestTropical {
+
+    private val qw = getInstance()
+
     @Test
     fun forecastTest() {
         val id = qw.tropical().list(getCurrentYear()).storm[0].id

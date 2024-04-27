@@ -16,12 +16,14 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
 import cn.rtast.qwsdk.tests.utils.getCurrentDate
+import cn.rtast.qwsdk.tests.utils.getInstance
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestOcean {
+
+    private val qw = getInstance()
 
     @Test
     fun tideTest() {

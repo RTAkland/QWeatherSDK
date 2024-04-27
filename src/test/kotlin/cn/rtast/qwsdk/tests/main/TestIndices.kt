@@ -17,7 +17,7 @@
 package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.enums.IndicesType
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
+import cn.rtast.qwsdk.tests.utils.getInstance
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test
 class TestIndices {
 
     private val locationID = randomID()
+    private val qw = getInstance()
 
     @Test
     fun indices1dTest() {
@@ -39,7 +40,7 @@ class TestIndices {
     @Test
     fun indices3d() {
         val result = qw.indices().indices3d(
-            locationID, types = listOf(IndicesType.AIR_CONDITIONER, IndicesType.WASH_CAR)
+            locationID, types = listOf(IndicesType.AC, IndicesType.CW)
         ).apply {
             daily.forEach { println(it) }
         }

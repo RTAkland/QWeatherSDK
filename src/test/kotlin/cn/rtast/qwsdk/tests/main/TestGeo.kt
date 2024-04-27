@@ -17,7 +17,7 @@
 package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.enums.POIType
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
+import cn.rtast.qwsdk.tests.utils.getInstance
 import cn.rtast.qwsdk.tests.utils.randomID
 import cn.rtast.qwsdk.utils.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test
 class TestGeo {
 
     private val locationID = randomID()
+    private val qw = getInstance()
 
     @Test
     fun citySearchTest() {

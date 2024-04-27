@@ -16,13 +16,15 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
+import cn.rtast.qwsdk.tests.utils.getInstance
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestTimeMachine {
+
     private val locationID = randomID()
+    private val qw = getInstance()
 
     @Test
     fun weatherHistoricalTest() {

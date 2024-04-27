@@ -17,7 +17,7 @@
 package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
+import cn.rtast.qwsdk.tests.utils.getInstance
 import cn.rtast.qwsdk.tests.utils.randomID
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test
 class TestAir {
 
     private val locationId = randomID()
+    private val qw = getInstance()
 
     @Test
     fun airTest() {
@@ -38,11 +39,12 @@ class TestAir {
 
     @Test
     fun dailyTest() {
-        val result = qw.air().daily(locationId, Lang.EN).apply {
-            daily.forEach {
-                println(it)
-            }
-        }
+//        val result = qw.air().daily(locationId, Lang.EN).apply {
+//            daily.forEach {
+//                println(it)
+//            }
+        val result = qw.air().daily(locationId, Lang.EN)
+        println(result)
         assertEquals(result.code.toInt(), 200)
     }
 }

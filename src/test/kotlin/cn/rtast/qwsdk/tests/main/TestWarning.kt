@@ -18,11 +18,13 @@ package cn.rtast.qwsdk.tests.main
 
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
+import cn.rtast.qwsdk.tests.utils.getInstance
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestWarning {
+
+    private val qw = getInstance()
 
     @Test
     fun nowTest() {

@@ -16,13 +16,15 @@
 
 package cn.rtast.qwsdk.tests.main
 
-import cn.rtast.qwsdk.tests.QWeatherSDKTest.qw
+import cn.rtast.qwsdk.tests.utils.getInstance
 import cn.rtast.qwsdk.tests.utils.randomID
 import cn.rtast.qwsdk.utils.Coordinate
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestWeather {
+
+    private val qw = getInstance()
 
     private val locationID = randomID()
     private val coordinate = Coordinate(116.41, 39.92)
