@@ -29,7 +29,7 @@ object Ocean {
         location: String,
         date: String,
     ): TideEntity {
-        DateUtil(date).verifyYMD()
+        DateUtil(date).validateYMD()
         val url = buildRequestURL(
             "ocean/tide",
             mapOf(
@@ -45,7 +45,7 @@ object Ocean {
         location: String,
         date: String,
     ): CurrentsEntity {
-        DateUtil(date).verifyYMD()
+        DateUtil(date).validateYMD()
         val url = buildRequestURL(
             "ocean/currents",
             mapOf(

@@ -20,8 +20,9 @@ import cn.rtast.qwsdk.exceptions.InvalidDateException
 
 
 class DateUtil(private val date: String) {
+
     @Throws(InvalidDateException::class)
-    fun verifyYMD() {
+    fun validateYMD() {
         if (date.length != 8) {
             throw InvalidDateException("Invalid Date length: ${date.length}, expect: 8!")
         }
@@ -48,7 +49,7 @@ class DateUtil(private val date: String) {
     }
 
     @Throws(InvalidDateException::class)
-    fun verifyHM() {
+    fun validateHM() {
         if (date.length != 4) {
             throw InvalidDateException("Invalid Date length: ${date.length}, expect: 4!")
         }

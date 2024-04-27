@@ -27,26 +27,26 @@ class TestDateUtil {
     @Test
     fun verifyYMDTest() {
         assertThrows<InvalidDateException> {
-            DateUtil("202201021").verifyYMD()  // wrong length
-            DateUtil("20210229").verifyYMD()  // not leap year
-            DateUtil("20221320").verifyYMD()  // Month 13 (
+            DateUtil("202201021").validateYMD()  // wrong length
+            DateUtil("20210229").validateYMD()  // not leap year
+            DateUtil("20221320").validateYMD()  // Month 13 (
         }
 
         assertDoesNotThrow {
-            DateUtil("20230110").verifyYMD()  // correct
+            DateUtil("20230110").validateYMD()  // correct
         }
     }
 
     @Test
     fun verifyHMTest() {
         assertThrows<InvalidDateException> {
-            DateUtil("3010").verifyHM()
-            DateUtil("22100").verifyHM()
-            DateUtil("1961").verifyHM()
+            DateUtil("3010").validateHM()
+            DateUtil("22100").validateHM()
+            DateUtil("1961").validateHM()
         }
 
         assertDoesNotThrow {
-            DateUtil("0110").verifyHM()
+            DateUtil("0110").validateHM()
         }
     }
 }

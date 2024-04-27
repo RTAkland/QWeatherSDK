@@ -33,7 +33,7 @@ object Astronomy {
         date: String,
         lang: Lang = Lang.ZH,
     ): SunEntity {
-        DateUtil(date).verifyYMD()
+        DateUtil(date).validateYMD()
         val url = buildRequestURL(
             "astronomy/sun",
             mapOf(
@@ -63,7 +63,7 @@ object Astronomy {
         date: String,
         lang: Lang = Lang.ZH,
     ): MoonEntity {
-        DateUtil(date).verifyYMD()
+        DateUtil(date).validateYMD()
         val url = buildRequestURL(
             "astronomy/moon", mapOf(
                 "location" to location,
@@ -92,8 +92,8 @@ object Astronomy {
         timezone: String,
         alt: Int,
     ): SolarElevationAngleEntity {
-        DateUtil(date).verifyYMD()
-        DateUtil(time).verifyHM()
+        DateUtil(date).validateYMD()
+        DateUtil(time).validateHM()
         val url = buildRequestURL(
             "astronomy/solar-elevation-angle",
             mapOf(

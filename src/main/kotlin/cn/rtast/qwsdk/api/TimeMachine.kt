@@ -38,7 +38,7 @@ object TimeMachine {
         unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHistoricalEntity {
-        DateUtil(date).verifyYMD()
+        DateUtil(date).validateYMD()
         val url = buildRequestURL(
             "historical/weather",
             mapOf(
@@ -60,7 +60,7 @@ object TimeMachine {
         unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): AirHistoricalEntity {
-        DateUtil(date).verifyYMD()
+        DateUtil(date).validateYMD()
         val url = buildRequestURL(
             "historical/air",
             mapOf(
