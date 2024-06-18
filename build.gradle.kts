@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
 }
 
 val sdk_version: String by project
@@ -31,7 +33,7 @@ tasks.jar {
 }
 
 tasks.compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    compilerOptions.jvmTarget = JvmTarget.JVM_1_8
 }
 
 tasks.compileJava {
