@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew build -x test
       - name: Upload build artifacts
         if: ${{ runner.os == 'Linux' && matrix.java == '8' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: QWeatherSDK
           path: build/libs/*.jar
