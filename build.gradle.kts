@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    kotlin("jvm") version "2.0.0"
+    alias(libs.plugins.kotlin)
 }
 
-val sdk_version: String by project
+val sdkVersion: String by project
 
 group = "cn.rtast"
-version = sdk_version
+version = sdkVersion
 
 repositories {
     mavenCentral()
@@ -15,12 +15,9 @@ repositories {
 }
 
 dependencies {
-    val gson_version: String by project
-    val jupiter_version: String by project
-
-    implementation("com.google.code.gson:gson:$gson_version")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:$jupiter_version")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiter_version")
+    implementation(libs.gson)
+    testImplementation(libs.jupiterEngine)
+    testImplementation(libs.jupiterApi)
 }
 
 tasks.test {
