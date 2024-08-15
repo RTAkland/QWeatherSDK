@@ -24,31 +24,26 @@ import cn.rtast.qwsdk.enums.BasinType
 import cn.rtast.qwsdk.exceptions.UnsupportedRegionException
 import cn.rtast.qwsdk.exceptions.UnsupportedYearException
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 import java.time.Year
 
 object Tropical {
 
     fun forecast(stormID: String): TropicalForecastEntity {
-        val url = buildRequestURL(
-            "tropical/storm-forecast",
-            mapOf(
-                "stormid" to stormID,
+        return Http.get<TropicalForecastEntity>(
+            QWeatherSDK.rootAPI + "tropical/storm-forecast",
+            params = mapOf(
+                "stormid" to stormID
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TropicalForecastEntity::class.java)
     }
 
     fun track(stormID: String): TropicalTrackEntity {
-        val url = buildRequestURL(
-            "tropical/storm-track",
-            mapOf(
-                "stormid" to stormID,
+        return Http.get<TropicalTrackEntity>(
+            QWeatherSDK.rootAPI + "tropical/storm-track",
+            params = mapOf(
+                "stormid" to stormID
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TropicalTrackEntity::class.java)
     }
 
     @JvmOverloads
@@ -67,15 +62,12 @@ object Tropical {
         if (year != currentYear.toString() && year != lastYear.toString()) {
             throw UnsupportedYearException("You can't list the year before last year and future storms!")
         }
-        val url = buildRequestURL(
-            "tropical/storm-list",
-            mapOf(
-                "basin" to basin,
-                "year" to year
+        return Http.get<TropicalListEntity>(
+            QWeatherSDK.rootAPI + "tropical/storm-list",
+            params = mapOf(
+                "year" to year,
+                "basin" to basin.toString()
             )
         )
-        QWeatherSDK.logger.info(url)
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TropicalListEntity::class.java)
     }
 }

@@ -22,7 +22,6 @@ import cn.rtast.qwsdk.entity.air.BetaAirNowEntity
 import cn.rtast.qwsdk.entity.air.BetaAirStationEntity
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object AirBeta {
 
@@ -33,30 +32,21 @@ object AirBeta {
         pollutant: Boolean = false,
         station: Boolean = false,
     ): BetaAirNowEntity {
-        val url = buildRequestURL(
-            "airquality/v1/now/$location",
-            mapOf(
-                "lang" to lang,
+        return Http.get<BetaAirNowEntity>(
+            QWeatherSDK.rootAPI + "airquality/v1/now/$location",
+            params = mapOf(
+                "lang" to lang.toString(),
                 "pollutant" to pollutant,
                 "station" to station
             )
         )
-
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, BetaAirNowEntity::class.java)
     }
 
     @JvmOverloads
     fun stationInfo(location: String, lang: Lang = Lang.ZH): BetaAirStationEntity {
-        val url = buildRequestURL(
-            "airquality/v1/station/$location",
-            mapOf(
-                "lang" to lang
-            )
+        return Http.get<BetaAirStationEntity>(
+            QWeatherSDK.rootAPI + "airquality/v1/station/$location",
+            params = mapOf("lang" to lang.toString())
         )
-
-        val result = Http.get(url)
-
-        return QWeatherSDK.gson.fromJson(result, BetaAirStationEntity::class.java)
     }
 }

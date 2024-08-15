@@ -23,7 +23,6 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object TimeMachine {
 
@@ -39,18 +38,15 @@ object TimeMachine {
         lang: Lang = Lang.ZH,
     ): WeatherHistoricalEntity {
         DateUtil(date).validateYMD()
-        val url = buildRequestURL(
-            "historical/weather",
-            mapOf(
+        return Http.get<WeatherHistoricalEntity>(
+            QWeatherSDK.rootAPI + "historical/weather",
+            params = mapOf(
                 "location" to location,
-                "lang" to lang,
+                "date" to date,
                 "unit" to unit,
-                "date" to date
+                "lang" to lang.toString()
             )
         )
-        QWeatherSDK.logger.info(url)
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherHistoricalEntity::class.java)
     }
 
     @JvmOverloads
@@ -61,16 +57,14 @@ object TimeMachine {
         lang: Lang = Lang.ZH,
     ): AirHistoricalEntity {
         DateUtil(date).validateYMD()
-        val url = buildRequestURL(
-            "historical/air",
-            mapOf(
+        return Http.get<AirHistoricalEntity>(
+            QWeatherSDK.rootAPI + "historical/air",
+            params = mapOf(
                 "location" to location,
-                "lang" to lang,
+                "date" to date,
                 "unit" to unit,
-                "date" to date
+                "lang" to lang.toString()
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, AirHistoricalEntity::class.java)
     }
 }

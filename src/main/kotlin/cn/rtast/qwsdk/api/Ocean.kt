@@ -21,7 +21,6 @@ import cn.rtast.qwsdk.entity.ocean.CurrentsEntity
 import cn.rtast.qwsdk.entity.ocean.TideEntity
 import cn.rtast.qwsdk.utils.DateUtil
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Ocean {
 
@@ -30,15 +29,13 @@ object Ocean {
         date: String,
     ): TideEntity {
         DateUtil(date).validateYMD()
-        val url = buildRequestURL(
-            "ocean/tide",
-            mapOf(
+        return Http.get<TideEntity>(
+            QWeatherSDK.rootAPI + "ocean/tide",
+            params = mapOf(
                 "location" to location,
                 "date" to date
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, TideEntity::class.java)
     }
 
     fun currents(
@@ -46,14 +43,12 @@ object Ocean {
         date: String,
     ): CurrentsEntity {
         DateUtil(date).validateYMD()
-        val url = buildRequestURL(
-            "ocean/currents",
-            mapOf(
+        return Http.get<CurrentsEntity>(
+            QWeatherSDK.rootAPI + "ocean/currents",
+            params = mapOf(
                 "location" to location,
                 "date" to date
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, CurrentsEntity::class.java)
     }
 }

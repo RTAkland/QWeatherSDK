@@ -21,14 +21,12 @@ import cn.rtast.qwsdk.entity.geo.GeoLookupEntity
 import cn.rtast.qwsdk.entity.geo.GeoTopEntity
 import cn.rtast.qwsdk.entity.geo.POIEntity
 import cn.rtast.qwsdk.entity.geo.POIRangeEntity
-import cn.rtast.qwsdk.enums.ApiType
 import cn.rtast.qwsdk.enums.CountryCode
 import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.POIType
 import cn.rtast.qwsdk.exceptions.GeoNumberException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Geo {
 
@@ -44,19 +42,16 @@ object Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = buildRequestURL(
-            "city/lookup",
-            mapOf(
+        return Http.get<GeoLookupEntity>(
+            QWeatherSDK.GEO_API + "city/lookup",
+            params = mapOf(
                 "location" to location,
                 "adm" to adm,
                 "range" to range,
                 "number" to number,
-                "lang" to lang
-            ),
-            ApiType.Geo
+                "lang" to lang.toString()
+            )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, GeoLookupEntity::class.java)
     }
 
     @JvmOverloads
@@ -81,17 +76,14 @@ object Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = buildRequestURL(
-            "city/top",
-            mapOf(
+        return Http.get<GeoTopEntity>(
+            QWeatherSDK.GEO_API + "city/top",
+            params = mapOf(
                 "range" to range,
                 "number" to number,
-                "lang" to lang
-            ),
-            ApiType.Geo
+                "lang" to lang.toString()
+            )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, GeoTopEntity::class.java)
     }
 
     @JvmOverloads
@@ -106,19 +98,16 @@ object Geo {
         if (number !in 1..20) {  // range 1-20
             throw GeoNumberException("Invalid Range: $number, please choose from 1-20!")
         }
-        val url = buildRequestURL(
-            "poi/lookup",
-            mapOf(
+        return Http.get<POIEntity>(
+            QWeatherSDK.GEO_API + "poi/lookup",
+            params = mapOf(
                 "location" to location,
-                "type" to type.id,
+                "type" to type,
                 "city" to city,
                 "number" to number,
-                "lang" to lang
-            ),
-            ApiType.Geo
+                "lang" to lang.toString()
+            )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, POIEntity::class.java)
     }
 
     @JvmOverloads
@@ -149,20 +138,16 @@ object Geo {
         if (radius !in 1..50) {  // range 1-50
             throw GeoNumberException("Invalid Radius: $radius, please choose from 1-50!")
         }
-        val url = buildRequestURL(
-            "poi/range",
-            mapOf(
+        return Http.get<POIRangeEntity>(
+            QWeatherSDK.GEO_API + "poi/range",
+            params = mapOf(
                 "location" to location(),
-                "type" to type,
                 "radius" to radius,
                 "city" to city,
                 "number" to number,
-                "lang" to lang
-            ),
-            ApiType.Geo
+                "lang" to lang.toString(),
+                "type" to type.id
+            )
         )
-        QWeatherSDK.logger.info(url)
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, POIRangeEntity::class.java)
     }
 }

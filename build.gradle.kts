@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation(libs.gson)
+    implementation(libs.okhttp)
     testImplementation(libs.jupiterEngine)
     testImplementation(libs.jupiterApi)
 }
@@ -30,10 +31,10 @@ tasks.jar {
 }
 
 tasks.compileKotlin {
-    compilerOptions.jvmTarget = JvmTarget.JVM_1_8
+    compilerOptions.jvmTarget = JvmTarget.JVM_11
 }
 
 tasks.compileJava {
-    targetCompatibility = "1.8"
-    sourceCompatibility = "1.8"
+    targetCompatibility = "11"
+    sourceCompatibility = "11"
 }

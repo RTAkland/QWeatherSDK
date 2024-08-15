@@ -22,29 +22,29 @@ import java.net.URLEncoder
 import java.time.Instant
 
 
-fun buildRequestURL(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
-    val rootUrl = if (type == ApiType.Common) {
-        QWeatherSDK.rootAPI
-    } else {
-        QWeatherSDK.GEO_API
-    }
-
-    val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
-
-    val newParamsMap = params.toMutableMap()
-
-    newParamsMap["publicid"] = QWeatherSDK.publicIDKey
-    newParamsMap["t"] = Instant.now().epochSecond
-
-
-    val sortedParams = newParamsMap.toSortedMap().filterValues { it != null }
-        .map { (k, v) -> k to (v?.toString()?.let { URLEncoder.encode(it, "UTF-8") }) }
-        .joinToString("&") { (k, v) -> "$k=$v" }
-
-    val sign = getSignature(sortedParams, QWeatherSDK.apiKey)
-
-
-    url.append(sortedParams).append("&sign=$sign")
-
-    return url.toString()
-}
+//fun buildRequestURL(prefix: String, params: Map<String, Any?>, type: ApiType = ApiType.Common): String {
+//    val rootUrl = if (type == ApiType.Common) {
+//        QWeatherSDK.rootAPI
+//    } else {
+//        QWeatherSDK.GEO_API
+//    }
+//
+//    val url: StringBuilder = StringBuilder("$rootUrl/$prefix?")
+//
+//    val newParamsMap = params.toMutableMap()
+//
+//    newParamsMap["publicid"] = QWeatherSDK.publicIDKey
+//    newParamsMap["t"] = Instant.now().epochSecond
+//
+//
+//    val sortedParams = newParamsMap.toSortedMap().filterValues { it != null }
+//        .map { (k, v) -> k to (v?.toString()?.let { URLEncoder.encode(it, "UTF-8") }) }
+//        .joinToString("&") { (k, v) -> "$k=$v" }
+//
+//    val sign = getSignature(sortedParams, QWeatherSDK.apiKey)
+//
+//
+//    url.append(sortedParams).append("&sign=$sign")
+//
+//    return url.toString()
+//}

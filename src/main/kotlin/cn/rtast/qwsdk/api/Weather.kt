@@ -22,7 +22,6 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.enums.Units
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Weather {
 
@@ -32,13 +31,14 @@ object Weather {
         lang: Lang,
         unit: Units,
     ): WeatherHourlyEntity {
-        val url = buildRequestURL(
-            "weather/$hours", mapOf(
-                "location" to location, "lang" to lang, "unit" to unit
+        return Http.get<WeatherHourlyEntity>(
+            QWeatherSDK.rootAPI + "weather/$hours",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherHourlyEntity::class.java)
     }
 
 
@@ -48,13 +48,14 @@ object Weather {
         unit: Units,
         lang: Lang,
     ): WeatherDailyEntity {
-        val url = buildRequestURL(
-            "weather/$days", mapOf(
-                "location" to location, "lang" to lang, "unit" to unit
+        return Http.get<WeatherDailyEntity>(
+            QWeatherSDK.rootAPI + "weather/$days",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherDailyEntity::class.java)
     }
 
     private fun gridHourlyWeather(
@@ -63,13 +64,14 @@ object Weather {
         unit: Units,
         lang: Lang,
     ): WeatherGridHourlyEntity {
-        val url = buildRequestURL(
-            "grid-weather/$hours", mapOf(
-                "location" to location, "lang" to lang, "unit" to unit
+        return Http.get<WeatherGridHourlyEntity>(
+            QWeatherSDK.rootAPI + "grid-weather/$hours",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherGridHourlyEntity::class.java)
     }
 
     private fun gridDailyWeather(
@@ -78,13 +80,14 @@ object Weather {
         unit: Units,
         lang: Lang,
     ): WeatherGridDailyEntity {
-        val url = buildRequestURL(
-            "grid-weather/$days", mapOf(
-                "location" to location, "lang" to lang, "unit" to unit
+        return Http.get<WeatherGridDailyEntity>(
+            QWeatherSDK.rootAPI + "grid-weather/$days",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherGridDailyEntity::class.java)
     }
 
     @JvmOverloads
@@ -93,13 +96,14 @@ object Weather {
         unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherNowEntity {
-        val url = buildRequestURL(
-            "weather/now", mapOf(
-                "location" to location, "lang" to lang, "unit" to unit
+        return Http.get<WeatherNowEntity>(
+            QWeatherSDK.rootAPI + "weather/now",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherNowEntity::class.java)
     }
 
     @JvmOverloads
@@ -116,14 +120,13 @@ object Weather {
         location: Coordinate,
         lang: Lang = Lang.ZH,
     ): WeatherMinutelyEntity {
-        val url = buildRequestURL(
-            "minutely/5m", mapOf(
+        return Http.get<WeatherMinutelyEntity>(
+            QWeatherSDK.rootAPI + "weather/minutely",
+            params = mapOf(
                 "location" to location(),
-                "lang" to lang,
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherMinutelyEntity::class.java)
     }
 
     @JvmOverloads
@@ -240,13 +243,14 @@ object Weather {
         unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherGridRealtimeEntity {
-        val url = buildRequestURL(
-            "grid-weather/now", mapOf(
-                "location" to location(), "lang" to lang, "unit" to unit
+        return Http.get<WeatherGridRealtimeEntity>(
+            QWeatherSDK.rootAPI + "grid-weather/now",
+            params = mapOf(
+                "location" to location(),
+                "unit" to unit.toString(),
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WeatherGridRealtimeEntity::class.java)
     }
 
     @JvmOverloads

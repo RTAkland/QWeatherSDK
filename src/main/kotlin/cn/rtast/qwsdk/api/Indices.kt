@@ -23,7 +23,6 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Indices {
 
@@ -42,15 +41,14 @@ object Indices {
             listOf(IndicesType.ALL)
         } else types
         val typeString = typeArray.joinToString(",") { it.type.toString() }
-        val url = buildRequestURL(
-            "indices/$days",
-            mapOf(
+        return Http.get<IndicesEntity>(
+            QWeatherSDK.rootAPI + "indices/$days",
+            params = mapOf(
                 "location" to location,
-                "type" to typeString
+                "lang" to lang.toString(),
+                "type" to typeString,
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, IndicesEntity::class.java)
     }
 
     @JvmOverloads

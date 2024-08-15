@@ -24,49 +24,36 @@ import cn.rtast.qwsdk.enums.Lang
 import cn.rtast.qwsdk.exceptions.UnsupportedLanguageException
 import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
-import cn.rtast.qwsdk.utils.buildRequestURL
 
 object Warning {
 
     @JvmOverloads
     @Throws(UnsupportedLanguageException::class)
-    fun now(
-        location: String,
-        lang: Lang = Lang.ZH,
-    ): WarningEntity {
+    fun now(location: String, lang: Lang = Lang.ZH): WarningEntity {
         val supportedLang = listOf(Lang.ZH, Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
-        val url = buildRequestURL(
-            "warning/now",
-            mapOf(
+        return Http.get<WarningEntity>(
+            QWeatherSDK.rootAPI + "warning/now",
+            params = mapOf(
                 "location" to location,
-                "lang" to lang
+                "lang" to lang.toString(),
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WarningEntity::class.java)
     }
 
     @JvmOverloads
     @Throws(UnsupportedLanguageException::class)
-    fun now(
-        location: Coordinate,
-        lang: Lang = Lang.ZH,
-    ): WarningEntity {
+    fun now(location: Coordinate, lang: Lang = Lang.ZH): WarningEntity {
         return this.now(location(), lang)
     }
 
     @JvmOverloads
-    fun list(
-        range: CountryCode = CountryCode.CN,
-    ): WarningCityListEntity {
-        val url = buildRequestURL(
-            "warning/list",
-            mapOf("range" to range)
+    fun list(range: CountryCode = CountryCode.CN): WarningCityListEntity {
+        return Http.get<WarningCityListEntity>(
+            QWeatherSDK.rootAPI + "warning/list",
+            params = mapOf("range" to range)
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, WarningCityListEntity::class.java)
     }
 }

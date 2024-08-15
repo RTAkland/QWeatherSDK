@@ -24,4 +24,8 @@ data class Coordinate(
     operator fun invoke(): String {
         return "$longitude,$latitude"
     }
+
+    override fun toString(): String {
+        return "$longitude,$latitude"
+    }
 }

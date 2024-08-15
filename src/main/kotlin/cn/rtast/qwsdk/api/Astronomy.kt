@@ -34,16 +34,14 @@ object Astronomy {
         lang: Lang = Lang.ZH,
     ): SunEntity {
         DateUtil(date).validateYMD()
-        val url = buildRequestURL(
-            "astronomy/sun",
-            mapOf(
+        return Http.get<SunEntity>(
+            QWeatherSDK.rootAPI + "astronomy/sun",
+            params = mapOf(
                 "location" to location,
                 "date" to date,
-                "lang" to lang
+                "lang" to lang.toString()
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, SunEntity::class.java)
     }
 
     @JvmOverloads
@@ -64,14 +62,14 @@ object Astronomy {
         lang: Lang = Lang.ZH,
     ): MoonEntity {
         DateUtil(date).validateYMD()
-        val url = buildRequestURL(
-            "astronomy/moon", mapOf(
+        return Http.get<MoonEntity>(
+            QWeatherSDK.rootAPI + "astronomy/moon",
+            params = mapOf(
                 "location" to location,
-                "date" to date, "lang" to lang
+                "date" to date,
+                "lang" to lang.toString()
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, MoonEntity::class.java)
     }
 
     @JvmOverloads
@@ -94,17 +92,15 @@ object Astronomy {
     ): SolarElevationAngleEntity {
         DateUtil(date).validateYMD()
         DateUtil(time).validateHM()
-        val url = buildRequestURL(
-            "astronomy/solar-elevation-angle",
-            mapOf(
+        return Http.get<SolarElevationAngleEntity>(
+            QWeatherSDK.rootAPI + "astronomy/solar-elevation-angle",
+            params = mapOf(
                 "location" to location(),
                 "date" to date,
-                "time" to time,
-                "tz" to timezone,
-                "alt" to alt
+                "time" to timezone,
+                "alt" to alt,
+                "timezone" to timezone,
             )
         )
-        val result = Http.get(url)
-        return QWeatherSDK.gson.fromJson(result, SolarElevationAngleEntity::class.java)
     }
 }

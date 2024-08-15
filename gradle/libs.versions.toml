@@ -1,12 +1,14 @@
 [versions]
 kotlinVersion = "2.0.0"
 gsonVersion = "2.11.0"
+okhttpVersion = "5.0.0-alpha.14"
 jupiterVersion = "5.9.2"
 
 [libraries]
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
-jupiterEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version = "jupiterVersion" }
-jupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version = "jupiterVersion" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttpVersion" }
+jupiterEngine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "jupiterVersion" }
+jupiterApi = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "jupiterVersion" }
 
 [bundles]
 
