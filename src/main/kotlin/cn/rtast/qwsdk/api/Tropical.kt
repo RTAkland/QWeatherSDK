@@ -37,6 +37,19 @@ object Tropical {
         )
     }
 
+    fun forecastAsync(
+        stormID: String,
+        onRequest: (TropicalForecastEntity?) -> Unit
+    ) {
+        Http.getAsync<TropicalForecastEntity>(
+            QWeatherSDK.rootAPI + "tropical/storm-forecast",
+            params = mapOf(
+                "stormid" to stormID
+            )
+        ) { onRequest(it) }
+    }
+
+
     fun track(stormID: String): TropicalTrackEntity {
         return Http.get<TropicalTrackEntity>(
             QWeatherSDK.rootAPI + "tropical/storm-track",
@@ -46,13 +59,19 @@ object Tropical {
         )
     }
 
-    @JvmOverloads
-    @Throws(UnsupportedYearException::class)
-    fun list(
-        year: String,
-        basin: BasinType = BasinType.NP,
-    ): TropicalListEntity {
+    fun trackAsync(
+        stormID: String,
+        onRequest: (TropicalTrackEntity?) -> Unit
+    ) {
+        Http.getAsync<TropicalTrackEntity>(
+            QWeatherSDK.rootAPI + "tropical/storm-track",
+            params = mapOf(
+                "stormid" to stormID
+            )
+        ) { onRequest(it) }
+    }
 
+    private fun check(basin: BasinType, year: String) {
         if (basin != BasinType.NP) {
             throw UnsupportedRegionException("This region is not currently supported: ${basin.desc}(${basin.descZH})!")
         }
@@ -62,6 +81,15 @@ object Tropical {
         if (year != currentYear.toString() && year != lastYear.toString()) {
             throw UnsupportedYearException("You can't list the year before last year and future storms!")
         }
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedYearException::class)
+    fun list(
+        year: String,
+        basin: BasinType = BasinType.NP,
+    ): TropicalListEntity {
+        this.check(basin, year)
         return Http.get<TropicalListEntity>(
             QWeatherSDK.rootAPI + "tropical/storm-list",
             params = mapOf(
@@ -69,5 +97,22 @@ object Tropical {
                 "basin" to basin.toString()
             )
         )
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedYearException::class)
+    fun listAsync(
+        year: String,
+        basin: BasinType = BasinType.NP,
+        onRequest: (TropicalListEntity?) -> Unit
+    ) {
+        this.check(basin, year)
+        Http.getAsync<TropicalListEntity>(
+            QWeatherSDK.rootAPI + "tropical/storm-list",
+            params = mapOf(
+                "year" to year,
+                "basin" to basin.toString()
+            )
+        ) { onRequest(it) }
     }
 }

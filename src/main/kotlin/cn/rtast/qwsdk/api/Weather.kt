@@ -41,6 +41,23 @@ object Weather {
         )
     }
 
+    private fun weatherHourlyAsync(
+        hours: String,
+        location: String,
+        lang: Lang,
+        unit: Units,
+        onRequest: (WeatherHourlyEntity?) -> Unit
+    ) {
+        Http.getAsync<WeatherHourlyEntity>(
+            QWeatherSDK.rootAPI + "weather/$hours",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
+    }
+
 
     private fun weatherDaily(
         days: String,
@@ -56,6 +73,23 @@ object Weather {
                 "lang" to lang.toString(),
             )
         )
+    }
+
+    private fun weatherDailyAsync(
+        days: String,
+        location: String,
+        unit: Units,
+        lang: Lang,
+        onRequest: (WeatherDailyEntity?) -> Unit
+    ) {
+        Http.getAsync<WeatherDailyEntity>(
+            QWeatherSDK.rootAPI + "weather/$days",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
     }
 
     private fun gridHourlyWeather(
@@ -74,6 +108,23 @@ object Weather {
         )
     }
 
+    private fun gridHourlyWeatherAsync(
+        hours: String,
+        location: String,
+        unit: Units,
+        lang: Lang,
+        onRequest: (WeatherGridHourlyEntity?) -> Unit
+    ) {
+        Http.getAsync<WeatherGridHourlyEntity>(
+            QWeatherSDK.rootAPI + "grid-weather/$hours",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
+    }
+
     private fun gridDailyWeather(
         days: String,
         location: String,
@@ -88,6 +139,23 @@ object Weather {
                 "lang" to lang.toString(),
             )
         )
+    }
+
+    private fun gridDailyWeatherAsync(
+        days: String,
+        location: String,
+        unit: Units,
+        lang: Lang,
+        onRequest: (WeatherGridDailyEntity?) -> Unit
+    ) {
+        Http.getAsync<WeatherGridDailyEntity>(
+            QWeatherSDK.rootAPI + "grid-weather/$days",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
     }
 
     @JvmOverloads
@@ -107,12 +175,39 @@ object Weather {
     }
 
     @JvmOverloads
+    fun nowAsync(
+        location: String,
+        unit: Units = Units.Metric,
+        lang: Lang = Lang.ZH,
+        onRequest: (WeatherNowEntity?) -> Unit
+    ) {
+        Http.getAsync<WeatherNowEntity>(
+            QWeatherSDK.rootAPI + "weather/now",
+            params = mapOf(
+                "location" to location,
+                "unit" to unit,
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
     fun now(
         location: Coordinate,
         unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherNowEntity {
         return this.now(location(), unit, lang)
+    }
+
+    @JvmOverloads
+    fun nowAsync(
+        location: Coordinate,
+        unit: Units = Units.Metric,
+        lang: Lang = Lang.ZH,
+        onRequest: (WeatherNowEntity?) -> Unit
+    ) {
+        this.nowAsync(location(), unit, lang, onRequest)
     }
 
     @JvmOverloads
@@ -130,6 +225,21 @@ object Weather {
     }
 
     @JvmOverloads
+    fun weatherMinutelyAsync(
+        location: Coordinate,
+        lang: Lang = Lang.ZH,
+        onRequest: (WeatherMinutelyEntity?) -> Unit
+    ) {
+        Http.getAsync<WeatherMinutelyEntity>(
+            QWeatherSDK.rootAPI + "weather/minutely",
+            params = mapOf(
+                "location" to location(),
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
     fun weather24h(
         location: String,
         unit: Units = Units.Metric,
@@ -140,11 +250,31 @@ object Weather {
 
     @JvmOverloads
     fun weather24h(
+        location: String,
+        unit: Units = Units.Metric,
+        lang: Lang = Lang.ZH,
+        onRequest: (WeatherHourlyEntity?) -> Unit
+    ) {
+        this.weatherHourlyAsync("24h", location, lang, unit, onRequest)
+    }
+
+    @JvmOverloads
+    fun weather24h(
         location: Coordinate,
         unit: Units = Units.Metric,
         lang: Lang = Lang.ZH,
     ): WeatherHourlyEntity {
         return this.weather24h(location(), unit, lang)
+    }
+
+    @JvmOverloads
+    fun weather24hAsync(
+        location: Coordinate,
+        unit: Units = Units.Metric,
+        lang: Lang = Lang.ZH,
+        onRequest: (WeatherHourlyEntity?) -> Unit
+    ) {
+        this.weatherHourlyAsync(location(), unit, lang, onRequest)
     }
 
     @JvmOverloads

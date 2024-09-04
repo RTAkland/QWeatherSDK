@@ -27,13 +27,18 @@ import cn.rtast.qwsdk.utils.Http
 
 object Warning {
 
-    @JvmOverloads
-    @Throws(UnsupportedLanguageException::class)
-    fun now(location: String, lang: Lang = Lang.ZH): WarningEntity {
-        val supportedLang = listOf(Lang.ZH, Lang.EN)
+    private val supportedLang = listOf(Lang.ZH, Lang.EN)
+
+    private fun check(lang: Lang) {
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
         }
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
+    fun now(location: String, lang: Lang = Lang.ZH): WarningEntity {
+        this.check(lang)
         return Http.get<WarningEntity>(
             QWeatherSDK.rootAPI + "warning/now",
             params = mapOf(
@@ -45,8 +50,35 @@ object Warning {
 
     @JvmOverloads
     @Throws(UnsupportedLanguageException::class)
+    fun nowAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (WarningEntity?) -> Unit
+    ) {
+        this.check(lang)
+        Http.getAsync<WarningEntity>(
+            QWeatherSDK.rootAPI + "warning/now",
+            params = mapOf(
+                "location" to location,
+                "lang" to lang.toString(),
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun now(location: Coordinate, lang: Lang = Lang.ZH): WarningEntity {
         return this.now(location(), lang)
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
+    fun nowAsync(
+        location: Coordinate,
+        lang: Lang = Lang.ZH,
+        onRequest: (WarningEntity?) -> Unit
+    ) {
+        this.nowAsync(location(), lang) { onRequest }
     }
 
     @JvmOverloads
@@ -55,5 +87,16 @@ object Warning {
             QWeatherSDK.rootAPI + "warning/list",
             params = mapOf("range" to range)
         )
+    }
+
+    @JvmOverloads
+    fun listAsync(
+        range: CountryCode = CountryCode.CN,
+        onRequest: (WarningCityListEntity?) -> Unit
+    ) {
+        Http.getAsync<WarningCityListEntity>(
+            QWeatherSDK.rootAPI + "warning/list",
+            params = mapOf("range" to range)
+        ) { onRequest(it) }
     }
 }

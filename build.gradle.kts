@@ -17,12 +17,6 @@ repositories {
 dependencies {
     implementation(libs.gson)
     implementation(libs.okhttp)
-    testImplementation(libs.jupiterEngine)
-    testImplementation(libs.jupiterApi)
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 tasks.jar {

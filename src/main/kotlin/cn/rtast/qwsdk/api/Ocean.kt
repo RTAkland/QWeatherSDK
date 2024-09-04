@@ -38,17 +38,47 @@ object Ocean {
         )
     }
 
+    fun tideAsync(
+        location: String,
+        date: String,
+        onRequest: (TideEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        return Http.getAsync<TideEntity>(
+            QWeatherSDK.rootAPI + "ocean/tide",
+            params = mapOf(
+                "location" to location,
+                "date" to date
+            )
+        ) { onRequest(it) }
+    }
+
     fun currents(
         location: String,
         date: String,
-    ): CurrentsEntity {
+    ) {
         DateUtil(date).validateYMD()
-        return Http.get<CurrentsEntity>(
+        Http.get<CurrentsEntity>(
             QWeatherSDK.rootAPI + "ocean/currents",
             params = mapOf(
                 "location" to location,
                 "date" to date
             )
         )
+    }
+
+    fun currentsAsync(
+        location: String,
+        date: String,
+        onRequest: (CurrentsEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        Http.getAsync<CurrentsEntity>(
+            QWeatherSDK.rootAPI + "ocean/currents",
+            params = mapOf(
+                "location" to location,
+                "date" to date
+            )
+        ) { onRequest(it) }
     }
 }

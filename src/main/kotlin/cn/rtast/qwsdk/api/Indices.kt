@@ -26,13 +26,7 @@ import cn.rtast.qwsdk.utils.Http
 
 object Indices {
 
-    @Throws(UnsupportedLanguageException::class)
-    private fun indices(
-        days: String,
-        location: String,
-        lang: Lang = Lang.ZH,
-        types: List<IndicesType> = listOf(IndicesType.ALL),
-    ): IndicesEntity {
+    private fun buildIndices(lang: Lang, types: List<IndicesType>): String {
         val supportedLang = listOf(Lang.ZH, Lang.EN)
         if (lang !in supportedLang) {
             throw UnsupportedLanguageException("Unsupported language: ${lang.name}")
@@ -41,6 +35,17 @@ object Indices {
             listOf(IndicesType.ALL)
         } else types
         val typeString = typeArray.joinToString(",") { it.type.toString() }
+        return typeString
+    }
+
+    @Throws(UnsupportedLanguageException::class)
+    private fun indices(
+        days: String,
+        location: String,
+        lang: Lang = Lang.ZH,
+        types: List<IndicesType> = listOf(IndicesType.ALL),
+    ): IndicesEntity {
+        val typeString = this.buildIndices(lang, types)
         return Http.get<IndicesEntity>(
             QWeatherSDK.rootAPI + "indices/$days",
             params = mapOf(
@@ -49,6 +54,25 @@ object Indices {
                 "type" to typeString,
             )
         )
+    }
+
+    @Throws(UnsupportedLanguageException::class)
+    private fun indicesAsync(
+        days: String,
+        location: String,
+        lang: Lang = Lang.ZH,
+        types: List<IndicesType> = listOf(IndicesType.ALL),
+        onRequest: (IndicesEntity?) -> Unit
+    ) {
+        val typeString = this.buildIndices(lang, types)
+        Http.getAsync<IndicesEntity>(
+            QWeatherSDK.rootAPI + "indices/$days",
+            params = mapOf(
+                "location" to location,
+                "lang" to lang.toString(),
+                "type" to typeString,
+            )
+        ) { onRequest(it) }
     }
 
     @JvmOverloads
@@ -63,12 +87,34 @@ object Indices {
 
     @JvmOverloads
     @Throws(UnsupportedLanguageException::class)
+    fun indices1dAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        types: List<IndicesType> = listOf(IndicesType.ALL),
+        onRequest: (IndicesEntity?) -> Unit
+    ) {
+        this.indicesAsync("1d", location, lang, types) { onRequest }
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun indices1d(
         location: Coordinate,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesEntity {
         return this.indices1d(location(), lang, types)
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
+    fun indices1dAsync(
+        location: Coordinate,
+        lang: Lang = Lang.ZH,
+        types: List<IndicesType> = listOf(IndicesType.ALL),
+        onRequest: (IndicesEntity?) -> Unit
+    ) {
+        this.indices1dAsync(location(), lang, types) { onRequest }
     }
 
     @JvmOverloads
@@ -83,11 +129,33 @@ object Indices {
 
     @JvmOverloads
     @Throws(UnsupportedLanguageException::class)
+    fun indices3dAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        types: List<IndicesType> = listOf(IndicesType.ALL),
+        onRequest: (IndicesEntity?) -> Unit
+    ) {
+        this.indicesAsync("3d", location, lang, types) { onRequest }
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
     fun indices3d(
         location: Coordinate,
         lang: Lang = Lang.ZH,
         types: List<IndicesType> = listOf(IndicesType.ALL),
     ): IndicesEntity {
-        return this.indices1d(location(), lang, types)
+        return this.indices("3d", location(), lang, types)
+    }
+
+    @JvmOverloads
+    @Throws(UnsupportedLanguageException::class)
+    fun indices3dAsync(
+        location: Coordinate,
+        lang: Lang = Lang.ZH,
+        types: List<IndicesType> = listOf(IndicesType.ALL),
+        onRequest: (IndicesEntity?) -> Unit
+    ) {
+        this.indices3dAsync(location(), lang, types) { onRequest }
     }
 }

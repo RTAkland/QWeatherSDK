@@ -40,23 +40,15 @@ class QWeatherSDK(key: String, publicID: String, plan: Plans) {
         logger.info("Current Plan: $plan, Current API Host: $rootAPI")
     }
 
-    fun geo(): Geo = Geo
-
-    fun weather(): Weather = Weather
-
-    fun indices(): Indices = Indices
-
-    fun air(): Air = Air
-
-    fun timeMachine(): TimeMachine = TimeMachine
-
-    fun tropical(): Tropical = Tropical
-
-    fun ocean(): Ocean = Ocean
-
-    fun astronomy(): Astronomy = Astronomy
-
-    fun warning(): Warning = Warning
+    val geo = Geo
+    val weather = Weather
+    val indices = Indices
+    val air = Air
+    val timeMachine = TimeMachine
+    val tropical = Tropical
+    val ocean = Ocean
+    val astronomy = Astronomy
+    val warning = Warning
 
     @Deprecated("This API is not impl! (No data to create data entity!)")
     fun solarRadiation() {

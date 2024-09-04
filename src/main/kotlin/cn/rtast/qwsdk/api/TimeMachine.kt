@@ -50,6 +50,26 @@ object TimeMachine {
     }
 
     @JvmOverloads
+    fun weatherHistoryAsync(
+        location: String,
+        date: String,
+        unit: Units = Units.Metric,
+        lang: Lang = Lang.ZH,
+        onRequest: (WeatherHistoricalEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        Http.getAsync<WeatherHistoricalEntity>(
+            QWeatherSDK.rootAPI + "historical/weather",
+            params = mapOf(
+                "location" to location,
+                "date" to date,
+                "unit" to unit,
+                "lang" to lang.toString()
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
     fun airHistory(
         location: String,
         date: String,
@@ -66,5 +86,25 @@ object TimeMachine {
                 "lang" to lang.toString()
             )
         )
+    }
+
+    @JvmOverloads
+    fun airHistoryAsync(
+        location: String,
+        date: String,
+        unit: Units = Units.Metric,
+        lang: Lang = Lang.ZH,
+        onRequest: (AirHistoricalEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        Http.getAsync<AirHistoricalEntity>(
+            QWeatherSDK.rootAPI + "historical/air",
+            params = mapOf(
+                "location" to location,
+                "date" to date,
+                "unit" to unit,
+                "lang" to lang.toString()
+            )
+        ) { onRequest(it) }
     }
 }

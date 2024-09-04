@@ -40,11 +40,35 @@ object Air {
     }
 
     @JvmOverloads
+    fun nowAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (AirNowEntity?) -> Unit,
+    ) {
+        Http.getAsync<AirNowEntity>(
+            QWeatherSDK.rootAPI + "/air/now",
+            params = mapOf(
+                "location" to location,
+                "lang" to lang.toString()
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
     fun now(
         location: Coordinate,
         lang: Lang = Lang.ZH,
     ): AirNowEntity {
         return this.now(location(), lang)
+    }
+
+    @JvmOverloads
+    fun nowAsync(
+        location: Coordinate,
+        lang: Lang = Lang.ZH,
+        onRequest: (AirNowEntity?) -> Unit,
+    ) {
+        this.nowAsync(location(), lang) { onRequest }
     }
 
     @JvmOverloads
@@ -62,11 +86,35 @@ object Air {
     }
 
     @JvmOverloads
+    fun dailyAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (AirDailyEntity?) -> Unit,
+    ) {
+        Http.getAsync<AirDailyEntity>(
+            QWeatherSDK.rootAPI + "/air/5d",
+            params = mapOf(
+                "location" to location,
+                "lang" to lang.toString()
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
     fun daily(
         location: Coordinate,
         lang: Lang = Lang.ZH,
     ): AirDailyEntity {
         return this.daily(location(), lang)
+    }
+
+    @JvmOverloads
+    fun dailyAsync(
+        location: Coordinate,
+        lang: Lang = Lang.ZH,
+        onRequest: (AirDailyEntity?) -> Unit,
+    ) {
+        this.dailyAsync(location(), lang) { onRequest }
     }
 
     val beta = AirBeta

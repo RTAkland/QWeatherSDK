@@ -46,6 +46,26 @@ object Astronomy {
 
     @JvmOverloads
     @Throws(InvalidDateException::class)
+    fun sunAsync(
+        location: String,
+        date: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (SunEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        Http.getAsync<SunEntity>(
+            QWeatherSDK.rootAPI + "astronomy/sun",
+            params = mapOf(
+                "location" to location,
+                "date" to date,
+                "lang" to lang.toString()
+            )
+        ) { onRequest(it) }
+    }
+
+
+    @JvmOverloads
+    @Throws(InvalidDateException::class)
     fun sun(
         location: Coordinate,
         date: String,
@@ -53,6 +73,18 @@ object Astronomy {
     ): SunEntity {
         return this.sun(location(), date, lang)
     }
+
+    @JvmOverloads
+    @Throws(InvalidDateException::class)
+    fun sunAsync(
+        location: Coordinate,
+        date: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (SunEntity?) -> Unit
+    ) {
+        this.sunAsync(location(), date, lang) { onRequest }
+    }
+
 
     @JvmOverloads
     @Throws(InvalidDateException::class)
@@ -74,12 +106,42 @@ object Astronomy {
 
     @JvmOverloads
     @Throws(InvalidDateException::class)
+    fun moonAsync(
+        location: String,
+        date: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (MoonEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        Http.getAsync<MoonEntity>(
+            QWeatherSDK.rootAPI + "astronomy/moon",
+            params = mapOf(
+                "location" to location,
+                "date" to date,
+                "lang" to lang.toString()
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
+    @Throws(InvalidDateException::class)
     fun moon(
         location: Coordinate,
         date: String,
         lang: Lang = Lang.ZH,
     ): MoonEntity {
         return this.moon(location(), date, lang)
+    }
+
+    @JvmOverloads
+    @Throws(InvalidDateException::class)
+    fun moonAsync(
+        location: Coordinate,
+        date: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (MoonEntity?) -> Unit
+    ) {
+        this.moonAsync(location(), date, lang) { onRequest }
     }
 
     @Throws(InvalidDateException::class)
@@ -102,5 +164,28 @@ object Astronomy {
                 "timezone" to timezone,
             )
         )
+    }
+
+    @Throws(InvalidDateException::class)
+    fun solarElevationAngleAsync(
+        location: Coordinate,
+        date: String,
+        time: String,
+        timezone: String,
+        alt: Int,
+        onRequest: (SolarElevationAngleEntity?) -> Unit
+    ) {
+        DateUtil(date).validateYMD()
+        DateUtil(time).validateHM()
+        Http.getAsync<SolarElevationAngleEntity>(
+            QWeatherSDK.rootAPI + "astronomy/solar-elevation-angle",
+            params = mapOf(
+                "location" to location(),
+                "date" to date,
+                "time" to timezone,
+                "alt" to alt,
+                "timezone" to timezone,
+            )
+        ) { onRequest(it) }
     }
 }

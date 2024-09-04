@@ -43,10 +43,40 @@ object AirBeta {
     }
 
     @JvmOverloads
+    fun nowAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        pollutant: Boolean = false,
+        station: Boolean = false,
+        onRequest: (BetaAirNowEntity?) -> Unit
+    ) {
+        Http.getAsync<BetaAirNowEntity>(
+            QWeatherSDK.rootAPI + "airquality/v1/now/$location",
+            params = mapOf(
+                "lang" to lang.toString(),
+                "pollutant" to pollutant,
+                "station" to station
+            )
+        ) { onRequest(it) }
+    }
+
+    @JvmOverloads
     fun stationInfo(location: String, lang: Lang = Lang.ZH): BetaAirStationEntity {
         return Http.get<BetaAirStationEntity>(
             QWeatherSDK.rootAPI + "airquality/v1/station/$location",
             params = mapOf("lang" to lang.toString())
         )
+    }
+
+    @JvmOverloads
+    fun stationInfoAsync(
+        location: String,
+        lang: Lang = Lang.ZH,
+        onRequest: (BetaAirStationEntity?) -> Unit
+    ) {
+        Http.getAsync<BetaAirStationEntity>(
+            QWeatherSDK.rootAPI + "airquality/v1/station/$location",
+            params = mapOf("lang" to lang.toString())
+        ) { onRequest(it) }
     }
 }
