@@ -21,25 +21,20 @@ import cn.rtast.qwsdk.QWeatherSDK
 import cn.rtast.qwsdk.entity.air.BetaAirNowEntity
 import cn.rtast.qwsdk.entity.air.BetaAirStationEntity
 import cn.rtast.qwsdk.enums.Lang
+import cn.rtast.qwsdk.utils.Coordinate
 import cn.rtast.qwsdk.utils.Http
 import cn.rtast.qwsdk.utils.buildRequestURL
 
-object AirBeta {
+object AirNew {
 
     @JvmOverloads
     fun now(
-        location: String,
+        location: Coordinate,
         lang: Lang = Lang.ZH,
-        pollutant: Boolean = false,
-        station: Boolean = false,
     ): BetaAirNowEntity {
         val url = buildRequestURL(
-            "airquality/v1/now/$location",
-            mapOf(
-                "lang" to lang,
-                "pollutant" to pollutant,
-                "station" to station
-            )
+            "airquality/v1/current/${location.latitude}/${location.longitude}",
+            mapOf("lang" to lang)
         )
 
         val result = Http.get(url)

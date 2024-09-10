@@ -17,8 +17,8 @@
 package cn.rtast.qwsdk.utils
 
 data class Coordinate(
-    private val longitude: Double,
-    private val latitude: Double,
+    val longitude: Double,
+    val latitude: Double,
 ) {
     // overload operator to impl Class name as method
     operator fun invoke(): String {

@@ -74,5 +74,5 @@ object Air {
         return this.daily(location(), lang)
     }
 
-    fun beta(): AirBeta = AirBeta
+    fun new(): AirNew = AirNew
 }
