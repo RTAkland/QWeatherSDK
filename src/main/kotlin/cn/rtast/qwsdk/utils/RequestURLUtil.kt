@@ -38,7 +38,5 @@ fun buildRequestURL(prefix: String, params: Map<String, Any?>, type: ApiType = A
 //    val sign = getSignature(sortedParams, QWeatherSDK.apiKey)
 //    url.append(sortedParams).append("&sign=$sign")
     url.append(sortedParams).append("&key=${QWeatherSDK.apiKey}")
-    println(url)
-
     return url.toString()
 }
