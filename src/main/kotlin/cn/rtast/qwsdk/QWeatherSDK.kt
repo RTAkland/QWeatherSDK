@@ -14,6 +14,8 @@
  *    limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package cn.rtast.qwsdk
 
 import cn.rtast.qwsdk.api.*
@@ -46,7 +48,4 @@ class QWeatherSDK(key: String, plan: Plans) {
     val ocean = Ocean
     val astronomy = Astronomy
     val warning = Warning
-
-    @Deprecated("This API is not impl!  (No data to create data entity!)")
-    val solarRadiation: Nothing = TODO("Not available!")
 }
