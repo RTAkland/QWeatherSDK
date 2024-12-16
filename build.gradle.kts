@@ -52,10 +52,10 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://repo.rtast.cn/api/v4/projects/38/packages/maven")
+            url = uri("https://maven.pkg.github.com/RTAkland/QWeatherSDK")
             credentials {
                 username = "RTAkland"
-                password = System.getenv("TOKEN")
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }
