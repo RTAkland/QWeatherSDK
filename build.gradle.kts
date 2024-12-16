@@ -33,20 +33,21 @@ tasks.compileJava {
     sourceCompatibility = "1.8"
 }
 
-tasks.register<Jar>("sourceJar") {
+val sourceJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
 }
 
 artifacts {
-    archives(tasks.named("sourceJar"))
+    archives(sourceJar)
 }
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-            artifact(tasks["sourceJar"])
+            artifact(sourceJar)
+            artifactId = "qweathersdk"
         }
     }
 
