@@ -73,6 +73,8 @@ dependencies {
 repositories {
     // other repos...
     maven { url "https://jitpack.io" }
+    // maven.rtast.cn, 二选一
+    maven { url "https://maven.rtast.cn/releases/" }
 }
 
 dependencies {

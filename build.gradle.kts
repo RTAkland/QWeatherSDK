@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.gson)
+    api(libs.gson)
 }
 
 tasks.jar {
@@ -53,10 +53,10 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://maven.pkg.github.com/RTAkland/QWeatherSDK")
+            url = uri("https://maven.rtast.cn/releases/")
             credentials {
                 username = "RTAkland"
-                password = System.getenv("GITHUB_TOKEN")
+                password = System.getenv("PUBLISH_TOKEN")
             }
         }
     }
